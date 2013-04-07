@@ -1,0 +1,28 @@
+body {
+  padding-top: 40px;
+}
+
+.panel {
+    border-style: solid;
+    border-width: 1px;
+}
+
+.job-panel .job-group {
+    border-style: solid;
+    border-width: 1px;
+}
+
+.description-panel .job-description{
+    border-style: solid;
+    border-width: 1px;
+}
+
+.description-panel .job-assignement{
+    border-style: solid;
+    border-width: 1px;
+}
+
+.description-panel .job-updates{
+    border-style: solid;
+    border-width: 1px;
+}
