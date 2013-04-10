@@ -12,9 +12,24 @@ body {
     border-width: 1px;
 }
 
-.panel .tab-item{
+.tab-panel ul { 
+    margin: 0; 
+    padding: 0; 
+}
+
+.tab-panel li { 
+    list-style: none; 
+}
+
+.tab-panel a {
+    display: block;
     text-align: center;
 }
+
+/*.panel .tab-item{
+    font-size: 1.5em;
+    text-align: center;
+}*/
 
 .job-panel .job-group {
     border-style: solid;
