@@ -1,10 +1,19 @@
 body {
-  padding-top: 40px;
+  padding-top: 60px;
+}
+
+.navbar .logo {
+    font-family: 'Bubbler One', sans-serif;
+    color: black;
 }
 
 .panel {
     border-style: solid;
     border-width: 1px;
+}
+
+.panel .tab-item{
+    text-align: center;
 }
 
 .job-panel .job-group {
