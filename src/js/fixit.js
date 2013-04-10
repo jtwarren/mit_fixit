@@ -26,6 +26,11 @@ fixit.Job = function(title, text, location, time) {
 	var status = "new";
 	var updateList = new Array();
 	var labelList = new Array();
+
+	// getter methods
+	this.getStatus = function() {
+		return status;
+	}
 }
 
 fixit.Update = function(updater, text, time, urgency) {
