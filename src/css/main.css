@@ -66,7 +66,25 @@ body {
     font-size: 1.6em;
 }
 
-.description-panel .job-updates{
-    border-style: solid;
-    border-width: 1px;
+.description-panel .updates .update {
+    margin-bottom: 15px;
+}
+
+.description-panel .updates .update .username{
+    font-weight: bold;
+}
+
+.description-panel .updates .update .update-text{
+    padding-left: 54px;
+    position: relative;
+}
+
+.description-panel .updates .update .update-text .time{
+    font-size: .85em;
+}
+
+ .description-panel .updates .update .update-image{
+    float: left; 
+    clear: left; 
+    margin: 4px;
 }
