@@ -18,10 +18,13 @@ body {
 }
 
 .tab-panel li { 
-    list-style: none; 
+    list-style: none;
+    font-size: 2em;
+    line-height: 1.2em;
 }
 
 .tab-panel a {
+    color: black;
     display: block;
     text-align: center;
 }
@@ -37,14 +40,30 @@ body {
     border-width: 1px;
 }
 
-.description-panel .job-description{
-    border-style: solid;
-    border-width: 1px;
+.description-panel .description{
+    margin-bottom: 20px;
+}
+
+.description-panel .description .job-title{
+    font-size: 1.6em;
+    line-height: 1.2em;
+}
+
+.description-panel .description .job-location{
+    font-size: .8em;
+}
+
+.description-panel .description .job-reporter{
+    font-size: .8em;
 }
 
 .description-panel .job-assignement{
     border-style: solid;
     border-width: 1px;
+}
+
+.description-panel .assignment .job-assignment{
+    font-size: 1.6em;
 }
 
 .description-panel .job-updates{
