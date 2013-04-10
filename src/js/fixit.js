@@ -15,17 +15,17 @@ fixit.Job = function(title, text, location, time) {
 	 - time, a JavaScript Date object (http://bit.ly/z7Sdm)
 	*/
 
-	this.title = title;
-	this.text = text;
-	this.location = location;
-	this.time = time;
+	var title = title;
+	var text = text;
+	var location = location;
+	var time = time;
 
 	// default values for fields when new fixit.Job object is constructed
-	this.starred = false;
-	this.assignedTo = null;
-	this.status = "new";
-	this.updateList = new Array();
-	this.labelList = new Array();
+	var starred = false;
+	var assignedTo = null;
+	var status = "new";
+	var updateList = new Array();
+	var labelList = new Array();
 }
 
 fixit.Update = function(updater, text, time, urgency) {
@@ -36,8 +36,8 @@ fixit.Update = function(updater, text, time, urgency) {
 	 - urgency, a boolean
 	*/
 
-	this.updater = updater;
-	this.text = text;
-	this.time = time;
-	this.urgency = urgency;
+	var updater = updater;
+	var text = text;
+	var time = time;
+	var urgency = urgency;
 }
