@@ -9,6 +9,58 @@
     
     <script src="js/jquery-1.9.0.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+    <script src="js/fixit.js"></script>
+    
+    <script type="text/javascript">
+    
+        // An array listing all of the jobs.
+        var jobList = new Array(); 
+        
+        $(function(){
+            $( "#accordion" ).accordion();
+            
+            // Populate the jobList with fake jobs.
+            var job1 = new fixit.Job("Broken Lightbulb", "broke light bulb.",
+                "East Penthouse", new Date()); 
+            var job2 = new fixit.Job("Broken Lightbulb2", "broke light bulb.",
+                "East Penthouse", new Date()); 
+            var job3 = new fixit.Job("Broken Lightbulb3", "broke light bulb.",
+                "East Penthouse", new Date()); 
+            var job4 = new fixit.Job("Broken Lightbulb4", "broke light bulb.",
+                "East Penthouse", new Date()); 
+            jobList.push(job1); 
+            jobList.push(job2);
+            jobList.push(job3); 
+            jobList.push(job4); 
+        });
+        
+
+        // Load the jobs in a task list for a particular 
+        function loadJobs() {
+            for (var i=0; i<jobList.length; i++) {
+                var currentJob = jobList[i];                     
+                var jobContext = "<ul>"; 
+                if (currentJob.status == "unassigned" || 
+                    currentJob.status == "new") {
+
+                    //$("unassigned-jobs").append()
+
+                } else if (currentJob.status == "assigned") {
+                
+                } else if (currentJob.status == "completed") {
+                
+                } else {
+                    // Job should not have a different status.
+                    // there is a problem with this job. 
+                    console.log('current status is invalid');
+                }
+                
+                jobContext += "</ul>"
+            }
+        
+        }
+    </script>
 </head>
 <body>
     <div class="container-fluid">
@@ -23,13 +75,16 @@
                 </div>
             </div>
             <div class="span5">
-                <div class="panel job-panel">
+                <div class="panel job-panel" id="accordion">
+                    <h4> Unassigned Jobs </h4>
                     <div class="unassigned-jobs job-group">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        Text 
                     </div>
+                    <h4> Assigned Jobs </h4>
                     <div class="assigned-jobs job-group">
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                     </div>
+                    <h4> Completed Jobs </h4>
                     <div class="completed-jobs job-group">
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                     </div>
