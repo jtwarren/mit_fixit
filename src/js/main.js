@@ -30,14 +30,14 @@ function loadJobs() {
     for (var i=0; i<jobList.length; i++) {
         var currentJob = jobList[i];                     
         var jobContext = "<ul>"; 
-        if (currentJob.status == "unassigned" || 
-            currentJob.status == "new") {
+        if (currentJob.getStatus() == "unassigned" || 
+            currentJob.getStatus() == "new") {
                 console.log('new task');
                 //$("unassigned-jobs").append()
 
-        } else if (currentJob.status == "assigned") {
+        } else if (currentJob.getStatus() == "assigned") {
                 
-        } else if (currentJob.status == "completed") {
+        } else if (currentJob.getStatus() == "completed") {
                 
         } else {
             // Job should not have a different status.
