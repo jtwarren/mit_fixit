@@ -28,7 +28,9 @@ $('document').ready(function() {
 // Load the jobs in a task list for a particular 
 function loadJobs() {
     for (var i=0; i<jobList.length; i++) {
-        var currentJob = jobList[i];                     
+        var currentJob = jobList[i];     
+        console.log(currentJob);                 
+        debugger; 
         var jobContext = "<ul>"; 
         if (currentJob.status == "unassigned" || 
             currentJob.status == "new") {
