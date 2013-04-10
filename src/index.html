@@ -33,6 +33,7 @@
             jobList.push(job2);
             jobList.push(job3); 
             jobList.push(job4); 
+            loadJobs(); 
         });
         
 
@@ -43,7 +44,7 @@
                 var jobContext = "<ul>"; 
                 if (currentJob.status == "unassigned" || 
                     currentJob.status == "new") {
-
+                    console.log('new task');
                     //$("unassigned-jobs").append()
 
                 } else if (currentJob.status == "assigned") {
