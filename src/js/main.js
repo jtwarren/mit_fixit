@@ -6,7 +6,6 @@
 var jobList = new Array(); 
 
 $('document').ready(function() {
-    $( "#accordion" ).accordion();
             
     // Populate the jobList with fake jobs.
     var job1 = new fixit.Job("Broken Lightbulb", "broke light bulb.",
@@ -30,12 +29,19 @@ function loadJobs() {
     for (var i=0; i<jobList.length; i++) {
         var currentJob = jobList[i];     
         console.log(currentJob);                 
-        debugger; 
-        var jobContext = "<ul>"; 
+        var jobContext = "";
         if (currentJob.getStatus() == "unassigned" || 
             currentJob.getStatus() == "new") {
                 console.log('new task');
-                //$("unassigned-jobs").append()
+              /*  currentJob.append('<div class="job">
+                                <div class="starred"> <i class="icon-star"></i> </div>
+                                <div class="mechanic-image"> <img src="images/default.png" style="width:50px;" /> </div>
+                                <div class="job-description-text"> 
+                                    <div class="job-display-text"> Light bulbs smashed in the Mccormick Penthouse. </div>
+                                    <span class="blurb-location"> Mccormick East Penthouse </span>
+                                    <div class="blurb-time"> 3:45 pm </div>
+                                </div>
+                            </div>');*/
 
         } else if (currentJob.getStatus() == "assigned") {
                 

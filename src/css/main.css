@@ -57,7 +57,7 @@ body {
     font-size: .8em;
 }
 
-.description-panel .job-assignement{
+.description-panel .job-assignment{
     border-style: solid;
     border-width: 1px;
 }
@@ -83,11 +83,42 @@ body {
     font-size: .85em;
 }
 
- .description-panel .updates .update .update-image{
+.description-panel .updates .update .update-image{
     float: left; 
     clear: left; 
     margin: 4px;
 }
 
 .description-panel .updates .update-form{
+}
+
+.unassigned-jobs .job{
+    position: relative; 
+    height: 50px; 
+    border: 1px solid;
+    border-radius:5px; 
+}
+
+.unassigned-jobs .job .starred{
+    float: left;
+    padding: 7px; 
+}
+
+.unassigned-jobs .job .job-description-text{
+    padding-left: 24px; 
+    margin-top: 4px; 
+}
+
+.unassigned-jobs .job .job-description-text .blurb-location{
+    font-size: 0.85em;
+}
+
+.unassigned-jobs .job .job-description-text .blurb-time{
+    font-size: 0.85em;
+    float: right; 
+}
+
+.unassigned-jobs .job .mechanic-image{
+    float: right; 
+    margin-right: 2px; 
 }
