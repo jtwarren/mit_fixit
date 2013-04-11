@@ -8,8 +8,8 @@ body {
 }
 
 .panel {
-    border-style: solid;
-    border-width: 1px;
+/*    border-style: solid;
+    border-width: 1px;*/
 }
 
 .tab-panel ul { 
@@ -75,7 +75,7 @@ body {
 }
 
 .description-panel .updates .update .update-text{
-    padding-left: 54px;
+    padding-left: 59px;
     position: relative;
 }
 
@@ -87,4 +87,7 @@ body {
     float: left; 
     clear: left; 
     margin: 4px;
+}
+
+.description-panel .updates .update-form{
 }
