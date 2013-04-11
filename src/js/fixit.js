@@ -26,10 +26,37 @@ fixit.Job = function(title, text, location, time) {
 	var status = "new";
 	var updateList = new Array();
 	var labelList = new Array();
+	var assignedToPic = "images/default.png";
+
+    // setter methods
+    // Update the status of this job.
+    this.setStatus = function(stat) {
+        status = stat; 
+    }
 
 	// getter methods
+	this.getTitle = function() {
+		return title;
+	}
+	
+	this.getText = function() {
+		return text;
+	}
+	
+	this.getLocation = function() {
+	    return location; 
+	}
+	
 	this.getStatus = function() {
 		return status;
+	}
+	
+	this.getAssignedToPic = function() {
+	    return assignedToPic; 
+	}
+
+	this.getJobTime = function() {
+	    return time; 
 	}
 }
 

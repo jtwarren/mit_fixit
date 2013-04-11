@@ -94,33 +94,33 @@ body {
 .description-panel .updates .update-form{
 }
 
-.unassigned-jobs .job{
+.job{
     position: relative; 
     height: 50px; 
     border: 1px solid;
     border-radius:5px; 
 }
 
-.unassigned-jobs .job .starred{
+.job .starred{
     float: left;
-    padding: 7px; 
+    margin: 7px; 
 }
 
-.unassigned-jobs .job .job-description-text{
+.job .job-description-text{
     padding-left: 24px; 
     margin-top: 4px; 
 }
 
-.unassigned-jobs .job .job-description-text .blurb-location{
+.job .job-description-text .blurb-location{
     font-size: 0.85em;
 }
 
-.unassigned-jobs .job .job-description-text .blurb-time{
+.job .job-description-text .blurb-time{
     font-size: 0.85em;
     float: right; 
 }
 
-.unassigned-jobs .job .mechanic-image{
+.job .mechanic-image{
     float: right; 
     margin-right: 2px; 
 }
