@@ -1,0 +1,176 @@
+﻿#inputtext{
+	float: left;
+}
+
+#inputtext{
+	width: 300px;
+}
+
+#window{
+	/*overflow:scroll;*/
+	height:300px;
+	position: relative;
+}
+
+#table{
+	position: absolute;
+	top: 30px;
+	left: 0;
+}
+
+#search{
+	position:absolute;
+	top: 0;
+	left: 0;
+	height: 30px;
+	width: 400px;
+}
+
+#searchbutton{
+	float:right;
+	width:80px;
+}
+
+/*#c1{
+	top:0;
+}
+
+#c2{
+	top:30px;
+}*/
+
+.contact{
+	position:absolute;
+	border-style: solid;
+	width: 400px;
+	display:table;
+}
+
+.typeImg{
+	float:right;
+	max-height:70px;
+	vertical-align:middle;
+}
+
+.contactImg{
+	float:left;
+	max-height:70px;
+	vertical-align:middle;
+}
+
+.contactText{
+	float:left;
+	padding-left:20px;
+	display:table-cell;
+	vertical-align:middle;
+}
+
+.imgdiv{
+	vertical-align:middle;
+}
+
+/*#navigation{
+	width:140px;
+	height:400px;
+	
+}
+
+#navigation table{
+	width:100%;
+}
+
+#lefttable{
+	max-width:140px;
+	position:absolute;
+	margin-left: auto;
+	margin-right: auto;
+	vertical-align:middle;
+}
+
+#navigation input{
+	width:100%
+	
+}
+
+#left{
+	position:relative;
+	min-height:400px;
+}
+
+#right{
+	position:relative;
+	min-height:400px;
+}
+
+#mainTable{
+	
+}
+
+#content{
+	min-width: 400px;
+	z-index: 1;
+}
+
+#canvas{
+	z-index: 2;
+	position: absolute;
+	
+}
+#arrowCanvas{
+	z-index: 4;
+	position: absolute;
+	pointer-events:none;
+}
+
+#turn{
+	color: white;
+	background-color:gray;
+	text-align: center;
+}
+
+#checkers{
+	z-index: 3;
+	position: absolute;
+	border-collapse:collapse;
+	border-width:0px;
+	border: 0px;
+	border-spacing: 0px;
+	padding: 0px;
+	margin: 0px;
+}
+
+#checkertable{
+	border-collapse:collapse;
+	border-width:0px;
+	border: 0px;
+	border-spacing: 0px;
+	padding: 0px;
+	margin: 0px;
+}
+
+.checkercell{
+	border-collapse:collapse;
+	border-width:0px;
+	border: 0px;
+	border-spacing: 0px;
+	padding: 0px;
+	margin: 0px;
+	margin-left: auto;
+    margin-right: auto;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+img{
+	display: block;
+	z-index: 3;
+	border-collapse:collapse;
+	border-width:0px;
+	border: none;
+	border-spacing: 0px;
+	padding: 0px;
+	margin: 0px;
+	position: relative;
+	left = 0px;
+	top = 0px;
+}*/
