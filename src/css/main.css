@@ -1,5 +1,6 @@
 body {
   padding-top: 60px;
+  background-color: #eee;
 }
 
 .navbar .logo {
@@ -19,25 +20,33 @@ body {
 
 .tab-panel li { 
     list-style: none;
-    font-size: 2em;
-    line-height: 1.2em;
+/*    font-size: 1.5em;
+    line-height: 1.1em;*/
 }
 
 .tab-panel a {
     color: black;
     display: block;
-    text-align: center;
+    /*text-align: center;*/
 }
 
 .btn-address {
     display: block;
-    margin: 20px auto;
+    margin: 200px auto 0 auto;
     text-align: center;
 }
 
+.job-panel h4:not(:first-child){
+    margin-top: 50px;
+}
+/*
+.description-panel:not(:first-child){
+    margin-top: 50px;
+}*/
+
 .job-panel .job-group {
-    border-style: solid;
-    border-width: 1px;
+/*    border-style: solid;
+    border-width: 1px;*/
     width: 420px;
     height: 160px; 
 }

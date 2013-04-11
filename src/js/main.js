@@ -59,7 +59,7 @@ function addJob(currentJob) {
         jobContext += '</div> <span class="blurb-location">'
         jobContext += currentJob.getLocation(); 
         jobContext += '</span> <div class="blurb-time"> '
-        jobContext += currentJob.getJobTime(); 
+        jobContext += currentJob.getJobTime().toLocaleTimeString(); 
         jobContext += '</div> </div></div> ';
         
         if (currentJob.getStatus() == "unassigned" || 
