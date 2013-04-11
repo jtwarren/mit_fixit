@@ -21,11 +21,23 @@ $('document').ready(function() {
     jobList.push(job3); 
     jobList.push(job4); 
     loadJobs(); 
+    
+    // Makes each of the job clickable and will then trigger the right panel to update.
+    $(".job").click(function (i) {
+       console.log("clicked on this");  
+    }); 
+    
+    // Make jobs scrollable
+    $(".job-group").slimScroll({
+        height: '160px',
+        alwaysVisible: true
+    }); 
 });
 
 
 // Load the jobs in a task list for a particular 
 function loadJobs() {
+
     for (var i=0; i<jobList.length; i++) {
         var currentJob = jobList[i];     
         console.log(currentJob);                 
@@ -33,7 +45,8 @@ function loadJobs() {
         if (currentJob.getStatus() == "unassigned" || 
             currentJob.getStatus() == "new") {
                 console.log('new task');
-              /*  currentJob.append('<div class="job">
+        } else if (currentJob.getStatus() == "assigned") {
+                      /*  currentJob.append('<div class="job">
                                 <div class="starred"> <i class="icon-star"></i> </div>
                                 <div class="mechanic-image"> <img src="images/default.png" style="width:50px;" /> </div>
                                 <div class="job-description-text"> 
@@ -42,8 +55,6 @@ function loadJobs() {
                                     <div class="blurb-time"> 3:45 pm </div>
                                 </div>
                             </div>');*/
-
-        } else if (currentJob.getStatus() == "assigned") {
                 
         } else if (currentJob.getStatus() == "completed") {
                 
@@ -53,7 +64,7 @@ function loadJobs() {
             console.log('current status is invalid');
         }
                 
-            jobContext += "</ul>"
    }
         
 }
+

@@ -38,6 +38,8 @@ body {
 .job-panel .job-group {
     border-style: solid;
     border-width: 1px;
+    width: 420px;
+    height: 160px; 
 }
 
 .description-panel .description{
