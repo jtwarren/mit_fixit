@@ -1,20 +1,16 @@
 ﻿#inputtext{
 	float: left;
+	margin: 10px; 
+	width: 250px;
 }
 
-#inputtext{
-	width: 300px;
-}
 
-#myAddressModal{
-	overflow:scroll;
-	height:300px;
-}
 
 #table{
 	position: absolute;
 	top: 30px;
 	left: 0;
+	margin:10px; 
 }
 
 #search{
@@ -28,6 +24,18 @@
 #searchbutton{
 	float:right;
 	width:80px;
+	margin:10px; 
+}
+
+#myAddressModal{
+	overflow:scroll;
+	height:300px;
+	width: 450px; 
+}
+
+.modal-body{
+    height:300px; 
+    width: 425px;
 }
 
 .contact{

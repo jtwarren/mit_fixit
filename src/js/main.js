@@ -90,15 +90,11 @@ function loadAddressBook() {
     contactList.push(becky);
     contactList.push(jenks);
     contactList.push(homeDepot);
-    //console.log(contactList.length);
+
     for(var c = 0; c < contactList.length; c++){
-    	//console.log(c);
-    	//var contacthtml = '<div class="contact" id="c' + c + '">' + contactList[c].name + '</div>';
+    	
     	var contacthtml = '<div class="contact" id="c' + c + '">' + '</div>';
-    	//console.log(contacthtml);
     	var topLoc = c*80;
-    	//console.log("#c" + c);
-    	console.log(topLoc);
     	$("#table").append(contacthtml);
     	var name = '<div class="name" id="n' + c + '">' + contactList[c].name + '</div>';
     	var phone = '<div class="phone" id="p' + c + '">' + contactList[c].phone + '</div>';
@@ -106,14 +102,12 @@ function loadAddressBook() {
     	var contactImg = '<div class="imgdiv" id="i' + c + '"><img class="contactImg" src="images/default.png" /></div>';
     	var contactText = '<div class="contactText" id="t' + c + '">' + name + phone + email + '</div';
     	var typeImg = '<div><img class="typeImg" src="images/wrench.gif"/></div>';
-    	//$("#c" + c).append(name);
-    	//$("#c" + c).append(phone);
+
     	$("#c" + c).append(contactImg);
     	$("#c" + c).append(contactText);
     	$("#c" + c).append(typeImg);
     	$("#c" + c).css('top', topLoc + "px");
     	$("#c" + c).css('height', 77 + "px");
-    	//$("#table").append('<div id="i"></div>');
     }
 }
 
