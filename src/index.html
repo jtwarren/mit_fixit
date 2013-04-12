@@ -12,11 +12,13 @@ Borrowed external libraries of Bootstrap, jQuery-slimScroll,
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href='http://fonts.googleapis.com/css?family=Bubbler+One' rel='stylesheet' type='text/css'>
     <link href="css/main.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/booklayout.css" />
     
     <script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
     <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/fixit.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/contact.js"></script>
     
 </head>
 <body>
@@ -46,8 +48,24 @@ Borrowed external libraries of Bootstrap, jQuery-slimScroll,
                         <li class="tab-item"><h5 href="#assigned">Assigned</h5></li>
                         <li class="tab-item"><h5 href="#completed">Completed</h5></li>
                     </ul>
+                    <!-- Address Book Modal Layover-->
                     <div class="address-book">
-                        <button type="button" class="btn btn-address">Address<br/>Book</button>
+                        <a role="button"class="btn btn-address" data-target="#myAddressModal" data-toggle="modal"> 
+                                 Address<br/>Book </a>
+                                
+                        <div id="myAddressModal" class="modal hide fade" role="dialog">
+                            <div class="modal-header">
+                            <h3> Address Book </h3>
+                            </div> 
+                            <div class="modal-body">
+		                        <div id="search">
+			                        <div class="topsection"><input id="inputtext" type="text" name="entry"></input></div>
+			                        <div class="topsection"><input id ="searchbutton" type="button" name="searchbtn" value="Search"/></div>
+		                        </div>
+		                        <div id="table">
+		                        </div>
+		                    </div>
+	                    </div>
                     </div>
                 </div>
             </div>
@@ -98,6 +116,7 @@ Borrowed external libraries of Bootstrap, jQuery-slimScroll,
                     <h4> Assigned Jobs </h4>
                     <div class="assigned-jobs job-group">
                     </div>
+                    
                     <h4> Completed Jobs </h4>
                     <div class="completed-jobs job-group">
                     </div>

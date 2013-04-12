@@ -1,0 +1,70 @@
+﻿#inputtext{
+	float: left;
+	margin: 10px; 
+	width: 250px;
+}
+
+
+
+#table{
+	position: absolute;
+	top: 30px;
+	left: 0;
+	margin:10px; 
+}
+
+#search{
+	position:absolute;
+	top: 0;
+	left: 0;
+	height: 30px;
+	width: 400px;
+}
+
+#searchbutton{
+	float:right;
+	width:80px;
+	margin:10px; 
+}
+
+#myAddressModal{
+	overflow:scroll;
+	height:300px;
+	width: 450px; 
+}
+
+.modal-body{
+    height:300px; 
+    width: 425px;
+}
+
+.contact{
+	position:absolute;
+	border-style: solid;
+	width: 400px;
+	display:table;
+}
+
+.typeImg{
+	float:right;
+	max-height:70px;
+	vertical-align:middle;
+}
+
+.contactImg{
+	float:left;
+	max-height:70px;
+	vertical-align:middle;
+}
+
+.contactText{
+	float:left;
+	padding-left:20px;
+	display:table-cell;
+	vertical-align:middle;
+}
+
+.imgdiv{
+	vertical-align:middle;
+}
+
