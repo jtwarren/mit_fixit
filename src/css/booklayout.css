@@ -6,10 +6,9 @@
 	width: 300px;
 }
 
-#window{
-	/*overflow:scroll;*/
+#myAddressModal{
+	overflow:scroll;
 	height:300px;
-	position: relative;
 }
 
 #table{
@@ -30,14 +29,6 @@
 	float:right;
 	width:80px;
 }
-
-/*#c1{
-	top:0;
-}
-
-#c2{
-	top:30px;
-}*/
 
 .contact{
 	position:absolute;
@@ -69,108 +60,3 @@
 	vertical-align:middle;
 }
 
-/*#navigation{
-	width:140px;
-	height:400px;
-	
-}
-
-#navigation table{
-	width:100%;
-}
-
-#lefttable{
-	max-width:140px;
-	position:absolute;
-	margin-left: auto;
-	margin-right: auto;
-	vertical-align:middle;
-}
-
-#navigation input{
-	width:100%
-	
-}
-
-#left{
-	position:relative;
-	min-height:400px;
-}
-
-#right{
-	position:relative;
-	min-height:400px;
-}
-
-#mainTable{
-	
-}
-
-#content{
-	min-width: 400px;
-	z-index: 1;
-}
-
-#canvas{
-	z-index: 2;
-	position: absolute;
-	
-}
-#arrowCanvas{
-	z-index: 4;
-	position: absolute;
-	pointer-events:none;
-}
-
-#turn{
-	color: white;
-	background-color:gray;
-	text-align: center;
-}
-
-#checkers{
-	z-index: 3;
-	position: absolute;
-	border-collapse:collapse;
-	border-width:0px;
-	border: 0px;
-	border-spacing: 0px;
-	padding: 0px;
-	margin: 0px;
-}
-
-#checkertable{
-	border-collapse:collapse;
-	border-width:0px;
-	border: 0px;
-	border-spacing: 0px;
-	padding: 0px;
-	margin: 0px;
-}
-
-.checkercell{
-	border-collapse:collapse;
-	border-width:0px;
-	border: 0px;
-	border-spacing: 0px;
-	padding: 0px;
-	margin: 0px;
-	margin-left: auto;
-    margin-right: auto;
-    vertical-align: middle;
-    display: table-cell;
-}
-
-img{
-	display: block;
-	z-index: 3;
-	border-collapse:collapse;
-	border-width:0px;
-	border: none;
-	border-spacing: 0px;
-	padding: 0px;
-	margin: 0px;
-	position: relative;
-	left = 0px;
-	top = 0px;
-}*/
