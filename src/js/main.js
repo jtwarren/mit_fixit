@@ -29,10 +29,10 @@ $('document').ready(function() {
        console.log("clicked on this");  
     }); 
     
-    // Make jobs scrollable
-    $(".job-group").slimScroll({
-        height: '160px'
-    }); 
+    // // Make jobs scrollable
+    // $(".job-group").slimScroll({
+    //     height: 'auto'
+    // }); 
 });
 
 

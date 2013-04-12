@@ -47,8 +47,9 @@ body {
 .job-panel .job-group {
 /*    border-style: solid;
     border-width: 1px;*/
-    width: 420px;
-    height: 160px; 
+    width: auto;
+    max-height: 200px;
+    overflow: auto;
 }
 
 .description-panel .description{
@@ -108,6 +109,10 @@ body {
     height: 50px; 
     border: 1px solid;
     border-radius:5px; 
+}
+
+.job:hover {
+    color:red;
 }
 
 .job .starred{
