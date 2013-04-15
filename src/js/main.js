@@ -4,6 +4,7 @@
 
 // An array listing all of the jobs.
 var jobList = new Array(); 
+var contactList = new Array();
 
 $('document').ready(function() {
             
@@ -30,6 +31,7 @@ $('document').ready(function() {
     }); 
 
     loadAddressBook();
+    filterContacts();
 });
 
 
@@ -76,7 +78,6 @@ function addJob(currentJob) {
 // Load Address book component. 
 function loadAddressBook() {
     //data model
-    var contactList = new Array();
     var alan = new Contact("Alan Michelson", "617-584-2094", "michelson@mit.edu");
     var becky = new Contact("Becky Folds", "617-543-1352", "beks@mit.edu");
     var jenks = new Contact("Jenks Jenkinson", "617-239-8971", "jenks@mit.edu");
@@ -104,5 +105,34 @@ function loadAddressBook() {
     	$("#c" + c).css('top', topLoc + "px");
     	$("#c" + c).css('height', 77 + "px");
     }
+}
+
+function filterContacts(){
+    var $rows = $('#table');
+    $('#inputtext').keyup(function(){
+        $("#table").html("");
+        var searchText = document.getElementById("inputtext").value.toLowerCase();
+        var numEntries = -1;
+        for(var c = 0; c < contactList.length; c++){
+            if(contactList[c].name.toLowerCase().indexOf(searchText) != -1 || contactList[c].phone.toLowerCase().indexOf(searchText) != -1 || contactList[c].email.toLowerCase().indexOf(searchText) != -1){
+                numEntries += 1;
+                var contacthtml = '<div class="contact" id="c' + c + '">' + '</div>';
+                var topLoc = numEntries*80;
+                $("#table").append(contacthtml);
+                var name = '<div class="name" id="n' + c + '">' + contactList[c].name + '</div>';
+                var phone = '<div class="phone" id="p' + c + '">' + contactList[c].phone + '</div>';
+                var email = '<div class="email" id="e' + c + '">' + contactList[c].email + '</div>';
+                var contactImg = '<div class="imgdiv" id="i' + c + '"><img class="contactImg" src="images/default.png" /></div>';
+                var contactText = '<div class="contactText" id="t' + c + '">' + name + phone + email + '</div';
+                var typeImg = '<div><img class="typeImg" src="images/wrench.gif"/></div>';
+
+                $("#c" + c).append(contactImg);
+                $("#c" + c).append(contactText);
+                $("#c" + c).append(typeImg);
+                $("#c" + c).css('top', topLoc + "px");
+                $("#c" + c).css('height', 77 + "px");
+            }
+        }
+    });
 }
 
