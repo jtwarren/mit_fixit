@@ -28,6 +28,8 @@ $('document').ready(function() {
     $(".job").click(function (i) {
        console.log("clicked on this");  
     }); 
+
+    loadAddressBook();
 });
 
 
