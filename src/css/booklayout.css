@@ -1,14 +1,14 @@
 ﻿#inputtext{
 	float: left;
 	margin: 10px; 
-	width: 250px;
+	width: 375px;
 }
 
 
 
 #table{
 	position: absolute;
-	top: 30px;
+	top: 50px;
 	left: 0;
 	margin:10px; 
 }
@@ -29,12 +29,12 @@
 
 #myAddressModal{
 	overflow:scroll;
-	height:300px;
+	height:500px;
 	width: 450px; 
 }
 
 .modal-body{
-    height:300px; 
+    height:500px; 
     width: 425px;
 }
 
