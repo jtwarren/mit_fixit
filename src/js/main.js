@@ -25,9 +25,10 @@ $('document').ready(function() {
         "McCormick East Tower", new Date(), rebecca); 
 
     var job4 = new fixit.Job("Window screen missing", "Can't leave my window open because there's no screen. The weather is starting to get warmer so I'd really like to open my window. And it also gets muggy in my room if I don't open the window a crack.",
-        "McCormick room 210", new Date(), jeff);
-    job4.setWorker("Jenks");
-    job4.addUpdate(new fixit.Update("Jenks", "Screen has been installed", new Date(), false));
+        "McCormick room 210", new Date());
+    var jenks = new fixit.Person("Jenks", "jenks@mit.edu", "617-777-7777")
+    job4.setWorker(jenks);
+    job4.addUpdate(new fixit.Update(jenks, "Screen has been installed", new Date(), false));
     job4.setStatus("completed");
 
     var job5 = new fixit.Job("Refrigerator isn't working correctly", "My food is spoiling really quickly. Yogurt that isn't supposed to expire until 2 weeks from now tasted really bad when I tried it yesterday. Same with my milk. This is probably something facilities should check on. It's affecting a lot of students.",
@@ -42,21 +43,20 @@ $('document').ready(function() {
     jobList.push(job4); 
     jobList.push(job5);
     jobList.push(job6);
+    
+    // Loads the jobs that are currently in the joblist. 
     loadJobs(); 
 
-    loadAddressBook();
+    // Loads the address book and allow contacts to be filtered. 
+    loadAddressBook(); 
     filterContacts();
 
-    // var jj = new fixit.Job("TEST", "TEST",
-    // "TEST", new Date());
-    // var person = new fixit.Person("Jeffrey Warren", "jtwarren@mit.edu", "603.438.6440");
-    // var update = new fixit.Update(person, "yo dosldfsd fjsdlfk jsdlfj sdflsd jflsdfsdlfk sdlf sdlfkjsdlfksdjflkjs fjlksd fsjdl fksdl kg, sick update", new Date(), "urgency")
-    // var update2 = new fixit.Update(person, "yo dofosdljsdlkfjn sdfhjasnfisdjkfhosdfj hi udsajohas djhaj sdiasdhas jdg akjsd jhsdg iaksjhdkas hadskjahsdkash g, sick update", new Date(), "urgency")
-    // jj.addUpdate(update);
-    // jj.addUpdate(update2);
-    // replaceDetails(jj);
-
     filterJobs();
+    
+    // Assign the mechanic to the particular job. 
+    $("#assign-button").click(function(event) {
+        console.log($("#assigned-mechanic option:selected").text())
+    });
 
     $('#update-button').click(function() { 
         var content = $(".update-form .input");
