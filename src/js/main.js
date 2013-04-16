@@ -63,7 +63,8 @@ $('document').ready(function() {
     
     // Assign the mechanic to the particular job. 
     $("#assign-button").click(function(event) {
-        console.log($("#assigned-mechanic option:selected").text());
+        console.log($("#assigned-mechanic option:selected").text())
+    });
 
     $('#update-button').click(function() { 
         var content = $(".update-form .input");
