@@ -138,3 +138,8 @@ body {
     float: right; 
     margin-right: 2px; 
 }
+
+.icon-star .filled {
+    max-height: 14px;
+    max-width: 14px;
+}

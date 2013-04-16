@@ -56,6 +56,26 @@ function loadJobs() {
    }
 }
 
+var giveStarIconClickHandler = function(jobView, jobModel, starIcon) {
+    starIcon.click(function(){
+        jobModel.toggleStarred();   // update the model
+
+        if (starIcon.hasClass('filled')) {
+        // replace star icon w/ empty star
+            starIcon.remove();
+            var newStarIcon = $("<i class='icon-star'></i>");
+            giveStarIconClickHandler(jobView, jobModel, newStarIcon);
+            jobView.find('.starred').append(newStarIcon);
+        } else {
+        // fil out star icon
+            starIcon.remove();
+            var newStarIcon = $("<img class='icon-star filled' src='images/star_filled2.png' />");
+            giveStarIconClickHandler(jobView, jobModel, newStarIcon);
+            jobView.find('.starred').append(newStarIcon);
+        }
+    });
+}
+
 // Load a particular job.
 function addJob(currentJob) {
     var jobContext = '<div class="job"> \
@@ -78,6 +98,9 @@ function addJob(currentJob) {
     $(job).click(function() {
         replaceDetails(currentJob);
     });
+
+    var starIcon = job.find('.icon-star');
+    giveStarIconClickHandler(job, currentJob, starIcon);
     
     if (currentJob.getStatus() == "unassigned" || 
         currentJob.getStatus() == "new") {
