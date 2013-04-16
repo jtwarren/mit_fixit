@@ -103,6 +103,7 @@ body {
     float: left; 
     clear: left; 
     margin: 4px;
+    height: 50px; 
 }
 
 .description-panel .updates .update-form{
@@ -134,6 +135,7 @@ body {
 .job .mechanic-image{
     float: right; 
     margin-right: 2px; 
+    height: 50px; 
 }
 
 .icon-star .filled {
