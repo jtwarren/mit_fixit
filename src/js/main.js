@@ -88,7 +88,7 @@ function loadJobs() {
 var giveMiddlePanelStarIconClickHandler = function(jobView, jobModel, starIcon) {
     starIcon.click(function(){
         jobModel.toggleStarred();   // update the model
-        console.log(jobModel.isStarred());
+        // console.log(jobModel.isStarred());
         if (starIcon.hasClass('filled')) {
         // replace star icon w/ empty star
             starIcon.remove();
@@ -108,7 +108,7 @@ var giveMiddlePanelStarIconClickHandler = function(jobView, jobModel, starIcon) 
 var giveRightPanelStarIconClickHandler = function(jobView, jobModel, starIcon) {
     starIcon.click(function(){
         jobModel.toggleStarred();   // update the model
-        console.log(jobModel.isStarred());
+        // console.log(jobModel.isStarred());
         if (starIcon.hasClass('filled')) {
         // replace star icon w/ empty star (in both middle panel & right panel)
             starIcon.remove();
