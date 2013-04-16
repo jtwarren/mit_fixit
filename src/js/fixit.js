@@ -115,6 +115,14 @@ fixit.Job = function(title, text, location, time, reporter) {
         return reporter;
     }
 
+    this.toggleStarred = function() {
+        starred = !(starred);
+    }
+
+    this.isStarred = function() {
+        return starred;
+    }
+
 	this.contains = function(searchText){
 		return (title.toLowerCase().indexOf(searchText) != -1 || text.toLowerCase().indexOf(searchText) != -1 || location.toLowerCase().indexOf(searchText) != -1);
 	}

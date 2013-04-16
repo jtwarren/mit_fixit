@@ -85,22 +85,55 @@ function loadJobs() {
    }
 }
 
-var giveStarIconClickHandler = function(jobView, jobModel, starIcon) {
+var giveMiddlePanelStarIconClickHandler = function(jobView, jobModel, starIcon) {
     starIcon.click(function(){
         jobModel.toggleStarred();   // update the model
-
+        console.log(jobModel.isStarred());
         if (starIcon.hasClass('filled')) {
         // replace star icon w/ empty star
             starIcon.remove();
             var newStarIcon = $("<i class='icon-star'></i>");
-            giveStarIconClickHandler(jobView, jobModel, newStarIcon);
+            giveMiddlePanelStarIconClickHandler(jobView, jobModel, newStarIcon);
             jobView.find('.starred').append(newStarIcon);
         } else {
         // fil out star icon
             starIcon.remove();
             var newStarIcon = $("<img class='icon-star filled' src='images/star_filled2.png' />");
-            giveStarIconClickHandler(jobView, jobModel, newStarIcon);
+            giveMiddlePanelStarIconClickHandler(jobView, jobModel, newStarIcon);
             jobView.find('.starred').append(newStarIcon);
+        }
+    });
+}
+
+var giveRightPanelStarIconClickHandler = function(jobView, jobModel, starIcon) {
+    starIcon.click(function(){
+        jobModel.toggleStarred();   // update the model
+        console.log(jobModel.isStarred());
+        if (starIcon.hasClass('filled')) {
+        // replace star icon w/ empty star (in both middle panel & right panel)
+            starIcon.remove();
+            var newStarIcon = $("<i class='icon-star'></i>");
+            giveRightPanelStarIconClickHandler(jobView, jobModel, newStarIcon);
+            $(".job-buttons").prepend(newStarIcon);
+
+            var starIconMiddlePanel = jobView.find('.icon-star');
+            starIconMiddlePanel.remove();
+            var newStarIconMiddlePanel = $("<i class='icon-star'></i>");
+            giveMiddlePanelStarIconClickHandler(jobView, jobModel, newStarIconMiddlePanel);
+            jobView.find('.starred').append(newStarIconMiddlePanel);
+
+        } else {
+        // fil out star icon (in both middle panel & right panel)
+            starIcon.remove();
+            var newStarIcon = $("<img class='icon-star filled' src='images/star_filled2.png' />");
+            giveRightPanelStarIconClickHandler(jobView, jobModel, newStarIcon);
+            $(".job-buttons").prepend(newStarIcon);
+
+            var starIconMiddlePanel = jobView.find('.icon-star');
+            starIconMiddlePanel.remove();
+            var newStarIconMiddlePanel = $("<img class='icon-star filled' src='images/star_filled2.png' />");
+            giveMiddlePanelStarIconClickHandler(jobView, jobModel, newStarIconMiddlePanel);
+            jobView.find('.starred').append(newStarIconMiddlePanel);
         }
     });
 }
@@ -128,12 +161,12 @@ function addJob(currentJob) {
         selectedJob = currentJob;
         $(".job-panel .job-group .job").removeClass("focus");
         job.addClass("focus");
-        replaceDetails(currentJob);
+        replaceDetails(currentJob, job);
     });
 
-    var starIcon = job.find('.icon-star');
-    giveStarIconClickHandler(job, currentJob, starIcon);
-    
+    var starIconMiddlePanel = job.find('.icon-star');
+    giveMiddlePanelStarIconClickHandler(job, currentJob, starIconMiddlePanel);
+
     if (currentJob.getStatus() == "unassigned" || 
         currentJob.getStatus() == "new") {
         $(".unassigned-jobs").append(job);
@@ -149,7 +182,7 @@ function addJob(currentJob) {
 }
 
 // Replace the details for a given job
-function replaceDetails(job) {
+function replaceDetails(job, jobView) {
     $(".description-panel .description .job-title h4").html(job.getTitle());
     $(".description-panel .description .job-location").html(job.getLocation());
     $(".description-panel .description .job-description").html(job.getText());
@@ -171,6 +204,17 @@ function replaceDetails(job) {
         $update.append($updateText);
         $(".updates").append($update);
     });
+
+    if (job.isStarred()) {
+        $(".job-buttons").find(".icon-star").remove();
+        $(".job-buttons").prepend($("<img class='icon-star filled' src='images/star_filled2.png' />"));
+    } else {
+        $(".job-buttons").find(".icon-star").remove();
+        $(".job-buttons").prepend($("<i class='icon-star'></i>"));
+    }
+
+    var starIconRightPanel = $(".job-buttons").find(".icon-star");
+    giveRightPanelStarIconClickHandler(jobView, job, starIconRightPanel);
 }
 
 
