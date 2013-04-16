@@ -43,6 +43,7 @@ body {
 .job-panel .job.focus {
     color:green;
 }
+
 /*
 .description-panel:not(:first-child){
     margin-top: 50px;
@@ -84,16 +85,16 @@ body {
     margin-bottom: 15px;
 }
 
-.description-panel .updates .update .username{
+.description-panel .updates .update .username {
     font-weight: bold;
 }
 
-.description-panel .updates .update .update-text{
+.description-panel .updates .update .update-text {
     padding-left: 59px;
     position: relative;
 }
 
-.description-panel .updates .update .update-text .time{
+.description-panel .updates .update .update-text .time {
     font-size: .85em;
 }
 
@@ -114,7 +115,7 @@ body {
 }
 
 .job:hover {
-    color:red;
+    color: red;
 }
 
 .job .starred{
