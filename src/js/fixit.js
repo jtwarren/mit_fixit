@@ -7,7 +7,25 @@ var fixit = {};     // fixit is object representing a module that
                     // functions, global variables, etc. (this is to 
                     // prevent namespace pollution)
 
-fixit.Job = function(title, text, location, time) {
+fixit.Person = function(name, email, phone) {
+    var name = name;
+    var email = email;
+    var phone = phone;
+
+    this.getName = function() {
+        return name;
+    }
+
+    this.getEmail = function() {
+        return email;
+    }
+
+    this.getPhone = function() {
+        return phone;
+    }
+}
+
+fixit.Job = function(title, text, location, time, reporter) {
     /* Constructor for fixit.Job object. Takes following parameters:
      - title, a string
      - text, a string
@@ -19,6 +37,7 @@ fixit.Job = function(title, text, location, time) {
     var text = text;
     var location = location;
     var time = time;
+    var reporter = reporter;
 
     // default values for fields when new fixit.Job object is constructed
     var starred = false;
@@ -66,6 +85,10 @@ fixit.Job = function(title, text, location, time) {
 	this.getUpdateList = function() {
 		return updateList;
 	}
+
+    this.getReporter = function () {
+        return reporter;
+    }
 
 	this.contains = function(searchText){
 		return (title.toLowerCase().indexOf(searchText) != -1 || text.toLowerCase().indexOf(searchText) != -1 || location.toLowerCase().indexOf(searchText) != -1);
