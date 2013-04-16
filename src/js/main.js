@@ -6,6 +6,7 @@
 var jobList = new Array(); 
 var contactList = new Array();
 var selectedJob = null;
+var current_user = new fixit.Person("Michael McIntyre", "michael@mit.edu", "309.269.2032");
 
 $('document').ready(function() {
     var rebecca = new fixit.Person("Rebecca Krosnick", "krosnick@mit.edu", "240.505.2222");
@@ -61,7 +62,7 @@ $('document').ready(function() {
         }
     });
 
-    $('#update-button').click(function() { 
+    $('#update-button').click(function() {
         var content = $(".update-form .input");
         var $update = $('<div class="update"/>');
         var $img = $('<div><img class="update-image" style="width:50px" src="images/default.png"/></div>');
@@ -73,6 +74,10 @@ $('document').ready(function() {
         $update.append($img);
         $update.append($updateText);
         $(".updates").append($update);
+
+        up = new fixit.Update(current_user, content.val(), new Date(), "urgency");
+        selectedJob.addUpdate(up);  
+        content.val("");
     });
 });
 
