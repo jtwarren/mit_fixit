@@ -9,15 +9,15 @@ var contactList = new Array();
 $('document').ready(function() {
             
     // Populate the jobList with fake jobs.
-    var job1 = new fixit.Job("Broken Lightbulb", "broke light bulb.",
-        "East Penthouse", new Date()); 
+    var job1 = new fixit.Job("Broken Lightbulb", "Ran into the lightbulb, glass everywhere, sorry",
+        "McCormick East Penthouse", new Date()); 
     job1.setStatus("assigned");
-    var job2 = new fixit.Job("Broken Lightbulb2", "broke light bulb.",
-        "East Penthouse", new Date()); 
-    var job3 = new fixit.Job("Broken Lightbulb3", "broke light bulb.",
-        "East Penthouse", new Date()); 
-    var job4 = new fixit.Job("Broken Lightbulb4", "broke light bulb.",
-        "East Penthouse", new Date()); 
+    var job2 = new fixit.Job("Door doesn't lock", "I don't feel safe leaving my door unlocked at night. Can you please come fix this asap?",
+        "McCormick room 501", new Date()); 
+    var job3 = new fixit.Job("Elevator broken", "Doors won't open",
+        "McCormick East Tower", new Date()); 
+    var job4 = new fixit.Job("Window screen missing", "Can't leave my window open because there's no screen",
+        "McCormick room 210", new Date()); 
     job4.setStatus("completed")
     jobList.push(job1); 
     jobList.push(job2);
