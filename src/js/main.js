@@ -25,7 +25,7 @@ $('document').ready(function() {
         "McCormick East Tower", new Date(), rebecca); 
 
     var job4 = new fixit.Job("Window screen missing", "Can't leave my window open because there's no screen. The weather is starting to get warmer so I'd really like to open my window. And it also gets muggy in my room if I don't open the window a crack.",
-        "McCormick room 210", new Date());
+        "McCormick room 210", new Date(), jeff);
     var jenks = new fixit.Person("Jenks", "jenks@mit.edu", "617-777-7777")
     job4.setWorker(jenks);
     job4.addUpdate(new fixit.Update(jenks, "Screen has been installed", new Date(), false));
