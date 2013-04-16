@@ -6,17 +6,22 @@
 var jobList = new Array(); 
 var contactList = new Array();
 var selectedJob = null;
+var current_user = new fixit.Person("Michael McIntyre", "michael@mit.edu", "309.269.2032", "images/houseManager.jpg");
 
 $('document').ready(function() {
     var rebecca = new fixit.Person("Rebecca Krosnick", "krosnick@mit.edu", "240.505.2222");
     var anurag = new fixit.Person("Anurag Kashyap", "anurag@mit.edu", "858.442.3774");
     var jeff = new fixit.Person("Jeffrey Warren", "jtwarren@mit.edu", "603.438.6440");
+    
+    // Mechanics
+    var jenks = new fixit.Person("Jenks", "jenks@mit.edu", "617-777-7777", "images/mechanic1.jpg");
+    var billy = new fixit.Person("Jenks", "jenks@mit.edu", "617-777-7777", "images/mechanic2.jpg");
             
     // Populate the jobList with fake jobs.
     var job1 = new fixit.Job("Broken Lightbulb", "Ran into the lamp because I was rushing. There's shattered glass everywhere. I tried to clean it up a bit but there are probably still little pieces on the ground. Can you come clean up the glass and replace the lightbulb? It's really dark in here and I enjoy studying here, so if you could come as soon as possible that would be great", 
         "McCormick East Penthouse", new Date(), jeff); 
     job1.setStatus("assigned");
-    job1.setWorker("Bob");
+    job1.setWorker(billy);
 
     var job2 = new fixit.Job("Door doesn't lock", "The handle turns but I can't press in the button from the inside of the room. I don't feel safe leaving my door unlocked at night, or when I'm gone because my valuables may be stolen. Can you please come fix this asap?",
         "McCormick room 501", new Date(), anurag); 
@@ -26,7 +31,6 @@ $('document').ready(function() {
 
     var job4 = new fixit.Job("Window screen missing", "Can't leave my window open because there's no screen. The weather is starting to get warmer so I'd really like to open my window. And it also gets muggy in my room if I don't open the window a crack.",
         "McCormick room 210", new Date(), jeff);
-    var jenks = new fixit.Person("Jenks", "jenks@mit.edu", "617-777-7777")
     job4.setWorker(jenks);
     job4.addUpdate(new fixit.Update(jenks, "Screen has been installed", new Date(), false));
     job4.setStatus("completed");
@@ -61,10 +65,11 @@ $('document').ready(function() {
         }
     });
 
-    $('#update-button').click(function() { 
+    $('#update-button').click(function() {
         var content = $(".update-form .input");
         var $update = $('<div class="update"/>');
-        var $img = $('<div><img class="update-image" style="width:50px" src="images/default.png"/></div>');
+        var $img = $('<div><img class="update-image" style="width:50px; height:50px;"'
+            +'src="'+ current_user.getPicture() +'"/></div>');
         var $updateText = $('<div class="update-text"/>');
         $updateText.append($('<span class="username">Michael McIntyre </span>'));
         $updateText.append(content.val());
@@ -73,6 +78,10 @@ $('document').ready(function() {
         $update.append($img);
         $update.append($updateText);
         $(".updates").append($update);
+
+        up = new fixit.Update(current_user, content.val(), new Date(), "urgency");
+        selectedJob.addUpdate(up);  
+        content.val("");
     });
 });
 
@@ -145,7 +154,7 @@ function addJob(currentJob) {
         <div class="mechanic-image"> <img src="'
         
     jobContext += currentJob.getAssignedToPic(); 
-    jobContext += '" style="width:50px;" /> </div> \
+    jobContext += '" style="width:50px; height:50px;" /> </div> \
                 <div class="job-description-text"> \
                 <div class="job-display-text">'
                 
