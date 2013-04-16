@@ -98,6 +98,8 @@ function replaceDetails(job) {
     $(".description-panel .description .job-title h4").html(job.getTitle());
     $(".description-panel .description .job-location").html(job.getLocation());
     $(".description-panel .description .job-description").html(job.getText());
+    var reporter = job.getReporter();
+    $(".description-panel .description .job-reporter").html(reporter.getName() + reporter.getEmail() + reporter.getPhone());
 
     $(".updates").empty();
     $(".updates").append($('<h4>Updates</h4>'))
