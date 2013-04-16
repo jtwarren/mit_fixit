@@ -97,6 +97,8 @@ function addJob(currentJob) {
     
     var job = $(jobContext);
     $(job).click(function() {
+        $(".job-panel .job-group .job").removeClass("focus");
+        job.addClass("focus");
         replaceDetails(currentJob);
     });
     
