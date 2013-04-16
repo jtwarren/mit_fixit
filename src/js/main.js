@@ -5,6 +5,7 @@
 // An array listing all of the jobs.
 var jobList = new Array(); 
 var contactList = new Array();
+var selectedJob = null;
 
 $('document').ready(function() {
     var rebecca = new fixit.Person("Rebecca Krosnick", "krosnick@mit.edu", "240.505.2222");
@@ -97,6 +98,7 @@ function addJob(currentJob) {
     
     var job = $(jobContext);
     $(job).click(function() {
+        selectedJob = currentJob;
         $(".job-panel .job-group .job").removeClass("focus");
         job.addClass("focus");
         replaceDetails(currentJob);
