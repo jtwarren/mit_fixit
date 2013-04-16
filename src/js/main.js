@@ -6,7 +6,7 @@
 var jobList = new Array(); 
 var contactList = new Array();
 var selectedJob = null;
-var current_user = new fixit.Person("Michael McIntyre", "michael@mit.edu", "309.269.2032");
+var current_user = new fixit.Person("Michael McIntyre", "michael@mit.edu", "309.269.2032", "images/houseManager.jpg");
 
 $('document').ready(function() {
     var rebecca = new fixit.Person("Rebecca Krosnick", "krosnick@mit.edu", "240.505.2222");
@@ -68,7 +68,8 @@ $('document').ready(function() {
     $('#update-button').click(function() {
         var content = $(".update-form .input");
         var $update = $('<div class="update"/>');
-        var $img = $('<div><img class="update-image" style="width:50px" src="images/default.png"/></div>');
+        var $img = $('<div><img class="update-image" style="width:50px; height:50px;"'
+            +'src="'+ current_user.getPicture() +'"/></div>');
         var $updateText = $('<div class="update-text"/>');
         $updateText.append($('<span class="username">Michael McIntyre </span>'));
         $updateText.append(content.val());
