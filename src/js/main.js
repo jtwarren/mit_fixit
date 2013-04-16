@@ -25,16 +25,13 @@ $('document').ready(function() {
         "McCormick East Tower", new Date(), rebecca); 
 
     var job4 = new fixit.Job("Window screen missing", "Can't leave my window open because there's no screen. The weather is starting to get warmer so I'd really like to open my window. And it also gets muggy in my room if I don't open the window a crack.",
-<<<<<<< HEAD
         "McCormick room 210", new Date());
     var jenks = new fixit.Person("Jenks", "jenks@mit.edu", "617-777-7777")
     job4.setWorker(jenks);
     job4.addUpdate(new fixit.Update(jenks, "Screen has been installed", new Date(), false));
-=======
         "McCormick room 210", new Date(), jeff);
     job4.setWorker("Jenks");
     job4.addUpdate(new fixit.Update("Jenks", "Screen has been installed", new Date(), false));
->>>>>>> 75aaa2ab30812aeef51ebd31cdbe073263edfd3c
     job4.setStatus("completed");
 
     var job5 = new fixit.Job("Refrigerator isn't working correctly", "My food is spoiling really quickly. Yogurt that isn't supposed to expire until 2 weeks from now tasted really bad when I tried it yesterday. Same with my milk. This is probably something facilities should check on. It's affecting a lot of students.",
