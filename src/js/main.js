@@ -40,6 +40,8 @@ $('document').ready(function() {
     jj.addUpdate(update);
     jj.addUpdate(update2);
     replaceDetails(jj);
+
+    filterJobs();
 });
 
 
@@ -169,6 +171,21 @@ function filterContacts(){
                 $("#c" + c).append(typeImg);
                 $("#c" + c).css('top', topLoc + "px");
                 $("#c" + c).css('height', 77 + "px");
+            }
+        }
+    });
+}
+
+function filterJobs(){
+    var $rows = $('.job-group');
+    $('#jobsearch').keyup(function(){
+        $(".job-group").html("");
+        var searchText = document.getElementById("jobsearch").value.toLowerCase();
+        var numEntries = -1;
+        for(var j = 0; j < jobList.length; j++){
+            if(jobList[j].contains(searchText)){
+                numEntries += 1;
+                addJob(jobList[j]);
             }
         }
     });

@@ -63,9 +63,13 @@ fixit.Job = function(title, text, location, time) {
         return time; 
     }
 
-    this.getUpdateList = function() {
-        return updateList;
-    }
+	this.getUpdateList = function() {
+		return updateList;
+	}
+
+	this.contains = function(searchText){
+		return (title.toLowerCase().indexOf(searchText) != -1 || text.toLowerCase().indexOf(searchText) != -1 || location.toLowerCase().indexOf(searchText) != -1);
+	}
 }
 
 fixit.Update = function(updater, text, time, urgency) {
