@@ -53,9 +53,34 @@ fixit.Job = function(title, text, location, time, reporter) {
         status = stat; 
     }
 
-    this.addUpdate = function(update) {
-        updateList.push(update);
+    this.setWorker = function(worker){
+    	assignedTo = worker;
     }
+
+    this.addUpdate = function(update){
+		updateList.push(update);
+	}
+
+	// getter methods
+	this.getTitle = function() {
+		return title;
+	}
+	
+	this.getText = function() {
+		return text;
+	}
+	
+	this.getLocation = function() {
+	    return location; 
+	}
+	
+	this.getStatus = function() {
+		return status;
+	}
+	
+	this.getAssignedToPic = function() {
+	    return assignedToPic; 
+	}
 
     // getter methods
     this.getTitle = function() {

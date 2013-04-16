@@ -17,7 +17,9 @@ $('document').ready(function() {
     var job3 = new fixit.Job("Elevator broken", "Doors won't open",
         "McCormick East Tower", new Date()); 
     var job4 = new fixit.Job("Window screen missing", "Can't leave my window open because there's no screen",
-        "McCormick room 210", new Date()); 
+        "McCormick room 210", new Date());
+    job4.setWorker("Jenks");
+    job4.addUpdate(new fixit.Update("Jenks", "Screen has been installed", new Date(), false));
     job4.setStatus("completed")
     jobList.push(job1); 
     jobList.push(job2);
