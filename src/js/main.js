@@ -151,10 +151,10 @@ var giveRightPanelStarIconClickHandler = function(jobView, jobModel, starIcon) {
 function addJob(currentJob) {
     var jobContext = '<div class="job"> \
         <div class="starred"> <i class="icon-star"></i> </div> \
-        <div class="mechanic-image"> <img src="'
+        <div> <img class="mechanic-image" src="'
         
     jobContext += currentJob.getAssignedToPic(); 
-    jobContext += '" style="width:50px; height:50px;" /> </div> \
+    jobContext += '" style="width:50px;" /> </div> \
                 <div class="job-description-text"> \
                 <div class="job-display-text">'
                 
@@ -203,7 +203,8 @@ function replaceDetails(job, jobView) {
 
     $.each(job.getUpdateList(), function(index, update) {
         var $update = $('<div class="update"/>');
-        var $img = $('<div><img class="update-image" style="width:50px" src="images/default.png"/></div>');
+        var $img = $('<div><img class="update-image" style="width:50px;"'
+            +'src="'+ update.getUpdater().getPicture() +'"/></div>');
         var $updateText = $('<div class="update-text"/>');
         $updateText.append($('<span class="username">' + update.getUpdater().getName() + " " + '</span>'));
         $updateText.append(update.getText());
