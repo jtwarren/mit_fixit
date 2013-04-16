@@ -35,8 +35,10 @@ $('document').ready(function() {
 
     var jj = new fixit.Job("TEST", "TEST",
     "TEST", new Date());
-    var update = new fixit.Update("jtwarren", "yo dog, sick update", new Date(), "urgency")
+    var update = new fixit.Update("jtwarren", "yo dosldfsd fjsdlfk jsdlfj sdflsd jflsdfsdlfk sdlf sdlfkjsdlfksdjflkjs fjlksd fsjdl fksdl kg, sick update", new Date(), "urgency")
+    var update2 = new fixit.Update("jtwarren", "yo dofosdljsdlkfjn sdfhjasnfisdjkfhosdfj hi udsajohas djhaj sdiasdhas jdg akjsd jhsdg iaksjhdkas hadskjahsdkash g, sick update", new Date(), "urgency")
     jj.addUpdate(update);
+    jj.addUpdate(update2);
     replaceDetails(jj);
 });
 
@@ -99,7 +101,9 @@ function replaceDetails(job) {
         var $update = $('<div class="update"/>');
         var $img = $('<div><img class="update-image" style="width:50px" src="images/default.png"/></div>');
         var $updateText = $('<div class="update-text"/>');
-        $updateText.append($('<span class="username">' + update.getUpdater() + '</span>' + update.getText()));
+        console.log(update.getText());
+        $updateText.append($('<span class="username">' + update.getUpdater() + " " + '</span>'));
+        $updateText.append(update.getText());
         $updateText.append($('<div class="time">' + update.getTime() + '</div>'));
 
         $update.append($img);
