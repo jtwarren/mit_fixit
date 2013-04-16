@@ -25,7 +25,7 @@ $('document').ready(function() {
         "McCormick East Tower", new Date(), rebecca); 
 
     var job4 = new fixit.Job("Window screen missing", "Can't leave my window open because there's no screen. The weather is starting to get warmer so I'd really like to open my window. And it also gets muggy in my room if I don't open the window a crack.",
-        "McCormick room 210", new Date());
+        "McCormick room 210", new Date(), jeff);
     var jenks = new fixit.Person("Jenks", "jenks@mit.edu", "617-777-7777")
     job4.setWorker(jenks);
     job4.addUpdate(new fixit.Update(jenks, "Screen has been installed", new Date(), false));
@@ -46,11 +46,6 @@ $('document').ready(function() {
     
     // Loads the jobs that are currently in the joblist. 
     loadJobs(); 
-    
-    // Makes each of the job clickable and will then trigger the right panel to update.
-    $(".job").click(function (i) {
-       console.log("clicked on this");  
-    }); 
 
     // Loads the address book and allow contacts to be filtered. 
     loadAddressBook(); 
@@ -68,7 +63,16 @@ $('document').ready(function() {
 
     $('#update-button').click(function() { 
         var content = $(".update-form .input");
-        console.log(content.val());
+        var $update = $('<div class="update"/>');
+        var $img = $('<div><img class="update-image" style="width:50px" src="images/default.png"/></div>');
+        var $updateText = $('<div class="update-text"/>');
+        $updateText.append($('<span class="username">Michael McIntyre </span>'));
+        $updateText.append(content.val());
+        $updateText.append($('<div class="time">' + new Date() + '</div>'));
+
+        $update.append($img);
+        $update.append($updateText);
+        $(".updates").append($update);
     });
 });
 
