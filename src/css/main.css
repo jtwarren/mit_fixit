@@ -46,7 +46,7 @@ body {
 }
 
 .job-panel .job.focus {
-    color:green;
+    background-color: #eee;
 }
 
 /*
@@ -120,7 +120,7 @@ body {
 }
 
 .job:hover {
-    color: red;
+    /*background-color: #eee;*/
 }
 
 .job .starred{
@@ -164,7 +164,15 @@ body {
     box-shadow: 3px 3px 5px 6px #ccc;
     margin-bottom: 25px !important;
 }
-/*
 
-.alpha { margin-left: 0 !important; }
-.omega { margin-right: 0 !important; }*/
+.job-panel {
+    padding-left: 5px;
+    border-top: 0px;
+    border-left: 2px;
+    border-bottom: 0px;
+    border-right: 0px;
+    border-style: solid;
+}
+html, body, .container-fluid, .row-fluid, .span1, .tab-panel {
+    height: 100%;
+}
