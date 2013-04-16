@@ -39,14 +39,16 @@ body {
 .job-panel h4:not(:first-child){
     margin-top: 50px;
 }
+
+.job-panel .job.focus {
+    color:green;
+}
 /*
 .description-panel:not(:first-child){
     margin-top: 50px;
 }*/
 
 .job-panel .job-group {
-/*    border-style: solid;
-    border-width: 1px;*/
     width: auto;
     max-height: 200px;
     overflow: auto;

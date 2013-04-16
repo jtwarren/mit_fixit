@@ -5,33 +5,52 @@
 // An array listing all of the jobs.
 var jobList = new Array(); 
 var contactList = new Array();
+var selectedJob = null;
 
 $('document').ready(function() {
+    var rebecca = new fixit.Person("Rebecca Krosnick", "krosnick@mit.edu", "240.505.2222");
+    var anurag = new fixit.Person("Anurag Kashyap", "anurag@mit.edu", "858.442.3774");
+    var jeff = new fixit.Person("Jeffrey Warren", "jtwarren@mit.edu", "603.438.6440");
             
     // Populate the jobList with fake jobs.
-    var job1 = new fixit.Job("Broken Lightbulb", "Ran into the lamp because I was rushing. There's shattered glass everywhere. I tried to clean it up a bit but there are probably still little pieces on the ground. Can you come clean up the glass and replace the lightbulb? It's really dark in here and I enjoy studying here, so if you could come as soon as possible that would be great", "McCormick East Penthouse", new Date()); 
+    var job1 = new fixit.Job("Broken Lightbulb", "Ran into the lamp because I was rushing. There's shattered glass everywhere. I tried to clean it up a bit but there are probably still little pieces on the ground. Can you come clean up the glass and replace the lightbulb? It's really dark in here and I enjoy studying here, so if you could come as soon as possible that would be great", 
+        "McCormick East Penthouse", new Date(), jeff); 
     job1.setStatus("assigned");
     job1.setWorker("Bob");
+
     var job2 = new fixit.Job("Door doesn't lock", "The handle turns but I can't press in the button from the inside of the room. I don't feel safe leaving my door unlocked at night, or when I'm gone because my valuables may be stolen. Can you please come fix this asap?",
-        "McCormick room 501", new Date()); 
+        "McCormick room 501", new Date(), anurag); 
+
     var job3 = new fixit.Job("Elevator broken", "When I pressed the buttons on the wall none of them light up. I waited a couple minutes but the elevator did not come. I'm guess there's an electrical problem with the buttons. I live on the 6th floor and don't like walking up stairs...please fix this!",
-        "McCormick East Tower", new Date()); 
+        "McCormick East Tower", new Date(), rebecca); 
+
     var job4 = new fixit.Job("Window screen missing", "Can't leave my window open because there's no screen. The weather is starting to get warmer so I'd really like to open my window. And it also gets muggy in my room if I don't open the window a crack.",
+<<<<<<< HEAD
         "McCormick room 210", new Date());
     var jenks = new fixit.Person("Jenks", "jenks@mit.edu", "617-777-7777")
     job4.setWorker(jenks);
     job4.addUpdate(new fixit.Update(jenks, "Screen has been installed", new Date(), false));
+=======
+        "McCormick room 210", new Date(), jeff);
+    job4.setWorker("Jenks");
+    job4.addUpdate(new fixit.Update("Jenks", "Screen has been installed", new Date(), false));
+>>>>>>> 75aaa2ab30812aeef51ebd31cdbe073263edfd3c
     job4.setStatus("completed");
+
     var job5 = new fixit.Job("Refrigerator isn't working correctly", "My food is spoiling really quickly. Yogurt that isn't supposed to expire until 2 weeks from now tasted really bad when I tried it yesterday. Same with my milk. This is probably something facilities should check on. It's affecting a lot of students.",
-        "McCormick 3rd floor East kitchen", new Date());
+        "McCormick 3rd floor East kitchen", new Date(), anurag);
+
     var job6 = new fixit.Job("Washing machine broken", "Washing machine number 3 is soaking my clothes. Other students have reported this issue as well. It's making me put my clothing in the dryer for multiple cycles instead of the usual 1. For now I just won't use this machine but can you please get this fixed soon?",
-        "McCormick basement - laundry room", new Date());
+        "McCormick basement - laundry room", new Date(), rebecca);
+
     jobList.push(job1); 
     jobList.push(job2);
     jobList.push(job3); 
     jobList.push(job4); 
     jobList.push(job5);
     jobList.push(job6);
+    
+    // Loads the jobs that are currently in the joblist. 
     loadJobs(); 
     
     // Makes each of the job clickable and will then trigger the right panel to update.
@@ -39,19 +58,20 @@ $('document').ready(function() {
        console.log("clicked on this");  
     }); 
 
-    loadAddressBook();
+    // Loads the address book and allow contacts to be filtered. 
+    loadAddressBook(); 
     filterContacts();
 
-    var jj = new fixit.Job("TEST", "TEST",
-    "TEST", new Date());
-    var person = new fixit.Person("Jeffrey Warren", "jtwarren@mit.edu", "603.438.6440");
-    var update = new fixit.Update(person, "yo dosldfsd fjsdlfk jsdlfj sdflsd jflsdfsdlfk sdlf sdlfkjsdlfksdjflkjs fjlksd fsjdl fksdl kg, sick update", new Date(), "urgency")
-    var update2 = new fixit.Update(person, "yo dofosdljsdlkfjn sdfhjasnfisdjkfhosdfj hi udsajohas djhaj sdiasdhas jdg akjsd jhsdg iaksjhdkas hadskjahsdkash g, sick update", new Date(), "urgency")
-    jj.addUpdate(update);
-    jj.addUpdate(update2);
-    replaceDetails(jj);
-
     filterJobs();
+    
+    // Assign the mechanic to the particular job. 
+    $("#assign-button").click(function(event) {
+        console.log($("#assigned-mechanic option:selected").text());
+
+    $('#update-button').click(function() { 
+        var content = $(".update-form .input");
+        console.log(content.val());
+    });
 });
 
 
@@ -83,6 +103,9 @@ function addJob(currentJob) {
     
     var job = $(jobContext);
     $(job).click(function() {
+        selectedJob = currentJob;
+        $(".job-panel .job-group .job").removeClass("focus");
+        job.addClass("focus");
         replaceDetails(currentJob);
     });
     
@@ -105,6 +128,8 @@ function replaceDetails(job) {
     $(".description-panel .description .job-title h4").html(job.getTitle());
     $(".description-panel .description .job-location").html(job.getLocation());
     $(".description-panel .description .job-description").html(job.getText());
+    var reporter = job.getReporter();
+    $(".description-panel .description .job-reporter").html(reporter.getName() + ", " + reporter.getEmail() + ", " + reporter.getPhone());
 
     $(".updates").empty();
     $(".updates").append($('<h4>Updates</h4>'))
