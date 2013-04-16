@@ -34,10 +34,16 @@ $('document').ready(function() {
 
     loadAddressBook();
     filterContacts();
+
+    var jj = new fixit.Job("TEST", "TEST",
+    "TEST", new Date());
+    var update = new fixit.Update("jtwarren", "yo dosldfsd fjsdlfk jsdlfj sdflsd jflsdfsdlfk sdlf sdlfkjsdlfksdjflkjs fjlksd fsjdl fksdl kg, sick update", new Date(), "urgency")
+    var update2 = new fixit.Update("jtwarren", "yo dofosdljsdlkfjn sdfhjasnfisdjkfhosdfj hi udsajohas djhaj sdiasdhas jdg akjsd jhsdg iaksjhdkas hadskjahsdkash g, sick update", new Date(), "urgency")
+    jj.addUpdate(update);
+    jj.addUpdate(update2);
+    replaceDetails(jj);
+
     filterJobs();
-    // var jj = new fixit.Job("TEST", "TEST",
-    // "TEST", new Date());
-    // replaceDetails(jj);
 });
 
 
@@ -87,25 +93,28 @@ function addJob(currentJob) {
 }
 
 // Replace the details for a given job
-// function replaceDetails(job) {
-//     $(".description-panel .description .job-title h4").html(job.getTitle());
-//     $(".description-panel .description .job-location").html(job.getLocation());
-//     $(".description-panel .description .job-description").html(job.getText());
+function replaceDetails(job) {
+    $(".description-panel .description .job-title h4").html(job.getTitle());
+    $(".description-panel .description .job-location").html(job.getLocation());
+    $(".description-panel .description .job-description").html(job.getText());
 
-//     for (update in job.getUpdateList()) {
-//         var update = $('<div class="update"/>');
-//         var img = $('<div><img class="update-image" style="width:50px" src="images/default.png"/></div>');
-//         var updateText = $('<div class="update-text"/>');
+    $(".updates").empty();
+    $(".updates").append($('<h4>Updates</h4>'))
 
-//     }
+    $.each(job.getUpdateList(), function(index, update) {
+        var $update = $('<div class="update"/>');
+        var $img = $('<div><img class="update-image" style="width:50px" src="images/default.png"/></div>');
+        var $updateText = $('<div class="update-text"/>');
+        console.log(update.getText());
+        $updateText.append($('<span class="username">' + update.getUpdater() + " " + '</span>'));
+        $updateText.append(update.getText());
+        $updateText.append($('<div class="time">' + update.getTime() + '</div>'));
 
-//                             <div class="update-text">
-//                                 <span class="username">John Jenkins</span> There are no light bulbs in the stock room, could you please order some?  We need both new fluorescent bulbs as well as incandescent bulbs.
-//                                 <div class="time">
-//                                     Today at 3:03pm
-//                                 </div>
-//                             </div>
-// }
+        $update.append($img);
+        $update.append($updateText);
+        $(".updates").append($update);
+    });
+}
 
 
 // Load Address book component. 
