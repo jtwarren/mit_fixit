@@ -43,11 +43,6 @@ $('document').ready(function() {
     jobList.push(job5);
     jobList.push(job6);
     loadJobs(); 
-    
-    // Makes each of the job clickable and will then trigger the right panel to update.
-    $(".job").click(function (i) {
-       console.log("clicked on this");  
-    }); 
 
     loadAddressBook();
     filterContacts();
@@ -65,7 +60,16 @@ $('document').ready(function() {
 
     $('#update-button').click(function() { 
         var content = $(".update-form .input");
-        console.log(content.val());
+        var $update = $('<div class="update"/>');
+        var $img = $('<div><img class="update-image" style="width:50px" src="images/default.png"/></div>');
+        var $updateText = $('<div class="update-text"/>');
+        $updateText.append($('<span class="username">Michael McIntyre </span>'));
+        $updateText.append(content.val());
+        $updateText.append($('<div class="time">' + new Date() + '</div>'));
+
+        $update.append($img);
+        $update.append($updateText);
+        $(".updates").append($update);
     });
 });
 
