@@ -41,6 +41,8 @@ $('document').ready(function() {
     jobList.push(job4); 
     jobList.push(job5);
     jobList.push(job6);
+    
+    // Loads the jobs that are currently in the joblist. 
     loadJobs(); 
     
     // Makes each of the job clickable and will then trigger the right panel to update.
@@ -48,19 +50,16 @@ $('document').ready(function() {
        console.log("clicked on this");  
     }); 
 
-    loadAddressBook();
+    // Loads the address book and allow contacts to be filtered. 
+    loadAddressBook(); 
     filterContacts();
 
-    // var jj = new fixit.Job("TEST", "TEST",
-    // "TEST", new Date());
-    // var person = new fixit.Person("Jeffrey Warren", "jtwarren@mit.edu", "603.438.6440");
-    // var update = new fixit.Update(person, "yo dosldfsd fjsdlfk jsdlfj sdflsd jflsdfsdlfk sdlf sdlfkjsdlfksdjflkjs fjlksd fsjdl fksdl kg, sick update", new Date(), "urgency")
-    // var update2 = new fixit.Update(person, "yo dofosdljsdlkfjn sdfhjasnfisdjkfhosdfj hi udsajohas djhaj sdiasdhas jdg akjsd jhsdg iaksjhdkas hadskjahsdkash g, sick update", new Date(), "urgency")
-    // jj.addUpdate(update);
-    // jj.addUpdate(update2);
-    // replaceDetails(jj);
-
     filterJobs();
+    
+    // Assign the mechanic to the particular job. 
+    $("#assign-button").click(function(event) {
+        console.log($("#assigned-mechanic option:selected").text());
+    });
 });
 
 
