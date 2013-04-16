@@ -60,7 +60,10 @@ $('document').ready(function() {
     
     // Assign the mechanic to the particular job. 
     $("#assign-button").click(function(event) {
-        console.log($("#assigned-mechanic option:selected").text())
+        if (selectedJob != null ) {
+            var worker = $("#assigned-mechanic option:selected").text();
+            selectedJob.setWorker(worker); 
+        }
     });
 
     $('#update-button').click(function() { 
