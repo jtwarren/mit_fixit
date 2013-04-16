@@ -33,9 +33,11 @@ $('document').ready(function() {
     loadAddressBook();
     filterContacts();
 
-    // var jj = new fixit.Job("TEST", "TEST",
-    // "TEST", new Date());
-    // replaceDetails(jj);
+    var jj = new fixit.Job("TEST", "TEST",
+    "TEST", new Date());
+    var update = new fixit.Update("jtwarren", "yo dog, sick update", new Date(), "urgency")
+    jj.addUpdate(update);
+    replaceDetails(jj);
 });
 
 
@@ -85,25 +87,26 @@ function addJob(currentJob) {
 }
 
 // Replace the details for a given job
-// function replaceDetails(job) {
-//     $(".description-panel .description .job-title h4").html(job.getTitle());
-//     $(".description-panel .description .job-location").html(job.getLocation());
-//     $(".description-panel .description .job-description").html(job.getText());
+function replaceDetails(job) {
+    $(".description-panel .description .job-title h4").html(job.getTitle());
+    $(".description-panel .description .job-location").html(job.getLocation());
+    $(".description-panel .description .job-description").html(job.getText());
 
-//     for (update in job.getUpdateList()) {
-//         var update = $('<div class="update"/>');
-//         var img = $('<div><img class="update-image" style="width:50px" src="images/default.png"/></div>');
-//         var updateText = $('<div class="update-text"/>');
+    $(".updates").empty();
+    $(".updates").append($('<h4>Updates</h4>'))
 
-//     }
+    $.each(job.getUpdateList(), function(index, update) {
+        var $update = $('<div class="update"/>');
+        var $img = $('<div><img class="update-image" style="width:50px" src="images/default.png"/></div>');
+        var $updateText = $('<div class="update-text"/>');
+        $updateText.append($('<span class="username">' + update.getUpdater() + '</span>' + update.getText()));
+        $updateText.append($('<div class="time">' + update.getTime() + '</div>'));
 
-//                             <div class="update-text">
-//                                 <span class="username">John Jenkins</span> There are no light bulbs in the stock room, could you please order some?  We need both new fluorescent bulbs as well as incandescent bulbs.
-//                                 <div class="time">
-//                                     Today at 3:03pm
-//                                 </div>
-//                             </div>
-// }
+        $update.append($img);
+        $update.append($updateText);
+        $(".updates").append($update);
+    });
+}
 
 
 // Load Address book component. 
