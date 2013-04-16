@@ -7,10 +7,11 @@ var fixit = {};     // fixit is object representing a module that
                     // functions, global variables, etc. (this is to 
                     // prevent namespace pollution)
 
-fixit.Person = function(name, email, phone) {
+fixit.Person = function(name, email, phone, profPic ) {
     var name = name;
     var email = email;
     var phone = phone;
+    var picture = typeof profPic !== 'undefined' ? profPic:"images/default.png";
 
     this.getName = function() {
         return name;
@@ -23,6 +24,11 @@ fixit.Person = function(name, email, phone) {
     this.getPhone = function() {
         return phone;
     }
+    
+    this.getPicture = function() {
+        return picture; 
+    }
+    
 }
 
 fixit.Job = function(title, text, location, time, reporter) {
@@ -45,7 +51,7 @@ fixit.Job = function(title, text, location, time, reporter) {
     var status = "new";
     var updateList = new Array();
     var labelList = new Array();
-    var assignedToPic = "images/default.png";
+ 
 
     // setter methods
     // Update the status of this job.
@@ -59,27 +65,6 @@ fixit.Job = function(title, text, location, time, reporter) {
 
     this.addUpdate = function(update){
 		updateList.push(update);
-	}
-
-	// getter methods
-	this.getTitle = function() {
-		return title;
-	}
-	
-	this.getText = function() {
-		return text;
-	}
-	
-	this.getLocation = function() {
-	    return location; 
-	}
-	
-	this.getStatus = function() {
-		return status;
-	}
-	
-	this.getAssignedToPic = function() {
-	    return assignedToPic; 
 	}
 
     // getter methods
@@ -100,7 +85,10 @@ fixit.Job = function(title, text, location, time, reporter) {
     }
     
     this.getAssignedToPic = function() {
-        return assignedToPic; 
+        if (assignedTo === null ) {
+            return "images/default.png";
+        }
+        return assignedTo.getPicture(); 
     }
 
     this.getJobTime = function() {
