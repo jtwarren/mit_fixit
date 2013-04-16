@@ -47,10 +47,6 @@ function loadJobs() {
    }
 }
 
-function test(job) {
-    console.log(job.getTitle());
-}
-
 // Load a particular job.
 function addJob(currentJob) {
     var jobContext = '<div class="job"> \
@@ -69,19 +65,18 @@ function addJob(currentJob) {
     jobContext += currentJob.getJobTime().toLocaleTimeString(); 
     jobContext += '</div> </div></div> ';
     
+    var job = $(jobContext);
+    $(job).click(function() {
+        replaceDetails(currentJob);
+    });
+    
     if (currentJob.getStatus() == "unassigned" || 
         currentJob.getStatus() == "new") {
-        var job = $(jobContext);
-        $(job).click(function() {
-            test(currentJob);
-        });
-        // job.clicked = test(currentJob);
         $(".unassigned-jobs").append(job);
-        // $(jobContext).appendTo(".unassigned-jobs");
     } else if (currentJob.getStatus() == "assigned") {
-        $(jobContext).appendTo(".assigned-jobs");
+        $(".assigned-jobs").append(job);
     } else if (currentJob.getStatus() == "completed") {
-        $(jobContext).appendTo(".completed-jobs");  
+        $(".completed-jobs").append(job);  
     } else {
         // Job should not have a different status.
         // there is a problem with this job. 
