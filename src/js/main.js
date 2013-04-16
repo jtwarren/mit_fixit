@@ -34,7 +34,7 @@ $('document').ready(function() {
 
     var job6 = new fixit.Job("Washing machine broken", "Washing machine number 3 is soaking my clothes. Other students have reported this issue as well. It's making me put my clothing in the dryer for multiple cycles instead of the usual 1. For now I just won't use this machine but can you please get this fixed soon?",
         "McCormick basement - laundry room", new Date(), rebecca);
-    
+
     jobList.push(job1); 
     jobList.push(job2);
     jobList.push(job3); 
@@ -61,6 +61,11 @@ $('document').ready(function() {
     // replaceDetails(jj);
 
     filterJobs();
+
+    $('#update-button').click(function() { 
+        var content = $(".update-form .input");
+        console.log(content.val());
+    });
 });
 
 
