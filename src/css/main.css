@@ -20,7 +20,7 @@ body {
 
 .tab-panel ul { 
     margin: 0; 
-    padding: 0; 
+    padding-top: 8px; 
 }
 
 .tab-panel li { 
@@ -37,7 +37,7 @@ body {
 
 .btn-address {
     display: block;
-    margin: 200px auto 0 auto;
+    margin: 15px auto 0 auto;
     text-align: center;
 }
 
@@ -45,10 +45,14 @@ body {
     margin-top: 50px;
 }
 
-/*
+.description-panel {
+    background-color: #EAEAEA;
+    padding-top: 5px;
+}
+
 .description-panel:not(:first-child){
     margin-top: 50px;
-}*/
+}
 
 .job-panel .job-group {
     width: auto;
@@ -158,7 +162,8 @@ body {
 }
 
 .job-panel .job.focus {
-    border-left: 2px solid blue;
+    border-left: 2px solid;
+    border-left-color: #C41E3A;
     background-color: #eee;
 }
 
