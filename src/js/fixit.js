@@ -58,6 +58,10 @@ fixit.Job = function(title, text, location, time) {
 	this.getJobTime = function() {
 	    return time; 
 	}
+
+	this.getUpdateList = function() {
+		return updateList;
+	}
 }
 
 fixit.Update = function(updater, text, time, urgency) {

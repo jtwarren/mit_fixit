@@ -32,6 +32,10 @@ $('document').ready(function() {
 
     loadAddressBook();
     filterContacts();
+
+    // var jj = new fixit.Job("TEST", "TEST",
+    // "TEST", new Date());
+    // replaceDetails(jj);
 });
 
 
@@ -43,37 +47,69 @@ function loadJobs() {
    }
 }
 
+function test(job) {
+    console.log(job.getTitle());
+}
+
 // Load a particular job.
 function addJob(currentJob) {
-        var jobContext = '<div class="job"> \
-            <div class="starred"> <i class="icon-star"></i> </div> \
-            <div class="mechanic-image"> <img src="'
-            
-        jobContext += currentJob.getAssignedToPic(); 
-        jobContext += '" style="width:50px;" /> </div> \
-                    <div class="job-description-text"> \
-                    <div class="job-display-text">'
-                    
-        jobContext += currentJob.getTitle().substring(0, 50);
-        jobContext += '</div> <span class="blurb-location">'
-        jobContext += currentJob.getLocation(); 
-        jobContext += '</span> <div class="blurb-time"> '
-        jobContext += currentJob.getJobTime().toLocaleTimeString(); 
-        jobContext += '</div> </div></div> ';
+    var jobContext = '<div class="job"> \
+        <div class="starred"> <i class="icon-star"></i> </div> \
+        <div class="mechanic-image"> <img src="'
         
-        if (currentJob.getStatus() == "unassigned" || 
-            currentJob.getStatus() == "new") {
-            $(jobContext).appendTo(".unassigned-jobs");
-        } else if (currentJob.getStatus() == "assigned") {
-            $(jobContext).appendTo(".assigned-jobs");
-        } else if (currentJob.getStatus() == "completed") {
-            $(jobContext).appendTo(".completed-jobs");  
-        } else {
-            // Job should not have a different status.
-            // there is a problem with this job. 
-            console.log('current status is invalid');
-        }            
+    jobContext += currentJob.getAssignedToPic(); 
+    jobContext += '" style="width:50px;" /> </div> \
+                <div class="job-description-text"> \
+                <div class="job-display-text">'
+                
+    jobContext += currentJob.getTitle().substring(0, 50);
+    jobContext += '</div> <span class="blurb-location">'
+    jobContext += currentJob.getLocation(); 
+    jobContext += '</span> <div class="blurb-time"> '
+    jobContext += currentJob.getJobTime().toLocaleTimeString(); 
+    jobContext += '</div> </div></div> ';
+    
+    if (currentJob.getStatus() == "unassigned" || 
+        currentJob.getStatus() == "new") {
+        var job = $(jobContext);
+        $(job).click(function() {
+            test(currentJob);
+        });
+        // job.clicked = test(currentJob);
+        $(".unassigned-jobs").append(job);
+        // $(jobContext).appendTo(".unassigned-jobs");
+    } else if (currentJob.getStatus() == "assigned") {
+        $(jobContext).appendTo(".assigned-jobs");
+    } else if (currentJob.getStatus() == "completed") {
+        $(jobContext).appendTo(".completed-jobs");  
+    } else {
+        // Job should not have a different status.
+        // there is a problem with this job. 
+        console.log('current status is invalid');
+    }            
 }
+
+// Replace the details for a given job
+// function replaceDetails(job) {
+//     $(".description-panel .description .job-title h4").html(job.getTitle());
+//     $(".description-panel .description .job-location").html(job.getLocation());
+//     $(".description-panel .description .job-description").html(job.getText());
+
+//     for (update in job.getUpdateList()) {
+//         var update = $('<div class="update"/>');
+//         var img = $('<div><img class="update-image" style="width:50px" src="images/default.png"/></div>');
+//         var updateText = $('<div class="update-text"/>');
+
+//     }
+
+//                             <div class="update-text">
+//                                 <span class="username">John Jenkins</span> There are no light bulbs in the stock room, could you please order some?  We need both new fluorescent bulbs as well as incandescent bulbs.
+//                                 <div class="time">
+//                                     Today at 3:03pm
+//                                 </div>
+//                             </div>
+// }
+
 
 // Load Address book component. 
 function loadAddressBook() {
