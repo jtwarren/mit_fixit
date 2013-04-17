@@ -4,7 +4,7 @@ body, html {
 }
 
 body {
-  padding-top: 35px;
+  padding-top: 30px;
   /*background-color: #eee;*/
 }
 
@@ -60,7 +60,9 @@ body {
 }
 
 .description-panel .description{
-    margin-bottom: 20px;
+    margin-bottom: 0px;
+    min-height: 240px;
+    max-height: 240px;
 }
 
 .description-panel .description .job-title{
@@ -82,14 +84,33 @@ body {
     font-size: .8em;
 }
 
-.description-panel .job-assignment{
-    border-style: solid;
-    border-width: 1px;
+.description-panel .assignment {
+    font-size: 1.2em;
 }
 
-.description-panel .assignment .job-assignment{
-    font-size: 1.6em;
+.assignment-title {
+    font-size: 1.0em;
+    font-weight: bold;
 }
+
+.assigned-mechanic-img {
+    padding-right: 5px;
+}
+
+.assigned-mechanic {
+    margin-bottom: 0px;
+    padding-left: 10px;
+}
+
+
+/*.description-panel .job-assignment{
+    border-style: solid;
+    border-width: 1px;
+}*/
+
+/*.description-panel .assignment .job-assignment{
+    font-size: 1.6em;
+}*/
 
 .description-panel .updates .update {
     margin-bottom: 15px;
@@ -178,11 +199,11 @@ body {
 .shadow {
     border-style: solid;
     border-width: 2px;
-    border-radius: 5px;
+    border-radius: 2.5px;
     padding: 5px;
     background-color: white;
-    box-shadow: 3px 3px 5px 6px #ccc;
-    margin-bottom: 25px !important;
+    box-shadow: 0px 1px 2px 1px #6c101f;
+    margin-bottom: 5px !important;
 }
 
 .job-panel {
@@ -195,4 +216,26 @@ body {
 }
 html, body, .container-fluid, .row-fluid, .span1, .tab-panel {
     height: 100%;
+}
+
+.btn-custom {
+  background-color: hsl(0, 66%, 30%) !important;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#C41E3A", endColorstr="#7e1a1a");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#C41E3A), to(#7e1a1a));
+  background-image: -moz-linear-gradient(top, #C41E3A, #7e1a1a);
+  background-image: -ms-linear-gradient(top, #C41E3A, #7e1a1a);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #C41E3A), color-stop(100%, #7e1a1a));
+  background-image: -webkit-linear-gradient(top, #C41E3A, #7e1a1a);
+  background-image: -o-linear-gradient(top, #C41E3A, #7e1a1a);
+  background-image: linear-gradient(#C41E3A, #7e1a1a);
+  border-color: #7e1a1a #7e1a1a hsl(0, 66%, 25%);
+  color: #fff !important;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.33);
+  -webkit-font-smoothing: antialiased;
+}
+
+.panel-updates {
+    max-height: 280px;
+    min-height: 280px;
 }

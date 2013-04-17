@@ -115,20 +115,23 @@ Images from freedigitalphotos.net
                         </div>
                     </div>
                     <div class="assignment shadow">
-                        <h4>Assignment</h4>
-                        <div>
-                            <select id="assigned-mechanic">
+                        <!--<span class="assignment-title">Assignment</span>-->
+                        <span>
+                            <img class="assigned-mechanic-img" style="width:50px" src="images/default.png"/>
+                            <select class="assigned-mechanic">
+                                <option>No one assigned to this job.</option>
                                 <option>John Jenkins</option>
                                 <option>Billy Williams</option>
                                 <option>Edward Sheetz</option>
                                 <option>Robert Heraldo</option>
                             </select>
-                            <button id="assign-button" type="submit" class="btn btn-primary">Assign</button>
-                        </div>
+                            <button id='assign-button' type='submit' class='btn btn-custom'><b>Assign</b></button>
+                            <!--<button id="assign-button" type="submit" class="btn btn-primary">Assign</button>-->
+                        </span>
                     </div>
-                    <div class="shadow">
+                    <div class="panel-updates shadow">
                         <div class="updates">
-                            <h4>Updates</h4>
+                            <!--<h4>Updates</h4>-->
                             <div class="update">
                                 <div>
                                     <img class="update-image" style="width:50px" src="images/default.png"/>
@@ -154,8 +157,8 @@ Images from freedigitalphotos.net
                         </div>
                     <div class="update-form">
                         <textarea class="input input-block-level" placeholder="Type update"/></textarea>
-                        <button id="update-button" type="submit" class="btn btn-primary">Submit</button>
-                        <span class="help-inline">Tip: Press tab and then enter to submit.</span>
+                        <button id="update-button" type="submit" class="btn btn-custom"><b>Submit</b></button>
+                        <span class="help-inline">Tip: Press tab and then enter to submit an update.</span>
                     </div>
                     </div>
                 </div>
