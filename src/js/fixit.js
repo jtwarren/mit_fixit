@@ -71,6 +71,10 @@ fixit.Job = function(title, text, location, time, reporter) {
     this.getTitle = function() {
         return title;
     }
+
+    this.getWorker = function() {
+        return assignedTo;
+    }
     
     this.getText = function() {
         return text;

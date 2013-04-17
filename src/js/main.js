@@ -4,6 +4,7 @@
 
 // An array listing all of the jobs.
 var jobList = new Array(); 
+var workers = new Array();
 var contactList = new Array();
 var selectedJob = null;
 var current_user = new fixit.Person("Michael McIntyre", "michael@mit.edu", "309.269.2032", "images/houseManager.jpg");
@@ -19,7 +20,9 @@ $('document').ready(function() {
     
     // Mechanics
     var jenks = new fixit.Person("Jenks", "jenks@mit.edu", "617-777-7777", "images/mechanic1.jpg");
-    var billy = new fixit.Person("Jenks", "jenks@mit.edu", "617-777-7777", "images/mechanic2.jpg");
+    var billy = new fixit.Person("Billy", "billy@mit.edu", "617-777-7778", "images/mechanic2.jpg");
+    workers.push(jenks);
+    workers.push(billy);
             
     // Populate the jobList with fake jobs.
     var date1 = new Date();
@@ -168,14 +171,41 @@ var giveRightPanelStarIconClickHandler = function(jobView, jobModel, starIcon) {
     });
 }
 
+var giveRightPanelAssignedClickHandler = function(jobView, jobModel, assignedButton) {
+    assignedButton.click(function() {
+        jobModel.setStatus("assigned");
+        worker = workers[parseInt($(".assigned-mechanic").find(":selected").val())]
+        selectedJob.setWorker(worker);
+        $(".assigned-mechanic-img").attr('src', selectedJob.getAssignedToPic());
+        jobView.prependTo($(".assigned-jobs"));
+        jobView.find(".mechanic-image").attr('src', selectedJob.getAssignedToPic());
+    });
+}
+
 var giveRightPanelCompletedClickHandler = function(jobView, jobModel, completedButton) {
     // A little hacky, leaving for now.
     $(".job-buttons").find("#mark_completed_button").unbind('click');
     completedButton.click(function() {
-        jobModel.setStatus("completed");
-        jobView.prependTo($(".completed-jobs"));
+        if (jobModel.getStatus() === 'completed') {
+        // completedButton is a mark incomplete button
+            if (jobModel.getWorker() != null) {
+            // i.e., job should now be considered 'assigned'
+                jobView.prependTo($(".assigned-jobs"));
+                jobModel.setStatus("assigned");
+            } else {
+            // job should be considered unassigned
+                jobView.prependTo($(".unassigned-jobs"));
+                jobModel.setStatus("new");
+            }
+            completedButton.html("Mark completed.");
+        } else {
+            jobModel.setStatus("completed");
+            jobView.prependTo($(".completed-jobs"));
+            completedButton.html("Mark incomplete.");
+        }
+        //console.log(jobModel.getStatus());
+        giveRightPanelCompletedClickHandler(jobView, jobModel, completedButton);
     });
-
 }
 
 // Load a particular job.
@@ -244,10 +274,6 @@ function replaceDetails(job, jobView) {
                         <span> \
                             <img class="assigned-mechanic-img" style="width:50px" src="images/default.png"/> \
                             <select class="assigned-mechanic"> \
-                                <option>John Jenkins</option> \
-                                <option>Billy Williams</option> \
-                                <option>Edward Sheetz</option> \
-                                <option>Robert Heraldo</option> \
                             </select> \
                             <button id="assign-button" type="submit" class="btn btn-custom"><b>Assign</b></button> \
                         </span> \
@@ -277,6 +303,18 @@ function replaceDetails(job, jobView) {
     var reporter = job.getReporter();
     $(".description-panel .description .job-reporter").html(reporter.getName() + ", " + reporter.getEmail() + ", " + reporter.getPhone());
 
+    for (var i = 0; i < workers.length; i++) {
+
+        if (job.getWorker() && job.getWorker().getName() === workers[i].getName()) {
+            $(".assigned-mechanic").append($('<option selected="selected" value=' + i + '>' + workers[i].getName() + '</option>'));
+            $(".assigned-mechanic-img").attr('src', job.getAssignedToPic());
+        } else {
+            $(".assigned-mechanic").append($('<option value=' + i + '>' + workers[i].getName() + '</option>'));
+        }
+    };
+
+    
+    
     $(".updates").empty();
     // $(".updates").append($('<h4>Updates</h4>'))
 
@@ -306,7 +344,15 @@ function replaceDetails(job, jobView) {
     giveRightPanelStarIconClickHandler(jobView, job, starIconRightPanel);
 
     var completedButton = $(".job-buttons").find("#mark_completed_button");
+    if (job.getStatus() === 'completed') {
+        completedButton.html("Mark incomplete.");
+    } else {
+        completedButton.html("Mark completed.");
+    }
     giveRightPanelCompletedClickHandler(jobView, job, completedButton);
+
+    var assignButton = $("#assign-button");
+    giveRightPanelAssignedClickHandler(jobView, job, assignButton);
     
     buttonListeners(); 
 }
@@ -456,16 +502,6 @@ function filterJobs(){
 
 // Listens to the click effects to assign and update buttons.
 function buttonListeners() {
-     
-    // Assign the mechanic to the particular job. 
-    $("#assign-button").click(function(event) {
-        if (selectedJob != null ) {
-            var worker = $("#assigned-mechanic option:selected").text();
-            selectedJob.setWorker(worker); 
-        }
-    });
-    
-
 
     $('#update-button').click(function() {
         var content = $(".update-form .input");
