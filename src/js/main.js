@@ -22,28 +22,53 @@ $('document').ready(function() {
     var billy = new fixit.Person("Jenks", "jenks@mit.edu", "617-777-7777", "images/mechanic2.jpg");
             
     // Populate the jobList with fake jobs.
+    var date1 = new Date();
+    date1.setHours(date1.getHours() - Math.floor(Math.random()*24));
+    date1.setMinutes(date1.getMinutes() - Math.floor(Math.random()*60));
+    date1.setSeconds(date1.getSeconds() - Math.floor(Math.random()*60));
     var job1 = new fixit.Job("Broken Lightbulb", "Ran into the lamp because I was rushing. There's shattered glass everywhere. I tried to clean it up a bit but there are probably still little pieces on the ground. Can you come clean up the glass and replace the lightbulb? It's really dark in here and I enjoy studying here, so if you could come as soon as possible that would be great", 
-        "McCormick East Penthouse", new Date(), jeff); 
+        "McCormick East Penthouse", date1, jeff); 
     job1.setStatus("assigned");
     job1.setWorker(billy);
 
+
+    var date2 = new Date();
+    date2.setHours(date2.getHours() - Math.floor(Math.random()*24));
+    date2.setMinutes(date2.getMinutes() - Math.floor(Math.random()*60));
+    date2.setSeconds(date2.getSeconds() - Math.floor(Math.random()*60));
     var job2 = new fixit.Job("Door doesn't lock", "The handle turns but I can't press in the button from the inside of the room. I don't feel safe leaving my door unlocked at night, or when I'm gone because my valuables may be stolen. Can you please come fix this asap?",
-        "McCormick room 501", new Date(), anurag); 
+        "McCormick room 501", date2, anurag); 
 
+    var date3 = new Date();
+    date3.setHours(date3.getHours() - Math.floor(Math.random()*24));
+    date3.setMinutes(date3.getMinutes() - Math.floor(Math.random()*60));
+    date3.setSeconds(date3.getSeconds() - Math.floor(Math.random()*60));
     var job3 = new fixit.Job("Elevator broken", "When I pressed the buttons on the wall none of them light up. I waited a couple minutes but the elevator did not come. I'm guess there's an electrical problem with the buttons. I live on the 6th floor and don't like walking up stairs...please fix this!",
-        "McCormick East Tower", new Date(), rebecca); 
+        "McCormick East Tower", date3, rebecca); 
 
+    var date4 = new Date();
+    date4.setHours(date4.getHours() - Math.floor(Math.random()*24));
+    date4.setMinutes(date4.getMinutes() - Math.floor(Math.random()*60));
+    date4.setSeconds(date4.getSeconds() - Math.floor(Math.random()*60));
     var job4 = new fixit.Job("Window screen missing", "Can't leave my window open because there's no screen. The weather is starting to get warmer so I'd really like to open my window. And it also gets muggy in my room if I don't open the window a crack.",
-        "McCormick room 210", new Date(), jeff);
+        "McCormick room 210", date4, jeff);
     job4.setWorker(jenks);
     job4.addUpdate(new fixit.Update(jenks, "Screen has been installed", new Date(), false));
     job4.setStatus("completed");
 
+    var date5 = new Date();
+    date5.setHours(date5.getHours() - Math.floor(Math.random()*24));
+    date5.setMinutes(date5.getMinutes() - Math.floor(Math.random()*60));
+    date5.setSeconds(date5.getSeconds() - Math.floor(Math.random()*60));
     var job5 = new fixit.Job("Refrigerator isn't working correctly", "My food is spoiling really quickly. Yogurt that isn't supposed to expire until 2 weeks from now tasted really bad when I tried it yesterday. Same with my milk. This is probably something facilities should check on. It's affecting a lot of students.",
-        "McCormick 3rd floor East kitchen", new Date(), anurag);
+        "McCormick 3rd floor East kitchen", date5, anurag);
 
+    var date6 = new Date();
+    date6.setHours(date6.getHours() - Math.floor(Math.random()*24));
+    date6.setMinutes(date6.getMinutes() - Math.floor(Math.random()*60));
+    date6.setSeconds(date6.getSeconds() - Math.floor(Math.random()*60));
     var job6 = new fixit.Job("Washing machine broken", "Washing machine number 3 is soaking my clothes. Other students have reported this issue as well. It's making me put my clothing in the dryer for multiple cycles instead of the usual 1. For now I just won't use this machine but can you please get this fixed soon?",
-        "McCormick basement - laundry room", new Date(), rebecca);
+        "McCormick basement - laundry room", date6, rebecca);
 
     jobList.push(job1); 
     jobList.push(job2);
@@ -51,6 +76,8 @@ $('document').ready(function() {
     jobList.push(job4); 
     jobList.push(job5);
     jobList.push(job6);
+
+    jobList.sort(sortByTime);
     
     // Loads the jobs that are currently in the joblist. 
     loadJobs(); 
@@ -69,6 +96,11 @@ $('document').ready(function() {
     }
 
 });
+
+function sortByTime(a, b){
+    var d = new Date();
+    return (d - a.getJobTime()) - (d - b.getJobTime());
+}
 
 
 // Load the jobs in a task list for a particular 
