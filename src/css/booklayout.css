@@ -8,14 +8,14 @@
 	position: absolute;
 	top: 50px;
 	left: 10px;
-	margin:12.5px; 
+	margin:12px; 
 	vertical-align:middle; 
 }
 
 #search{
 	position:absolute;
 	top: 0;
-	left: 12.5px;
+	left: 12px;
 	height: 30px;
 	width: 400px;
 }
@@ -30,7 +30,7 @@
 	overflow:auto;
 	overflow-x: hidden; 
 	height:500px;
-	width: 450px; 
+	width: 460px; 
 }
 
 .modal-body{
@@ -49,6 +49,14 @@
     font-weight: bold; 
 }
 
+.contact .email{
+    font-size: 0.9em; 
+}
+
+.contact .phone{
+    font-size: 0.9em; 
+}
+
 .typeImg{
 	float:right;
 	max-height:75px;
@@ -64,7 +72,7 @@
 
 .contactText{
 	float:left;
-	padding-left:40px;
+	padding-left:25px;
 	padding-top: 1px;
 	display:table-cell;
 	vertical-align:middle;
