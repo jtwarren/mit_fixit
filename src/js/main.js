@@ -212,7 +212,13 @@ var giveRightPanelCompletedClickHandler = function(jobView, jobModel, completedB
 function addJob(currentJob) {
     var jobContext = '<div class="job"> \
         <div class="starred"> <i class="icon-star"></i> </div> \
-        <div> <img class="mechanic-image" src="'
+        <div> <img class="mechanic-image" src="';
+//images/star_filled2.png
+    if(currentJob.isStarred()){
+        jobContext = '<div class="job"> \
+        <div class="starred"> <img class="icon-star filled" src="images/star_filled2.png"> </div> \
+        <div> <img class="mechanic-image" src="';
+    }
         
     jobContext += currentJob.getAssignedToPic(); 
     jobContext += '" style="width:50px;" /> </div> \
@@ -227,6 +233,9 @@ function addJob(currentJob) {
     jobContext += '</div> </div></div> ';
     
     var job = $(jobContext);
+    if(selectedJob === currentJob){
+        job.addClass("focus");
+    }
     $(job).click(function() {
         selectedJob = currentJob;
         $(".job-panel .job-group .job").removeClass("focus");
@@ -434,7 +443,28 @@ function replaceMiddlePanel(tab) {
         }
         if (selectedJob === null) {
             $(".description-panel").html('<span class="no-job-panel"> No job selected! </span>'); 
-        }
+        }/*else{
+            var jobContext = '<div class="job"> \
+                    <div class="starred"> <i class="icon-star"></i> </div> \
+                    <div> <img class="mechanic-image" src="'
+        
+            jobContext += selectedJob.getAssignedToPic(); 
+            jobContext += '" style="width:50px;" /> </div> \
+                    <div class="job-description-text"> \
+                    <div class="job-display-text">'
+                
+            jobContext += selectedJob.getTitle().substring(0, 50);
+            jobContext += '</div> <span class="blurb-location">'
+            jobContext += selectedJob.getLocation(); 
+            jobContext += '</span> <div class="blurb-time"> '
+            jobContext += selectedJob.getJobTime().toLocaleTimeString(); 
+            jobContext += '</div> </div></div> ';
+    
+            var job = $(jobContext);
+            $(".job-panel .job-group .job").removeClass("focus");
+            job.addClass("focus");
+            //console.log();
+        }*/
     }
 
 }
