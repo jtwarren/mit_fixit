@@ -379,7 +379,7 @@ function buttonListeners() {
         $update.append($img);
         $update.append($updateText);
         $(".updates").append($update);
-        $(".updates").scrollTop(150);
+        $(".updates").scrollTop($(".updates")[0].scrollHeight);
 
         up = new fixit.Update(current_user, content.val(), new Date(), "urgency");
         selectedJob.addUpdate(up);  
