@@ -46,7 +46,6 @@ body {
 }
 
 .description-panel {
-    background-color: #EAEAEA;
     padding-top: 5px;
 }
 
@@ -65,8 +64,14 @@ body {
 }
 
 .description-panel .description .job-title{
-    font-size: 1.6em;
+    font-size: 1.3em;
+    font-weight: bold;
     line-height: 1.2em;
+}
+
+.description-panel .description .job-buttons{
+    float: right;
+    padding-right: 5px;
 }
 
 .description-panel .description .job-location{
