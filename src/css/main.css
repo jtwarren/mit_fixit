@@ -42,7 +42,7 @@ body {
 }
 
 .job-panel h4:not(:first-child){
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 .description-panel {
@@ -144,8 +144,8 @@ body {
 
 .description-panel .panel-updates{
     position: relative;
-    max-height: 245px;
-    min-height: 245px;
+    max-height: 278px;
+    min-height: 278px;
 }
 
 .description-panel .update-form{
@@ -229,12 +229,38 @@ body {
 
 .job-panel {
     padding-left: 10px;
-    padding-right: 10px;
+    padding-right: 0px;
     border-top: 0px;
     border-left: 2px;
     border-bottom: 0px;
     border-right: 2px;
     border-style: solid;
+}
+
+.job-panel .unassigned-jobs {
+    min-height: 152px;
+    max-height: 152px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+
+.assigned-jobs-heading {
+    padding-top: 5px;
+    margin-top: 5px;
+}
+
+.job-panel .assigned-jobs {
+    min-height: 152px;
+    max-height: 152px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+
+.job-panel .completed-jobs {
+    min-height: 152px;
+    max-height: 152px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
 }
 
 .no-job-panel {
