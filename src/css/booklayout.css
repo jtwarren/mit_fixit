@@ -4,8 +4,6 @@
 	width: 375px;
 }
 
-
-
 #table{
 	position: absolute;
 	top: 50px;
@@ -54,6 +52,7 @@
 .contactImg{
 	float:left;
 	max-height:75px;
+	max-width:75px;
 	vertical-align:middle;
 }
 
