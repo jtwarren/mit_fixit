@@ -173,6 +173,7 @@ var giveRightPanelStarIconClickHandler = function(jobView, jobModel, starIcon) {
 
 var giveRightPanelAssignedClickHandler = function(jobView, jobModel, assignedButton) {
     assignedButton.click(function() {
+        $(".job-buttons").find("#mark_completed_button").html("Mark complete");
         jobModel.setStatus("assigned");
         worker = workers[parseInt($(".assigned-mechanic").find(":selected").val())]
         selectedJob.setWorker(worker);
@@ -197,11 +198,11 @@ var giveRightPanelCompletedClickHandler = function(jobView, jobModel, completedB
                 jobView.prependTo($(".unassigned-jobs"));
                 jobModel.setStatus("new");
             }
-            completedButton.html("Mark completed.");
+            completedButton.html("Mark complete");
         } else {
             jobModel.setStatus("completed");
             jobView.prependTo($(".completed-jobs"));
-            completedButton.html("Mark incomplete.");
+            completedButton.html("Mark incomplete");
         }
         //console.log(jobModel.getStatus());
         giveRightPanelCompletedClickHandler(jobView, jobModel, completedButton);
@@ -354,9 +355,9 @@ function replaceDetails(job, jobView) {
 
     var completedButton = $(".job-buttons").find("#mark_completed_button");
     if (job.getStatus() === 'completed') {
-        completedButton.html("Mark incomplete.");
+        completedButton.html("Mark incomplete");
     } else {
-        completedButton.html("Mark completed.");
+        completedButton.html("Mark complete");
     }
     giveRightPanelCompletedClickHandler(jobView, job, completedButton);
 
