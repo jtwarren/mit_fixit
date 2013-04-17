@@ -165,8 +165,8 @@ body {
     border-left: 2px solid;
     border-left-color: #C41E3A;
     background-color: #eee;
-    background: -webkit-linear-gradient(left, #CCCCCC, #EAEAEA);
-    background: -moz-linear-gradient(left, #CCCCCC, #EAEAEA);
+    background: -webkit-linear-gradient(left,#D8D8D8, #F8F8F8);
+    background: -moz-linear-gradient(left, #D8D8D8, #F8F8F8);
 }
 
 .shadow {
