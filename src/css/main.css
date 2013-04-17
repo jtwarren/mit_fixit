@@ -10,7 +10,7 @@ body {
 
 .navbar .logo {
     font-family: 'Bubbler One', sans-serif;
-    color: black;
+    color: #C41E3A;
 }
 
 .panel {
@@ -160,7 +160,8 @@ body {
 }
 
 .job:hover {
-    /*background-color: #eee;*/
+    cursor: hand; 
+    cursor: pointer;
 }
 
 .job .starred{
@@ -218,7 +219,7 @@ body {
 
 .shadow {
     border-style: solid;
-    border-width: 2px;
+    border-width: 1px;
     border-radius: 2.5px;
     padding: 5px;
     background-color: white;
