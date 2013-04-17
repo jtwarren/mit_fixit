@@ -139,7 +139,7 @@ body {
     float: left; 
     clear: left; 
     margin: 4px;
-    height: 50px; 
+    max-height: 40px; 
 }
 
 .description-panel .panel-updates{
