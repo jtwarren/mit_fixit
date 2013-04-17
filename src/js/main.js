@@ -9,6 +9,10 @@ var selectedJob = null;
 var current_user = new fixit.Person("Michael McIntyre", "michael@mit.edu", "309.269.2032", "images/houseManager.jpg");
 
 $('document').ready(function() {
+
+    /** 
+     * Middle Panel 
+     */
     var rebecca = new fixit.Person("Rebecca Krosnick", "krosnick@mit.edu", "240.505.2222");
     var anurag = new fixit.Person("Anurag Kashyap", "anurag@mit.edu", "858.442.3774");
     var jeff = new fixit.Person("Jeffrey Warren", "jtwarren@mit.edu", "603.438.6440");
@@ -58,10 +62,10 @@ $('document').ready(function() {
     filterJobs();
     
     /***** 
-     * Right Panel Update
+     * Right Panel 
      */ 
     if (selectedJob === null) {
-        $(".description-panel").html(""); 
+        $(".description-panel").html('<span class="no-job-panel"> No job selected! </span>'); 
     }
 });
 
