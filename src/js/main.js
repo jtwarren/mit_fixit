@@ -377,46 +377,63 @@ function replaceMiddlePanel(tab) {
             var currentJob = jobList[i];
             addJob(currentJob);
         }
-    }else if(tab === "starredtab"){
-        $(".panel.job-panel").html(allMiddlePanelHTML);
-        for (var i=0; i<jobList.length; i++) {
+    }else {
+        if(tab === "starredtab"){
+            $(".panel.job-panel").html(allMiddlePanelHTML);
+            for (var i=0; i<jobList.length; i++) {
                 var currentJob = jobList[i];
                 if(currentJob.isStarred()){
                     addJob(currentJob);
                 } 
             }
-    }else{
-        $(".panel.job-panel").html("");
-        if(tab === "unassignedtab"){
-            $(".panel.job-panel").html('<h4> Unassigned Jobs </h4> \
-                    <div class="unassigned-jobs job-group">  \
-                    </div>');
-            for (var i=0; i<jobList.length; i++) {
-                var currentJob = jobList[i];
-                if(currentJob.getStatus() === "new"){
-                    addJob(currentJob);
-                } 
+            if(selectedJob.isStarred() == false){
+                selectedJob = null;
             }
-        }else if(tab === "assignedtab"){
-            $(".panel.job-panel").html('<h4> Assigned Jobs </h4> \
-                    <div class="assigned-jobs job-group">  \
-                    </div>');
-            for (var i=0; i<jobList.length; i++) {
-                var currentJob = jobList[i];
-                if(currentJob.getStatus() === "assigned"){
-                    addJob(currentJob);
-                } 
+        }else{
+            $(".panel.job-panel").html("");
+            if(tab === "unassignedtab"){
+                $(".panel.job-panel").html('<h4> Unassigned Jobs </h4> \
+                        <div class="unassigned-jobs job-group">  \
+                        </div>');
+                for (var i=0; i<jobList.length; i++) {
+                    var currentJob = jobList[i];
+                    if(currentJob.getStatus() === "new"){
+                        addJob(currentJob);
+                    } 
+                }
+                if(selectedJob.getStatus() != "new"){
+                    selectedJob = null;
+                }
+            }else if(tab === "assignedtab"){
+                $(".panel.job-panel").html('<h4> Assigned Jobs </h4> \
+                        <div class="assigned-jobs job-group">  \
+                        </div>');
+                for (var i=0; i<jobList.length; i++) {
+                    var currentJob = jobList[i];
+                    if(currentJob.getStatus() === "assigned"){
+                        addJob(currentJob);
+                    } 
+                }
+                if(selectedJob.getStatus() != "assigned"){
+                    selectedJob = null;
+                }
+            }else if(tab === "completedtab"){
+                $(".panel.job-panel").html('<h4> Completed Jobs </h4> \
+                        <div class="completed-jobs job-group">  \
+                        </div>');
+                for (var i=0; i<jobList.length; i++) {
+                    var currentJob = jobList[i];
+                    if(currentJob.getStatus() === "completed"){
+                        addJob(currentJob);
+                    } 
+                }
+                if(selectedJob.getStatus() != "completed"){
+                    selectedJob = null;
+                }
             }
-        }else if(tab === "completedtab"){
-            $(".panel.job-panel").html('<h4> Completed Jobs </h4> \
-                    <div class="completed-jobs job-group">  \
-                    </div>');
-            for (var i=0; i<jobList.length; i++) {
-                var currentJob = jobList[i];
-                if(currentJob.getStatus() === "completed"){
-                    addJob(currentJob);
-                } 
-            }
+        }
+        if (selectedJob === null) {
+            $(".description-panel").html('<span class="no-job-panel"> No job selected! </span>'); 
         }
     }
 
