@@ -452,6 +452,8 @@ function buttonListeners() {
         up = new fixit.Update(current_user, content.val(), new Date(), "urgency");
         selectedJob.addUpdate(up);  
         content.val("");
+        $("#update-textarea").focus();
+        return false;
     });
 }
 
