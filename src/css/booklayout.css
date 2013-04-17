@@ -7,14 +7,15 @@
 #table{
 	position: absolute;
 	top: 50px;
-	left: 0;
-	margin:10px; 
+	left: 10px;
+	margin:12.5px; 
+	vertical-align:middle; 
 }
 
 #search{
 	position:absolute;
 	top: 0;
-	left: 0;
+	left: 12.5px;
 	height: 30px;
 	width: 400px;
 }
@@ -26,7 +27,8 @@
 }
 
 #myAddressModal{
-	overflow:scroll;
+	overflow:auto;
+	overflow-x: hidden; 
 	height:500px;
 	width: 450px; 
 }
@@ -41,6 +43,10 @@
 	border-style: solid;
 	width: 400px;
 	display:table;
+}
+
+.contact .name{
+    font-weight: bold; 
 }
 
 .typeImg{
@@ -58,7 +64,8 @@
 
 .contactText{
 	float:left;
-	padding-left:20px;
+	padding-left:40px;
+	padding-top: 1px;
 	display:table-cell;
 	vertical-align:middle;
 }
@@ -66,4 +73,5 @@
 .imgdiv{
 	vertical-align:middle;
 }
+
 

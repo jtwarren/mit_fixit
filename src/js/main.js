@@ -400,10 +400,12 @@ function filterContacts(){
                 var contacthtml = '<div class="contact" id="c' + c + '">' + '</div>';
                 var topLoc = numEntries*80;
                 $("#table").append(contacthtml);
-                var name = '<div class="name" id="n' + c + '">' + contactList[c].name + '</div>';
-                var phone = '<div class="phone" id="p' + c + '">' + contactList[c].phone + '</div>';
-                var email = '<div class="email" id="e' + c + '">' + contactList[c].email + '</div>';
-                var contactImg = '<div class="imgdiv" id="i' + c + '"><img class="contactImg" src="images/default.png" /></div>';
+                var contact = contactList[c];
+                var name = '<div class="name" id="n' + c + '">' + contact.name + '</div>';
+                var phone = '<div class="phone" id="p' + c + '">' + contact.phone + '</div>';
+                var email = '<div class="email" id="e' + c + '">' + contact.email + '</div>';
+                var contactImg = '<div class="imgdiv" id="i' + c + '"><img class="contactImg" src="' +
+                    contact.getPicture() + '" /></div>';
                 var contactText = '<div class="contactText" id="t' + c + '">' + name + phone + email + '</div';
                 var typeImg = '<div><img class="typeImg" src="images/wrench.gif"/></div>';
 
