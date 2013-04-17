@@ -445,12 +445,13 @@ function loadAddressBook() {
     //data model
     var alan = new Contact("Alan Michelson", "617-584-2094", "michelson@mit.edu", "images/mechanic4.jpg");
     var becky = new Contact("Becky Folds", "617-543-1352", "beks@mit.edu", "images/mechanic5.jpg");
-    var jenks = new Contact("Jenks Jenkinson", "617-239-8971", "jenks@mit.edu","images/mechanic1.jpg");
     var homeDepot = new Contact("Home Depot", "617-940-0184", "contact@homedepot.com", "images/homedepot.jpg");
+    var jenks = new Contact("Jenks Jenkinson", "617-239-8971", "jenks@mit.edu","images/mechanic1.jpg");
+
     contactList.push(alan);
     contactList.push(becky);
-    contactList.push(jenks);
     contactList.push(homeDepot);
+    contactList.push(jenks);
 
     for(var c = 0; c < contactList.length; c++){
     	var contacthtml = '<div class="contact" id="c' + c + '">' + '</div>';
@@ -470,6 +471,7 @@ function loadAddressBook() {
     	$("#c" + c).append(typeImg);
     	$("#c" + c).css('top', topLoc + "px");
     	$("#c" + c).css('height', 77 + "px");
+    	
     }
 }
 
