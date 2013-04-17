@@ -190,6 +190,10 @@ body {
     height: 50px; 
 }
 
+.assigned-mechanic-img {
+    height: 50px;
+}
+
 .icon-star .filled {
     max-height: 14px;
     max-width: 14px;

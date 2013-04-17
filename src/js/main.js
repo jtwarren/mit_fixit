@@ -20,8 +20,7 @@ $('document').ready(function() {
     
     // Mechanics
     var jenks = new fixit.Person("Jenks", "jenks@mit.edu", "617-777-7777", "images/mechanic1.jpg");
-    var billy = new fixit.Person("Billy", "jenks@mit.edu", "617-777-7777", "images/mechanic2.jpg");
-
+    var billy = new fixit.Person("Billy", "billy@mit.edu", "617-777-7778", "images/mechanic2.jpg");
     workers.push(jenks);
     workers.push(billy);
             
@@ -92,6 +91,10 @@ $('document').ready(function() {
 
     filterJobs();
     
+    $(".tab-item").click(function(){
+        replaceMiddlePanel(this.id);
+    });
+
     /***** 
      * Right Panel 
      */ 
@@ -112,7 +115,7 @@ function loadJobs() {
     for (var i=0; i<jobList.length; i++) {
         var currentJob = jobList[i];                      
         addJob(currentJob); 
-   }
+    }
 }
 
 var giveMiddlePanelStarIconClickHandler = function(jobView, jobModel, starIcon) {
@@ -173,7 +176,9 @@ var giveRightPanelAssignedClickHandler = function(jobView, jobModel, assignedBut
         jobModel.setStatus("assigned");
         worker = workers[parseInt($(".assigned-mechanic").find(":selected").val())]
         selectedJob.setWorker(worker);
+        $(".assigned-mechanic-img").attr('src', selectedJob.getAssignedToPic());
         jobView.prependTo($(".assigned-jobs"));
+        jobView.find(".mechanic-image").attr('src', selectedJob.getAssignedToPic());
     });
 }
 
@@ -302,6 +307,7 @@ function replaceDetails(job, jobView) {
 
         if (job.getWorker() && job.getWorker().getName() === workers[i].getName()) {
             $(".assigned-mechanic").append($('<option selected="selected" value=' + i + '>' + workers[i].getName() + '</option>'));
+            $(".assigned-mechanic-img").attr('src', job.getAssignedToPic());
         } else {
             $(".assigned-mechanic").append($('<option value=' + i + '>' + workers[i].getName() + '</option>'));
         }
@@ -349,6 +355,71 @@ function replaceDetails(job, jobView) {
     giveRightPanelAssignedClickHandler(jobView, job, assignButton);
     
     buttonListeners(); 
+}
+
+function replaceMiddlePanel(tab) {
+    var allMiddlePanelHTML = '<h4> Unassigned Jobs </h4> \
+                    <div class="unassigned-jobs job-group">  \
+                    </div> \
+                    <h4> Assigned Jobs </h4> \
+                    <div class="assigned-jobs job-group"> \
+                    </div> \
+                    <h4> Completed Jobs </h4> \
+                    <div class="completed-jobs job-group"> \
+                    </div> ';
+    //$(".job-group").html("");
+    $(".panel.job-panel").html("");
+    //$(".job-group").html("");
+    //console.log(tab);
+    if(tab === "alltab"){
+        $(".panel.job-panel").html(allMiddlePanelHTML);
+        for (var i=0; i<jobList.length; i++) {
+            var currentJob = jobList[i];
+            addJob(currentJob);
+        }
+    }else if(tab === "starredtab"){
+        $(".panel.job-panel").html(allMiddlePanelHTML);
+        for (var i=0; i<jobList.length; i++) {
+                var currentJob = jobList[i];
+                if(currentJob.isStarred()){
+                    addJob(currentJob);
+                } 
+            }
+    }else{
+        $(".panel.job-panel").html("");
+        if(tab === "unassignedtab"){
+            $(".panel.job-panel").html('<h4> Unassigned Jobs </h4> \
+                    <div class="unassigned-jobs job-group">  \
+                    </div>');
+            for (var i=0; i<jobList.length; i++) {
+                var currentJob = jobList[i];
+                if(currentJob.getStatus() === "new"){
+                    addJob(currentJob);
+                } 
+            }
+        }else if(tab === "assignedtab"){
+            $(".panel.job-panel").html('<h4> Assigned Jobs </h4> \
+                    <div class="assigned-jobs job-group">  \
+                    </div>');
+            for (var i=0; i<jobList.length; i++) {
+                var currentJob = jobList[i];
+                if(currentJob.getStatus() === "assigned"){
+                    addJob(currentJob);
+                } 
+            }
+        }else if(tab === "completedtab"){
+            $(".panel.job-panel").html('<h4> Completed Jobs </h4> \
+                    <div class="completed-jobs job-group">  \
+                    </div>');
+            for (var i=0; i<jobList.length; i++) {
+                var currentJob = jobList[i];
+                if(currentJob.getStatus() === "completed"){
+                    addJob(currentJob);
+                } 
+            }
+        }
+    }
+
 }
 
 
