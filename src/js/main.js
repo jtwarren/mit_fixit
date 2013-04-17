@@ -67,6 +67,7 @@ $('document').ready(function() {
     if (selectedJob === null) {
         $(".description-panel").html('<span class="no-job-panel"> No job selected! </span>'); 
     }
+
 });
 
 
@@ -378,6 +379,7 @@ function buttonListeners() {
         $update.append($img);
         $update.append($updateText);
         $(".updates").append($update);
+        $(".updates").scrollTop(150);
 
         up = new fixit.Update(current_user, content.val(), new Date(), "urgency");
         selectedJob.addUpdate(up);  

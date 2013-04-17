@@ -114,6 +114,8 @@ body {
 
 .description-panel .updates {
     padding-top: 2px;
+    max-height: 150px;
+    overflow: auto;
 }
 
 .description-panel .updates .update {
