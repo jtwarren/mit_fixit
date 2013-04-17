@@ -147,6 +147,14 @@ var giveRightPanelStarIconClickHandler = function(jobView, jobModel, starIcon) {
     });
 }
 
+var giveRightPanelCompletedClickHandler = function(jobView, jobModel, completedButton) {
+    completedButton.click(function() {
+        jobModel.setStatus("completed");
+        jobView.prependTo($(".completed-jobs"));
+    });
+
+}
+
 // Load a particular job.
 function addJob(currentJob) {
     var jobContext = '<div class="job"> \
@@ -225,6 +233,9 @@ function replaceDetails(job, jobView) {
 
     var starIconRightPanel = $(".job-buttons").find(".icon-star");
     giveRightPanelStarIconClickHandler(jobView, job, starIconRightPanel);
+
+    var completedButton = $(".job-buttons").find("#mark_completed_button");
+    giveRightPanelCompletedClickHandler(jobView, job, completedButton);
 }
 
 
