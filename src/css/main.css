@@ -187,12 +187,13 @@ body {
 
 .job-panel {
     padding-left: 10px;
+    padding-right: 10px;
     border-top: 0px;
     border-left: 2px;
     border-bottom: 0px;
-    border-right: 0px;
+    border-right: 2px;
     border-style: solid;
 }
-html, body, .container-fluid, .row-fluid, .span1, .tab-panel {
+html, body, .container-fluid, .row-fluid, .span1, .job-panel {
     height: 100%;
 }
