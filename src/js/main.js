@@ -168,10 +168,8 @@ var giveRightPanelStarIconClickHandler = function(jobView, jobModel, starIcon) {
     });
 }
 
-var giveRightPanelCompletedClickHandler = function(jobView, jobModel, completedButton) {
-    // A little hacky, leaving for now.
-    // $(".job-buttons").find("#mark_completed_button").unbind('click');
-    completedButton.click(function() {
+var giveRightPanelAssignedClickHandler = function(jobView, jobModel, assignedButton) {
+    assignedButton.click(function() {
         jobModel.setStatus("assigned");
         worker = workers[parseInt($(".assigned-mechanic").find(":selected").val())]
         selectedJob.setWorker(worker);
@@ -179,10 +177,10 @@ var giveRightPanelCompletedClickHandler = function(jobView, jobModel, completedB
     });
 }
 
-var giveRightPanelAssignedClickHandler = function(jobView, jobModel, assignedButton) {
+var giveRightPanelCompletedClickHandler = function(jobView, jobModel, completedButton) {
     // A little hacky, leaving for now.
-    // $(".job-buttons").find("#mark_completed_button").unbind('click');
-    assignedButton.click(function() {
+    $(".job-buttons").find("#mark_completed_button").unbind('click');
+    completedButton.click(function() {
         jobModel.setStatus("completed");
         jobView.prependTo($(".completed-jobs"));
     });
@@ -284,7 +282,12 @@ function replaceDetails(job, jobView) {
     $(".description-panel .description .job-reporter").html(reporter.getName() + ", " + reporter.getEmail() + ", " + reporter.getPhone());
 
     for (var i = 0; i < workers.length; i++) {
-        $(".assigned-mechanic").append($('<option value=' + i + '>' + workers[i].getName() + '</option>'));
+
+        if (job.getWorker() && job.getWorker().getName() === workers[i].getName()) {
+            $(".assigned-mechanic").append($('<option selected="selected" value=' + i + '>' + workers[i].getName() + '</option>'));
+        } else {
+            $(".assigned-mechanic").append($('<option value=' + i + '>' + workers[i].getName() + '</option>'));
+        }
     };
 
     
@@ -321,7 +324,7 @@ function replaceDetails(job, jobView) {
     giveRightPanelCompletedClickHandler(jobView, job, completedButton);
 
     var assignButton = $("#assign-button");
-    giveRightPanelCompletedClickHandler(jobView, job, assignButton);
+    giveRightPanelAssignedClickHandler(jobView, job, assignButton);
     
     buttonListeners(); 
 }
