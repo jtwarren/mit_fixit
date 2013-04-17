@@ -148,6 +148,8 @@ var giveRightPanelStarIconClickHandler = function(jobView, jobModel, starIcon) {
 }
 
 var giveRightPanelCompletedClickHandler = function(jobView, jobModel, completedButton) {
+    // A little hacky, leaving for now.
+    $(".job-buttons").find("#mark_completed_button").unbind('click');
     completedButton.click(function() {
         jobModel.setStatus("completed");
         jobView.prependTo($(".completed-jobs"));
