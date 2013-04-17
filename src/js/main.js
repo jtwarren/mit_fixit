@@ -57,32 +57,12 @@ $('document').ready(function() {
 
     filterJobs();
     
-    // Assign the mechanic to the particular job. 
-    $("#assign-button").click(function(event) {
-        if (selectedJob != null ) {
-            var worker = $("#assigned-mechanic option:selected").text();
-            selectedJob.setWorker(worker); 
-        }
-    });
-
-    $('#update-button').click(function() {
-        var content = $(".update-form .input");
-        var $update = $('<div class="update"/>');
-        var $img = $('<div><img class="update-image" style="width:50px; height:50px;"'
-            +'src="'+ current_user.getPicture() +'"/></div>');
-        var $updateText = $('<div class="update-text"/>');
-        $updateText.append($('<span class="username">Michael McIntyre </span>'));
-        $updateText.append(content.val());
-        $updateText.append($('<div class="time">' + new Date() + '</div>'));
-
-        $update.append($img);
-        $update.append($updateText);
-        $(".updates").append($update);
-
-        up = new fixit.Update(current_user, content.val(), new Date(), "urgency");
-        selectedJob.addUpdate(up);  
-        content.val("");
-    });
+    /***** 
+     * Right Panel Update
+     */ 
+    if (selectedJob === null) {
+        $(".description-panel").html(""); 
+    }
 });
 
 
@@ -192,6 +172,53 @@ function addJob(currentJob) {
 
 // Replace the details for a given job
 function replaceDetails(job, jobView) {
+
+    var rightPanelHTML = '<div class="description shadow"> \
+                       <div class="job-title"> \
+                            <h4></h4> \
+                        </div> \
+                        <div class="job-buttons"> \
+                            <i class="icon-star"></i> \
+                            <button id="mark_completed_button">Mark completed</button> \
+                        </div> \
+                        <div class="job-location"> \
+                        </div> \
+                        <div class="job-description"> \
+                        </div> \
+                        <div class="job-reporter"> \
+                        </div> \
+                    </div> \
+                    <div class="assignment shadow"> \
+                        <h4>Assignment</h4> \
+                        <div> \
+                            <select id="assigned-mechanic"> \
+                                <option>John Jenkins</option> \
+                                <option>Billy Williams</option> \
+                                <option>Edward Sheetz</option> \
+                                <option>Robert Heraldo</option> \
+                            </select> \
+                            <button id="assign-button" type="submit" class="btn btn-primary">Assign</button> \
+                        </div> \
+                    </div> \
+                    <div class="shadow"> \
+                        <div class="updates"> \
+                            <h4>Updates</h4>  \
+                            <div class="update"> \
+                                <div> \
+                                    <img class="update-image" style="width:50px" src="images/default.png"/> \
+                                </div> \
+                                <div class="update-text"> \
+                                </div> \
+                            </div> \
+                        </div> \
+                    <div class="update-form"> \
+                        <textarea class="input input-block-level" placeholder="Type update"/></textarea> \
+                        <button id="update-button" type="submit" class="btn btn-primary">Submit</button> \
+                        <span class="help-inline">Tip: Press tab then enter to submit</span> \
+                    </div> \
+                    </div>'; 
+    var currentElement = document.getElementsByClassName("description-panel")[0];
+    currentElement.innerHTML = rightPanelHTML; 
     $(".description-panel .description .job-title h4").html(job.getTitle());
     $(".description-panel .description .job-location").html(job.getLocation());
     $(".description-panel .description .job-description").html(job.getText());
@@ -225,6 +252,8 @@ function replaceDetails(job, jobView) {
 
     var starIconRightPanel = $(".job-buttons").find(".icon-star");
     giveRightPanelStarIconClickHandler(jobView, job, starIconRightPanel);
+    
+    buttonListeners(); 
 }
 
 
@@ -301,6 +330,40 @@ function filterJobs(){
                 addJob(jobList[j]);
             }
         }
+    });
+}
+
+
+// Listens to the click effects to assign and update buttons.
+function buttonListeners() {
+     
+    // Assign the mechanic to the particular job. 
+    $("#assign-button").click(function(event) {
+        if (selectedJob != null ) {
+            var worker = $("#assigned-mechanic option:selected").text();
+            selectedJob.setWorker(worker); 
+        }
+    });
+    
+
+
+    $('#update-button').click(function() {
+        var content = $(".update-form .input");
+        var $update = $('<div class="update"/>');
+        var $img = $('<div><img class="update-image" style="width:50px; height:50px;"'
+            +'src="'+ current_user.getPicture() +'"/></div>');
+        var $updateText = $('<div class="update-text"/>');
+        $updateText.append($('<span class="username">Michael McIntyre </span>'));
+        $updateText.append(content.val());
+        $updateText.append($('<div class="time">' + new Date() + '</div>'));
+
+        $update.append($img);
+        $update.append($updateText);
+        $(".updates").append($update);
+
+        up = new fixit.Update(current_user, content.val(), new Date(), "urgency");
+        selectedJob.addUpdate(up);  
+        content.val("");
     });
 }
 
