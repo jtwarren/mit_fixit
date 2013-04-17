@@ -181,8 +181,25 @@ var giveRightPanelCompletedClickHandler = function(jobView, jobModel, completedB
     // A little hacky, leaving for now.
     $(".job-buttons").find("#mark_completed_button").unbind('click');
     completedButton.click(function() {
-        jobModel.setStatus("completed");
-        jobView.prependTo($(".completed-jobs"));
+        if (jobModel.getStatus() === 'completed') {
+        // completedButton is a mark incomplete button
+            if (jobModel.getWorker() != null) {
+            // i.e., job should now be considered 'assigned'
+                jobView.prependTo($(".assigned-jobs"));
+                jobModel.setStatus("assigned");
+            } else {
+            // job should be considered unassigned
+                jobView.prependTo($(".unassigned-jobs"));
+                jobModel.setStatus("new");
+            }
+            completedButton.html("Mark completed.");
+        } else {
+            jobModel.setStatus("completed");
+            jobView.prependTo($(".completed-jobs"));
+            completedButton.html("Mark incomplete.");
+        }
+        //console.log(jobModel.getStatus());
+        giveRightPanelCompletedClickHandler(jobView, jobModel, completedButton);
     });
 }
 
@@ -321,6 +338,11 @@ function replaceDetails(job, jobView) {
     giveRightPanelStarIconClickHandler(jobView, job, starIconRightPanel);
 
     var completedButton = $(".job-buttons").find("#mark_completed_button");
+    if (job.getStatus() === 'completed') {
+        completedButton.html("Mark incomplete.");
+    } else {
+        completedButton.html("Mark completed.");
+    }
     giveRightPanelCompletedClickHandler(jobView, job, completedButton);
 
     var assignButton = $("#assign-button");
