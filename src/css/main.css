@@ -194,6 +194,12 @@ body {
     border-right: 2px;
     border-style: solid;
 }
+.no-job-panel {
+    display: block;
+    text-align: center;
+    font-size: 1.3em;
+    margin-top: 100px;
+}
 html, body, .container-fluid, .row-fluid, .span1, .job-panel {
     height: 100%;
 }
