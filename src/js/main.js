@@ -91,6 +91,10 @@ $('document').ready(function() {
 
     filterJobs();
     
+    $(".tab-item").click(function(){
+        replaceMiddlePanel(this.id);
+    });
+
     /***** 
      * Right Panel 
      */ 
@@ -111,7 +115,7 @@ function loadJobs() {
     for (var i=0; i<jobList.length; i++) {
         var currentJob = jobList[i];                      
         addJob(currentJob); 
-   }
+    }
 }
 
 var giveMiddlePanelStarIconClickHandler = function(jobView, jobModel, starIcon) {
@@ -353,14 +357,79 @@ function replaceDetails(job, jobView) {
     buttonListeners(); 
 }
 
+function replaceMiddlePanel(tab) {
+    var allMiddlePanelHTML = '<h4> Unassigned Jobs </h4> \
+                    <div class="unassigned-jobs job-group">  \
+                    </div> \
+                    <h4> Assigned Jobs </h4> \
+                    <div class="assigned-jobs job-group"> \
+                    </div> \
+                    <h4> Completed Jobs </h4> \
+                    <div class="completed-jobs job-group"> \
+                    </div> ';
+    //$(".job-group").html("");
+    $(".panel.job-panel").html("");
+    //$(".job-group").html("");
+    //console.log(tab);
+    if(tab === "alltab"){
+        $(".panel.job-panel").html(allMiddlePanelHTML);
+        for (var i=0; i<jobList.length; i++) {
+            var currentJob = jobList[i];
+            addJob(currentJob);
+        }
+    }else if(tab === "starredtab"){
+        $(".panel.job-panel").html(allMiddlePanelHTML);
+        for (var i=0; i<jobList.length; i++) {
+                var currentJob = jobList[i];
+                if(currentJob.isStarred()){
+                    addJob(currentJob);
+                } 
+            }
+    }else{
+        $(".panel.job-panel").html("");
+        if(tab === "unassignedtab"){
+            $(".panel.job-panel").html('<h4> Unassigned Jobs </h4> \
+                    <div class="unassigned-jobs job-group">  \
+                    </div>');
+            for (var i=0; i<jobList.length; i++) {
+                var currentJob = jobList[i];
+                if(currentJob.getStatus() === "new"){
+                    addJob(currentJob);
+                } 
+            }
+        }else if(tab === "assignedtab"){
+            $(".panel.job-panel").html('<h4> Assigned Jobs </h4> \
+                    <div class="assigned-jobs job-group">  \
+                    </div>');
+            for (var i=0; i<jobList.length; i++) {
+                var currentJob = jobList[i];
+                if(currentJob.getStatus() === "assigned"){
+                    addJob(currentJob);
+                } 
+            }
+        }else if(tab === "completedtab"){
+            $(".panel.job-panel").html('<h4> Completed Jobs </h4> \
+                    <div class="completed-jobs job-group">  \
+                    </div>');
+            for (var i=0; i<jobList.length; i++) {
+                var currentJob = jobList[i];
+                if(currentJob.getStatus() === "completed"){
+                    addJob(currentJob);
+                } 
+            }
+        }
+    }
+
+}
+
 
 // Load Address book component. 
 function loadAddressBook() {
     //data model
-    var alan = new Contact("Alan Michelson", "617-584-2094", "michelson@mit.edu");
-    var becky = new Contact("Becky Folds", "617-543-1352", "beks@mit.edu");
-    var jenks = new Contact("Jenks Jenkinson", "617-239-8971", "jenks@mit.edu");
-    var homeDepot = new Contact("Home Depot", "617-940-0184", "contact@homedepot.com");
+    var alan = new Contact("Alan Michelson", "617-584-2094", "michelson@mit.edu", "images/mechanic4.jpg");
+    var becky = new Contact("Becky Folds", "617-543-1352", "beks@mit.edu", "images/mechanic5.jpg");
+    var jenks = new Contact("Jenks Jenkinson", "617-239-8971", "jenks@mit.edu","images/mechanic1.jpg");
+    var homeDepot = new Contact("Home Depot", "617-940-0184", "contact@homedepot.com", "images/homedepot.jpg");
     contactList.push(alan);
     contactList.push(becky);
     contactList.push(jenks);
@@ -371,10 +440,12 @@ function loadAddressBook() {
     	var contacthtml = '<div class="contact" id="c' + c + '">' + '</div>';
     	var topLoc = c*80;
     	$("#table").append(contacthtml);
-    	var name = '<div class="name" id="n' + c + '">' + contactList[c].name + '</div>';
-    	var phone = '<div class="phone" id="p' + c + '">' + contactList[c].phone + '</div>';
-    	var email = '<div class="email" id="e' + c + '">' + contactList[c].email + '</div>';
-    	var contactImg = '<div class="imgdiv" id="i' + c + '"><img class="contactImg" src="images/default.png" /></div>';
+    	var contact = contactList[c];
+    	var name = '<div class="name" id="n' + c + '">' + contact.name + '</div>';
+    	var phone = '<div class="phone" id="p' + c + '">' + contact.phone + '</div>';
+    	var email = '<div class="email" id="e' + c + '">' + contact.email + '</div>';
+    	var contactImg = '<div class="imgdiv" id="i' + c + '"><img class="contactImg" src="'+
+    	    contact.getPicture() + '"/></div>';
     	var contactText = '<div class="contactText" id="t' + c + '">' + name + phone + email + '</div';
     	var typeImg = '<div><img class="typeImg" src="images/wrench.gif"/></div>';
 
@@ -398,10 +469,12 @@ function filterContacts(){
                 var contacthtml = '<div class="contact" id="c' + c + '">' + '</div>';
                 var topLoc = numEntries*80;
                 $("#table").append(contacthtml);
-                var name = '<div class="name" id="n' + c + '">' + contactList[c].name + '</div>';
-                var phone = '<div class="phone" id="p' + c + '">' + contactList[c].phone + '</div>';
-                var email = '<div class="email" id="e' + c + '">' + contactList[c].email + '</div>';
-                var contactImg = '<div class="imgdiv" id="i' + c + '"><img class="contactImg" src="images/default.png" /></div>';
+                var contact = contactList[c];
+                var name = '<div class="name" id="n' + c + '">' + contact.name + '</div>';
+                var phone = '<div class="phone" id="p' + c + '">' + contact.phone + '</div>';
+                var email = '<div class="email" id="e' + c + '">' + contact.email + '</div>';
+                var contactImg = '<div class="imgdiv" id="i' + c + '"><img class="contactImg" src="' +
+                    contact.getPicture() + '" /></div>';
                 var contactText = '<div class="contactText" id="t' + c + '">' + name + phone + email + '</div';
                 var typeImg = '<div><img class="typeImg" src="images/wrench.gif"/></div>';
 
