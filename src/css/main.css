@@ -132,8 +132,9 @@ body {
 }
 
 .job .job-description-text .blurb-time{
-    font-size: 0.85em;
+    font-size: 1em;
     float: right; 
+    padding-right: 10px;
 }
 
 .job .mechanic-image{
@@ -165,8 +166,8 @@ body {
     border-left: 2px solid;
     border-left-color: #C41E3A;
     background-color: #eee;
-    background: -webkit-linear-gradient(left,#D8D8D8, #F8F8F8);
-    background: -moz-linear-gradient(left, #D8D8D8, #F8F8F8);
+    background: -webkit-linear-gradient(left,#E8E8E8, #F8F8F8);
+    background: -moz-linear-gradient(left, #E8E8E8, #F8F8F8);
 }
 
 .shadow {
