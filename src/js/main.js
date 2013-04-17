@@ -436,7 +436,6 @@ function loadAddressBook() {
     contactList.push(homeDepot);
 
     for(var c = 0; c < contactList.length; c++){
-    	
     	var contacthtml = '<div class="contact" id="c' + c + '">' + '</div>';
     	var topLoc = c*80;
     	$("#table").append(contacthtml);
