@@ -20,8 +20,7 @@ $('document').ready(function() {
     
     // Mechanics
     var jenks = new fixit.Person("Jenks", "jenks@mit.edu", "617-777-7777", "images/mechanic1.jpg");
-    var billy = new fixit.Person("Billy", "jenks@mit.edu", "617-777-7777", "images/mechanic2.jpg");
-
+    var billy = new fixit.Person("Billy", "billy@mit.edu", "617-777-7778", "images/mechanic2.jpg");
     workers.push(jenks);
     workers.push(billy);
             
@@ -173,7 +172,9 @@ var giveRightPanelAssignedClickHandler = function(jobView, jobModel, assignedBut
         jobModel.setStatus("assigned");
         worker = workers[parseInt($(".assigned-mechanic").find(":selected").val())]
         selectedJob.setWorker(worker);
+        $(".assigned-mechanic-img").attr('src', selectedJob.getAssignedToPic());
         jobView.prependTo($(".assigned-jobs"));
+        jobView.find(".mechanic-image").attr('src', selectedJob.getAssignedToPic());
     });
 }
 
@@ -302,6 +303,7 @@ function replaceDetails(job, jobView) {
 
         if (job.getWorker() && job.getWorker().getName() === workers[i].getName()) {
             $(".assigned-mechanic").append($('<option selected="selected" value=' + i + '>' + workers[i].getName() + '</option>'));
+            $(".assigned-mechanic-img").attr('src', job.getAssignedToPic());
         } else {
             $(".assigned-mechanic").append($('<option value=' + i + '>' + workers[i].getName() + '</option>'));
         }
