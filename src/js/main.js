@@ -231,7 +231,7 @@ function addJob(currentJob) {
     jobContext += currentJob.getLocation(); 
     jobContext += '</span> <div class="blurb-time"> '
 
-    // Depending on whether or not the date change is within the date. 
+    // Depending on whether or not the date change is within the day. 
     var currentTime = new Date();    
     if ((currentJob.getJobTime()-currentTime)/1000/60/60/24 < 1) {
         jobContext += currentJob.getJobTime().toLocaleTimeString(); 
