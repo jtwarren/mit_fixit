@@ -7,6 +7,7 @@ var jobList = new Array();
 var workers = new Array();
 var contactList = new Array();
 var selectedJob = null;
+var selectedTab = "alltab";
 var current_user = new fixit.Person("Michael McIntyre", "michael@mit.edu", "309.269.2032", "images/houseManager.jpg");
 
 $('document').ready(function() {
@@ -92,6 +93,7 @@ $('document').ready(function() {
     filterJobs();
     
     $(".tab-item").click(function(){
+        selectedTab = this.id;
         replaceMiddlePanel(this.id);
     });
 
@@ -101,11 +103,6 @@ $('document').ready(function() {
     if (selectedJob === null) {
         $(".description-panel").html('<span class="no-job-panel"> No job selected! </span>'); 
     }
-
-    $(".tab-item").click(function(event) {
-        $(".tab-item").removeClass("selected");
-        $(this).addClass("selected");
-    });
 
 });
 
@@ -211,6 +208,7 @@ var giveRightPanelCompletedClickHandler = function(jobView, jobModel, completedB
         }
         //console.log(jobModel.getStatus());
         giveRightPanelCompletedClickHandler(jobView, jobModel, completedButton);
+        replaceMiddlePanel(selectedTab);
     });
 }
 
@@ -401,7 +399,7 @@ function replaceMiddlePanel(tab) {
                     addJob(currentJob);
                 } 
             }
-            if(selectedJob != null && selectedJob.isStarred() == false){
+            if(selectedJob.isStarred() == false){
                 selectedJob = null;
             }
         }else{
@@ -416,7 +414,7 @@ function replaceMiddlePanel(tab) {
                         addJob(currentJob);
                     } 
                 }
-                if(selectedJob != null && selectedJob.getStatus() != "new"){
+                if(selectedJob.getStatus() != "new"){
                     selectedJob = null;
                 }
             }else if(tab === "assignedtab"){
@@ -429,7 +427,7 @@ function replaceMiddlePanel(tab) {
                         addJob(currentJob);
                     } 
                 }
-                if(selectedJob != null && selectedJob.getStatus() != "assigned"){
+                if(selectedJob.getStatus() != "assigned"){
                     selectedJob = null;
                 }
             }else if(tab === "completedtab"){
@@ -442,7 +440,7 @@ function replaceMiddlePanel(tab) {
                         addJob(currentJob);
                     } 
                 }
-                if(selectedJob != null && selectedJob.getStatus() != "completed"){
+                if(selectedJob.getStatus() != "completed"){
                     selectedJob = null;
                 }
             }
