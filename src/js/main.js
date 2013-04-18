@@ -233,7 +233,14 @@ function addJob(currentJob) {
     jobContext += '</div> <span class="blurb-location">'
     jobContext += currentJob.getLocation(); 
     jobContext += '</span> <div class="blurb-time"> '
-    jobContext += currentJob.getJobTime().toLocaleTimeString(); 
+
+    // Depending on whether or not the date change is within the day. 
+    var currentTime = new Date();    
+    if ((currentJob.getJobTime()-currentTime)/1000/60/60/24 < 1) {
+        jobContext += currentJob.getJobTime().toLocaleTimeString(); 
+    } else {
+        jobContext += currentJob.getJobTime().toLocaleDateString(); 
+    }
     jobContext += '</div> </div></div> ';
     
     var job = $(jobContext);
@@ -461,7 +468,7 @@ function replaceMiddlePanel(tab) {
             jobContext += '</div> <span class="blurb-location">'
             jobContext += selectedJob.getLocation(); 
             jobContext += '</span> <div class="blurb-time"> '
-            jobContext += selectedJob.getJobTime().toLocaleTimeString(); 
+            jobContext += selectedJob.getJobTime().toLocaleString(); 
             jobContext += '</div> </div></div> ';
     
             var job = $(jobContext);
