@@ -7,6 +7,7 @@ var jobList = new Array();
 var workers = new Array();
 var contactList = new Array();
 var selectedJob = null;
+var selectedTab = "alltab";
 var current_user = new fixit.Person("Michael McIntyre", "michael@mit.edu", "309.269.2032", "images/houseManager.jpg");
 
 $('document').ready(function() {
@@ -92,6 +93,7 @@ $('document').ready(function() {
     filterJobs();
     
     $(".tab-item").click(function(){
+        selectedTab = this.id;
         replaceMiddlePanel(this.id);
     });
 
@@ -206,6 +208,7 @@ var giveRightPanelCompletedClickHandler = function(jobView, jobModel, completedB
         }
         //console.log(jobModel.getStatus());
         giveRightPanelCompletedClickHandler(jobView, jobModel, completedButton);
+        replaceMiddlePanel(selectedTab);
     });
 }
 
