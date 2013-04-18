@@ -102,6 +102,11 @@ $('document').ready(function() {
         $(".description-panel").html('<span class="no-job-panel"> No job selected! </span>'); 
     }
 
+    $(".tab-item").click(function(event) {
+        $(".tab-item").removeClass("selected");
+        $(this).addClass("selected");
+    });
+
 });
 
 function sortByTime(a, b){
