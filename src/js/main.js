@@ -300,7 +300,7 @@ function replaceDetails(job, jobView) {
                             </div> \
                         </div> \
                     <div class="update-form"> \
-                        <textarea class="input input-block-level" placeholder="Type an update..."/></textarea> \
+                        <textarea id="update-textarea" class="input input-block-level" placeholder="Type an update..."/></textarea> \
                         <button id="update-button" type="submit" class="btn btn-custom"><b>Submit</b></button> \
                         <span class="help-inline">Tip: Press tab and then enter to submit an update.</span> \
                     </div> \
