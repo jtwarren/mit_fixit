@@ -396,7 +396,7 @@ function replaceMiddlePanel(tab) {
                     addJob(currentJob);
                 } 
             }
-            if(selectedJob.isStarred() == false){
+            if(selectedJob != null && selectedJob.isStarred() == false){
                 selectedJob = null;
             }
         }else{
@@ -411,7 +411,7 @@ function replaceMiddlePanel(tab) {
                         addJob(currentJob);
                     } 
                 }
-                if(selectedJob.getStatus() != "new"){
+                if(selectedJob != null && selectedJob.getStatus() != "new"){
                     selectedJob = null;
                 }
             }else if(tab === "assignedtab"){
@@ -424,7 +424,7 @@ function replaceMiddlePanel(tab) {
                         addJob(currentJob);
                     } 
                 }
-                if(selectedJob.getStatus() != "assigned"){
+                if(selectedJob != null && selectedJob.getStatus() != "assigned"){
                     selectedJob = null;
                 }
             }else if(tab === "completedtab"){
@@ -437,7 +437,7 @@ function replaceMiddlePanel(tab) {
                         addJob(currentJob);
                     } 
                 }
-                if(selectedJob.getStatus() != "completed"){
+                if(selectedJob != null && selectedJob.getStatus() != "completed"){
                     selectedJob = null;
                 }
             }
