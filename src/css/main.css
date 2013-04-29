@@ -194,11 +194,15 @@ body {
     height: 50px;
 }
 
-.icon-star .filled {
-    max-height: 14px;
-    max-width: 14px;
+.star .filled {
+    max-height: 20px;
+    max-width: 20px;
 }
 
+.star {
+    max-height: 20px;
+    max-width: 20px;
+}
 
 
 /*Experimentation*/

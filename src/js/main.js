@@ -128,17 +128,16 @@ function loadJobs() {
 var giveMiddlePanelStarIconClickHandler = function(jobView, jobModel, starIcon) {
     starIcon.click(function(){
         jobModel.toggleStarred();   // update the model
-        // console.log(jobModel.isStarred());
         if (starIcon.hasClass('filled')) {
         // replace star icon w/ empty star
             starIcon.remove();
-            var newStarIcon = $("<i class='icon-star'></i>");
+            var newStarIcon = $('<img class="star" src="images/star-hollow.png"/>');
             giveMiddlePanelStarIconClickHandler(jobView, jobModel, newStarIcon);
             jobView.find('.starred').append(newStarIcon);
         } else {
         // fil out star icon
             starIcon.remove();
-            var newStarIcon = $("<img class='icon-star filled' src='images/star_filled2.png' />");
+            var newStarIcon = $("<img class='star filled' src='images/star_filled2.png' />");
             giveMiddlePanelStarIconClickHandler(jobView, jobModel, newStarIcon);
             jobView.find('.starred').append(newStarIcon);
         }
@@ -152,26 +151,26 @@ var giveRightPanelStarIconClickHandler = function(jobView, jobModel, starIcon) {
         if (starIcon.hasClass('filled')) {
         // replace star icon w/ empty star (in both middle panel & right panel)
             starIcon.remove();
-            var newStarIcon = $("<i class='icon-star'></i>");
+            var newStarIcon = $('<img class="star" src="images/star-hollow.png"/>');
             giveRightPanelStarIconClickHandler(jobView, jobModel, newStarIcon);
             $(".job-buttons").prepend(newStarIcon);
 
-            var starIconMiddlePanel = jobView.find('.icon-star');
+            var starIconMiddlePanel = jobView.find('.star');
             starIconMiddlePanel.remove();
-            var newStarIconMiddlePanel = $("<i class='icon-star'></i>");
+            var newStarIconMiddlePanel = $('<img class="star" src="images/star-hollow.png"/>');
             giveMiddlePanelStarIconClickHandler(jobView, jobModel, newStarIconMiddlePanel);
             jobView.find('.starred').append(newStarIconMiddlePanel);
 
         } else {
         // fil out star icon (in both middle panel & right panel)
             starIcon.remove();
-            var newStarIcon = $("<img class='icon-star filled' src='images/star_filled2.png' />");
+            var newStarIcon = $("<img class='star filled' src='images/star_filled2.png' />");
             giveRightPanelStarIconClickHandler(jobView, jobModel, newStarIcon);
             $(".job-buttons").prepend(newStarIcon);
 
-            var starIconMiddlePanel = jobView.find('.icon-star');
+            var starIconMiddlePanel = jobView.find('.star');
             starIconMiddlePanel.remove();
-            var newStarIconMiddlePanel = $("<img class='icon-star filled' src='images/star_filled2.png' />");
+            var newStarIconMiddlePanel = $("<img class='star filled' src='images/star_filled2.png' />");
             giveMiddlePanelStarIconClickHandler(jobView, jobModel, newStarIconMiddlePanel);
             jobView.find('.starred').append(newStarIconMiddlePanel);
         }
@@ -220,12 +219,12 @@ var giveRightPanelCompletedClickHandler = function(jobView, jobModel, completedB
 // Load a particular job.
 function addJob(currentJob) {
     var jobContext = '<div class="job"> \
-        <div class="starred"> <i class="icon-star"></i> </div> \
+        <div class="starred"> <img class="star" src="images/star-hollow.png"/> </div> \
         <div> <img class="mechanic-image" src="';
 //images/star_filled2.png
     if(currentJob.isStarred()){
         jobContext = '<div class="job"> \
-        <div class="starred"> <img class="icon-star filled" src="images/star_filled2.png"> </div> \
+        <div class="starred"> <img class="star filled" src="images/star_filled2.png"> </div> \
         <div> <img class="mechanic-image" src="';
     }
         
@@ -259,7 +258,7 @@ function addJob(currentJob) {
         replaceDetails(currentJob, job);
     });
 
-    var starIconMiddlePanel = job.find('.icon-star');
+    var starIconMiddlePanel = job.find('.star');
     giveMiddlePanelStarIconClickHandler(job, currentJob, starIconMiddlePanel);
 
     if (currentJob.getStatus() == "unassigned" || 
@@ -284,7 +283,7 @@ function replaceDetails(job, jobView) {
                             <span></span> \
                         </span> \
                         <span class="job-buttons"> \
-                            <i class="icon-star"></i> \
+                            <img class="star" src="images/star-hollow.png"/>\
                             <button id="mark_completed_button">Mark completed</button> \
                         </span> \
                         <div class="job-location"> \
@@ -358,14 +357,14 @@ function replaceDetails(job, jobView) {
     });
 
     if (job.isStarred()) {
-        $(".job-buttons").find(".icon-star").remove();
-        $(".job-buttons").prepend($("<img class='icon-star filled' src='images/star_filled2.png' />"));
+        $(".job-buttons").find(".star").remove();
+        $(".job-buttons").prepend($("<img class='star filled' src='images/star_filled2.png' />"));
     } else {
-        $(".job-buttons").find(".icon-star").remove();
-        $(".job-buttons").prepend($("<i class='icon-star'></i>"));
+        $(".job-buttons").find(".star").remove();
+        $(".job-buttons").prepend($('<img class="star" src="images/star-hollow.png"/>'));
     }
 
-    var starIconRightPanel = $(".job-buttons").find(".icon-star");
+    var starIconRightPanel = $(".job-buttons").find(".star");
     giveRightPanelStarIconClickHandler(jobView, job, starIconRightPanel);
 
     var completedButton = $(".job-buttons").find("#mark_completed_button");
@@ -461,7 +460,7 @@ function replaceMiddlePanel(tab) {
             $(".description-panel").html('<span class="no-job-panel"> No job selected! </span>'); 
         }/*else{
             var jobContext = '<div class="job"> \
-                    <div class="starred"> <i class="icon-star"></i> </div> \
+                    <div class="starred"> <i class="star"></i> </div> \
                     <div> <img class="mechanic-image" src="'
         
             jobContext += selectedJob.getAssignedToPic(); 
