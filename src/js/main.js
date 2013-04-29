@@ -284,7 +284,7 @@ function replaceDetails(job, jobView) {
                         </span> \
                         <span class="job-buttons"> \
                             <img class="star" src="images/star-hollow.png"/>\
-                            <button id="mark_completed_button">Mark completed</button> \
+                            <button id="mark_completed_button" class="btn btn-custom">Mark completed</button> \
                         </span> \
                         <div class="job-location"> \
                         </div> \
