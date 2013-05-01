@@ -560,9 +560,31 @@ function filterJobs(){
         var searchText = document.getElementById("jobsearch").value.toLowerCase();
         var numEntries = -1;
         for(var j = 0; j < jobList.length; j++){
-            if(jobList[j].contains(searchText)){
-                numEntries += 1;
-                addJob(jobList[j]);
+            if(selectedTab === "alltab"){
+                if(jobList[j].contains(searchText)){
+                    numEntries += 1;
+                    addJob(jobList[j]);
+                }
+            }else if(selectedTab === "starredtab"){
+                if(jobList[j].isStarred() && jobList[j].contains(searchText)){
+                    numEntries += 1;
+                    addJob(jobList[j]);
+                }
+            }else if(selectedTab === "unassignedtab"){
+                if(jobList[j].getStatus() === "new" && jobList[j].contains(searchText)){
+                    numEntries += 1;
+                    addJob(jobList[j]);
+                }
+            }else if(selectedTab === "assignedtab"){
+                if(jobList[j].getStatus() === "assigned" && jobList[j].contains(searchText)){
+                    numEntries += 1;
+                    addJob(jobList[j]);
+                }
+            }else if(selectedTab === "completedtab"){
+                if(jobList[j].getStatus() === "completed" && jobList[j].contains(searchText)){
+                    numEntries += 1;
+                    addJob(jobList[j]);
+                }
             }
         }
     });
