@@ -194,6 +194,8 @@ body {
     height: 50px;
 }
 
+
+
 .star .filled {
     max-height: 20px;
     max-width: 20px;
@@ -279,6 +281,7 @@ body {
 }
 
 .btn-custom {
+    font-weight: bold; 
   background-color: hsl(0, 66%, 30%) !important;
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#C41E3A", endColorstr="#7e1a1a");
@@ -297,4 +300,19 @@ body {
 
 .tab-panel .selected {
     font-weight: bold;
+}
+
+#assign-button {
+    float: right; 
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+#mark_completed_button {
+    
+}
+
+#update-button {
+    float: right; 
+    margin-right: 15px; 
 }
