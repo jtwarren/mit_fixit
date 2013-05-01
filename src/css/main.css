@@ -11,6 +11,8 @@ body {
 .navbar .logo {
     font-family: 'Bubbler One', sans-serif;
     color: #C41E3A;
+    font-weight: bold; 
+    font-size: 32px; 
 }
 
 .panel {
