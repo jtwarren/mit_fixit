@@ -24,9 +24,21 @@ Images from freedigitalphotos.net
     <script type="text/javascript" src="js/fixit.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="js/contact.js"></script>
+
+    <script type='text/javascript' src='https://cdn.firebase.com/v0/firebase.js'></script>
     
 </head>
 <body>
+    <script type="text/javascript">
+        var dataRef = new Firebase("https://mit-fixit.firebaseio.com");
+        var jobsRef = dataRef.child('jobs/1');
+        // console.log(jobsRef.val());
+        // jobsRef.set({first : 'Fred', last : 'Swanson'});
+        jobsRef.on('value', function(nameSnapshot) {
+            var y = nameSnapshot.val();
+            console.log(y);
+        });
+    </script>
     <div class="container-fluid">
         <div class="navbar">
             <div class="navbar-inner navbar-fixed-top">
