@@ -7,6 +7,7 @@ var jobList = new Array();
 var workers = new Array();
 var contactList = new Array();
 var selectedJob = null;
+var selectedJobView = null;
 var selectedTab = "alltab";
 var current_user = new fixit.Person("Michael McIntyre", "michael@mit.edu", "309.269.2032", "images/houseManager.jpg");
 
@@ -147,7 +148,6 @@ var giveMiddlePanelStarIconClickHandler = function(jobView, jobModel, starIcon) 
 var giveRightPanelStarIconClickHandler = function(jobView, jobModel, starIcon) {
     starIcon.click(function(){
         jobModel.toggleStarred();   // update the model
-        // console.log(jobModel.isStarred());
         if (starIcon.hasClass('filled')) {
         // replace star icon w/ empty star (in both middle panel & right panel)
             starIcon.remove();
@@ -156,6 +156,7 @@ var giveRightPanelStarIconClickHandler = function(jobView, jobModel, starIcon) {
             $(".job-buttons").prepend(newStarIcon);
 
             var starIconMiddlePanel = jobView.find('.star');
+            // $(".star").remove();
             starIconMiddlePanel.remove();
             var newStarIconMiddlePanel = $('<img class="star" src="images/star-hollow.png"/>');
             giveMiddlePanelStarIconClickHandler(jobView, jobModel, newStarIconMiddlePanel);
@@ -197,17 +198,17 @@ var giveRightPanelCompletedClickHandler = function(jobView, jobModel, completedB
         // completedButton is a mark incomplete button
             if (jobModel.getWorker() != null) {
             // i.e., job should now be considered 'assigned'
-                jobView.prependTo($(".assigned-jobs"));
+                // jobView.prependTo($(".assigned-jobs"));
                 jobModel.setStatus("assigned");
             } else {
             // job should be considered unassigned
-                jobView.prependTo($(".unassigned-jobs"));
+                // jobView.prependTo($(".unassigned-jobs"));
                 jobModel.setStatus("new");
             }
             completedButton.html("Mark complete");
         } else {
             jobModel.setStatus("completed");
-            jobView.prependTo($(".completed-jobs"));
+            // jobView.prependTo($(".completed-jobs"));
             completedButton.html("Mark incomplete");
         }
         //console.log(jobModel.getStatus());
@@ -261,9 +262,11 @@ function addJob(currentJob) {
     var job = $(jobContext);
     if(selectedJob === currentJob){
         job.addClass("focus");
+        selectedJobView = job;
     }
     $(job).click(function() {
         selectedJob = currentJob;
+        selectedJobView = job;
         $(".job-panel .job-group .job").removeClass("focus");
         job.addClass("focus");
         replaceDetails(currentJob, job);
@@ -290,6 +293,7 @@ function addJob(currentJob) {
 
 // Replace the details for a given job
 function replaceDetails(job, jobView) {
+    // console.log("replaceDetails() is being called.");
 
     var rightPanelHTML = '<div class="description shadow"> \
                        <span class="job-title"> \
@@ -395,20 +399,27 @@ function replaceDetails(job, jobView) {
 }
 
 function replaceMiddlePanel(tab) {
-    var allMiddlePanelHTML = '<h4> Unassigned Jobs </h4> \
-                    <div class="unassigned-jobs job-group">  \
-                    </div> \
-                    <h4> Assigned Jobs </h4> \
-                    <div class="assigned-jobs job-group"> \
-                    </div> \
-                    <h4> Completed Jobs </h4> \
-                    <div class="completed-jobs job-group"> \
-                    </div> ';
+    // console.log("replaceMiddlePanel() is being called.");
+    // console.log("replaceMiddlePanel() is being called.");
+    // var allMiddlePanelHTML = '<h4> Unassigned Jobs </h4> \
+    //                 <div class="unassigned-jobs job-group">  \
+    //                 </div> \
+    //                 <h4> Assigned Jobs </h4> \
+    //                 <div class="assigned-jobs job-group"> \
+    //                 </div> \
+    //                 <h4> Completed Jobs </h4> \
+    //                 <div class="completed-jobs job-group"> \
+    //                 </div> ';
+    // console.log("replaceMiddlePanel() is being called.");
+    var allMiddlePanelHTML = "<h4 class='jobs-heading'> Jobs </h4> \
+                    <div class='jobs job-group'> \
+                    </div>";
     //$(".job-group").html("");
     $(".panel.job-panel").html("");
     //$(".job-group").html("");
     //console.log(tab);
     if(tab === "alltab"){
+        // console.log("alltab");
         $(".panel.job-panel").html(allMiddlePanelHTML);
         for (var i=0; i<jobList.length; i++) {
             var currentJob = jobList[i];
@@ -421,17 +432,19 @@ function replaceMiddlePanel(tab) {
                 var currentJob = jobList[i];
                 if(currentJob.isStarred()){
                     addJob(currentJob);
-                } 
+                }
             }
             if(selectedJob != null && selectedJob.isStarred() == false){
                 selectedJob = null;
+                selectedJobView = null;
             }
         }else{
-            $(".panel.job-panel").html("");
+            $(".panel.job-panel").html(allMiddlePanelHTML);
+            // $(".panel.job-panel").html("");
             if(tab === "unassignedtab"){
-                $(".panel.job-panel").html('<h4> Unassigned Jobs </h4> \
-                        <div class="unassigned-jobs job-group">  \
-                        </div>');
+                // $(".panel.job-panel").html('<h4> Unassigned Jobs </h4> \
+                        // <div class="unassigned-jobs job-group">  \
+                        // </div>');
                 for (var i=0; i<jobList.length; i++) {
                     var currentJob = jobList[i];
                     if(currentJob.getStatus() === "new"){
@@ -440,11 +453,12 @@ function replaceMiddlePanel(tab) {
                 }
                 if(selectedJob != null && selectedJob.getStatus() != "new"){
                     selectedJob = null;
+                    selectedJobView = null;
                 }
             }else if(tab === "assignedtab"){
-                $(".panel.job-panel").html('<h4> Assigned Jobs </h4> \
-                        <div class="assigned-jobs job-group">  \
-                        </div>');
+                // $(".panel.job-panel").html('<h4> Assigned Jobs </h4> \
+                //         <div class="assigned-jobs job-group">  \
+                //         </div>');
                 for (var i=0; i<jobList.length; i++) {
                     var currentJob = jobList[i];
                     if(currentJob.getStatus() === "assigned"){
@@ -453,11 +467,12 @@ function replaceMiddlePanel(tab) {
                 }
                 if(selectedJob != null && selectedJob.getStatus() != "assigned"){
                     selectedJob = null;
+                    selectedJobView = null;
                 }
             }else if(tab === "completedtab"){
-                $(".panel.job-panel").html('<h4> Completed Jobs </h4> \
-                        <div class="completed-jobs job-group">  \
-                        </div>');
+                // $(".panel.job-panel").html('<h4> Completed Jobs </h4> \
+                //         <div class="completed-jobs job-group">  \
+                //         </div>');
                 for (var i=0; i<jobList.length; i++) {
                     var currentJob = jobList[i];
                     if(currentJob.getStatus() === "completed"){
@@ -466,11 +481,19 @@ function replaceMiddlePanel(tab) {
                 }
                 if(selectedJob != null && selectedJob.getStatus() != "completed"){
                     selectedJob = null;
+                    selectedJobView = null;
                 }
             }
         }
         if (selectedJob === null) {
             $(".description-panel").html('<span class="no-job-panel"> No job selected! </span>'); 
+        } else {
+        //     console.log("Replacing right panel details w/...");
+        //     console.log("selectedJob");
+        //     console.log(selectedJob);
+        //     console.log("selectedJobView");
+        //     console.log(selectedJobView);
+            replaceDetails(selectedJob, selectedJobView);
         }/*else{
             var jobContext = '<div class="job"> \
                     <div class="starred"> <i class="star"></i> </div> \
@@ -567,6 +590,7 @@ function filterContacts(){
 }
 
 function filterJobs(){
+    // console.log("filterJobs() is being called.");
     var $rows = $('.job-group');
     $('#jobsearch').keyup(function(){
         $(".job-group").html("");
