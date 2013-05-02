@@ -273,6 +273,17 @@ body {
     border-style: solid;
 }
 
+.jobs-heading {
+    margin-top: 5px;
+}
+
+.job-panel .jobs {
+    max-height: 585px;
+    min-height: 585px;
+    /*margin-bottom: 0px;
+    padding-bottom: 0px;*/
+}
+
 .job-panel .unassigned-jobs {
     min-height: 152px;
     max-height: 152px;
