@@ -16,7 +16,7 @@ $('document').ready(function() {
      * Middle Panel 
      */
     var rebecca = new fixit.Person("Rebecca Krosnick", "krosnick@mit.edu", "240.505.2222");
-    var anurag = new fixit.Person("Anurag Kashyap", "anurag@mit.edu", "858.442.3774");
+    var anurag = new fixit.Person("Anurag Kashyap", "anurag@mit.edu", "412.961.2424");
     var jeff = new fixit.Person("Jeffrey Warren", "jtwarren@mit.edu", "603.438.6440");
     
     // Mechanics
@@ -261,18 +261,20 @@ function addJob(currentJob) {
     var starIconMiddlePanel = job.find('.star');
     giveMiddlePanelStarIconClickHandler(job, currentJob, starIconMiddlePanel);
 
-    if (currentJob.getStatus() == "unassigned" || 
-        currentJob.getStatus() == "new") {
-        $(".unassigned-jobs").append(job);
-    } else if (currentJob.getStatus() == "assigned") {
-        $(".assigned-jobs").append(job);
-    } else if (currentJob.getStatus() == "completed") {
-        $(".completed-jobs").append(job);  
-    } else {
-        // Job should not have a different status.
-        // there is a problem with this job. 
-        console.log('current status is invalid');
-    }            
+    $(".jobs").append(job);
+    // console.log("job is being appended to thing of class .jobs");
+    // if (currentJob.getStatus() == "unassigned" || 
+    //     currentJob.getStatus() == "new") {
+    //     $(".unassigned-jobs").append(job);
+    // } else if (currentJob.getStatus() == "assigned") {
+    //     $(".assigned-jobs").append(job);
+    // } else if (currentJob.getStatus() == "completed") {
+    //     $(".completed-jobs").append(job);  
+    // } else {
+    //     // Job should not have a different status.
+    //     // there is a problem with this job. 
+    //     console.log('current status is invalid');
+    // }            
 }
 
 // Replace the details for a given job
