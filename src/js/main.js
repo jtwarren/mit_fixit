@@ -235,8 +235,18 @@ function addJob(currentJob) {
                 
     jobContext += currentJob.getTitle().substring(0, 50);
     jobContext += '</div> <span class="blurb-location">'
-    jobContext += currentJob.getLocation(); 
-    jobContext += '</span> <div class="blurb-time"> '
+    jobContext += currentJob.getLocation();
+
+    // Label
+    var labeltext = currentJob.getStatus();
+    if(labeltext === "new"){
+        labeltext = "unassigned";
+    }
+    var labelHTML = '<div class="' + labeltext + '-label label-area">' + labeltext + '</div>';
+
+    jobContext += '</span>';
+    jobContext += labelHTML;
+    jobContext += ' <div class="blurb-time"> ';
 
     // Depending on whether or not the date change is within the day. 
     var currentTime = new Date();    
@@ -245,7 +255,8 @@ function addJob(currentJob) {
     } else {
         jobContext += currentJob.getJobTime().toLocaleDateString(); 
     }
-    jobContext += '</div> </div></div> ';
+    jobContext += '</div>';
+    jobContext += ' </div></div> ';
     
     var job = $(jobContext);
     if(selectedJob === currentJob){

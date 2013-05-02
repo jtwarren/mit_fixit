@@ -173,17 +173,41 @@ body {
 
 .job .job-description-text{
     padding-left: 24px; 
-    margin-top: 4px; 
+    margin-top: 4px;
 }
 
 .job .job-description-text .blurb-location{
     font-size: 0.85em;
+    float: left;
+    width: 300px;
 }
 
 .job .job-description-text .blurb-time{
     font-size: 1em;
     float: right; 
     padding-right: 10px;
+}
+
+.job .job-description-text .label-area{
+    font-size: 1em;
+    float: left;
+    padding-left: 5px;
+    padding-right: 5px;
+    color: white;
+    /*float:right;
+    padding-right: 100px;*/
+}
+
+.job .job-description-text .unassigned-label{
+    background-color: green;
+}
+
+.job .job-description-text .assigned-label{
+    background-color: blue;
+}
+
+.job .job-description-text .completed-label{
+    background-color: red;
 }
 
 .job .mechanic-image{
