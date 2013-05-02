@@ -497,7 +497,7 @@ function replaceMiddlePanel(tab) {
     } else {
         replaceDetails(selectedJob, selectedJobView);
     }/*else{
-	Fixed starring bug (where after selecting a tab and then clicking the right panel star caused nothing to happen)
+ Fixed starring bug (where after selecting a tab and then clicking the right panel star caused nothing to happen)
             var jobContext = '<div class="job"> \
                     <div class="starred"> <i class="star"></i> </div> \
                     <div> <img class="mechanic-image" src="'
