@@ -197,22 +197,27 @@ body {
     float: left;
     padding-left: 5px;
     padding-right: 5px;
-    color: white;
+    /*color: white;*/
     border-radius: 5px;
     /*float:right;
     padding-right: 100px;*/
 }
 
 .job .job-description-text .unassigned-label{
-    background-color: green;
+    /*background-color: green;*/
+    background-color: #CDFFE5;
 }
 
 .job .job-description-text .assigned-label{
-    background-color: blue;
+    /*background-color: blue;*/
+    background: #CDD2FF;
+    /*color: white;*/
 }
 
 .job .job-description-text .completed-label{
-    background-color: red;
+    /*background-color: red;*/
+    background-color: #FFCDCD;
+    /*color: white;*/
 }
 
 .job .mechanic-image{
