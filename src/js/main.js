@@ -146,7 +146,11 @@ var giveMiddlePanelStarIconClickHandler = function(jobView, jobModel, starIcon) 
 }
 
 var giveRightPanelStarIconClickHandler = function(jobView, jobModel, starIcon) {
+    // console.log(jobView);
+    // console.log(starIcon);
     starIcon.click(function(){
+        // console.log(jobView);
+        // console.log(starIcon);
         jobModel.toggleStarred();   // update the model
         if (starIcon.hasClass('filled')) {
         // replace star icon w/ empty star (in both middle panel & right panel)
@@ -261,6 +265,7 @@ function addJob(currentJob) {
     
     var job = $(jobContext);
     if(selectedJob === currentJob){
+        // console.log("selectedJob === currentJob");
         job.addClass("focus");
         selectedJobView = job;
     }
@@ -425,7 +430,7 @@ function replaceMiddlePanel(tab) {
             var currentJob = jobList[i];
             addJob(currentJob);
         }
-    }else {
+    } else {
         if(tab === "starredtab"){
             $(".panel.job-panel").html(allMiddlePanelHTML);
             for (var i=0; i<jobList.length; i++) {
@@ -485,6 +490,8 @@ function replaceMiddlePanel(tab) {
                 }
             }
         }
+    }
+        // console.log(selectedJob);
         if (selectedJob === null) {
             $(".description-panel").html('<span class="no-job-panel"> No job selected! </span>'); 
         } else {
@@ -493,6 +500,8 @@ function replaceMiddlePanel(tab) {
         //     console.log(selectedJob);
         //     console.log("selectedJobView");
         //     console.log(selectedJobView);
+            // console.log(selectedJob);
+            // console.log("replacing right panel...");
             replaceDetails(selectedJob, selectedJobView);
         }/*else{
             var jobContext = '<div class="job"> \
@@ -518,7 +527,6 @@ function replaceMiddlePanel(tab) {
         }*/
     }
 
-}
 
 
 // Load Address book component. 
