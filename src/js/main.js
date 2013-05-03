@@ -16,9 +16,9 @@ $('document').ready(function() {
     /** 
      * Middle Panel 
      */
-    var rebecca = new fixit.Person("Rebecca Krosnick", "krosnick@mit.edu", "240.505.2222");
-    var anurag = new fixit.Person("Anurag Kashyap", "anurag@mit.edu", "858.442.3774");
-    var jeff = new fixit.Person("Jeffrey Warren", "jtwarren@mit.edu", "603.438.6440");
+    var rebecca = new fixit.Person("Rebecca Krosnick", "krosnick@mit.edu", "240-505-2222");
+    var anurag = new fixit.Person("Anurag Kashyap", "anurag@mit.edu", "111-212-3654");
+    var jeff = new fixit.Person("Jeffrey Warren", "jtwarren@mit.edu", "603-438-6440");
     
     // Mechanics
     var jenks = new fixit.Person("Jenks", "jenks@mit.edu", "617-777-7777", "images/mechanic1.jpg");
