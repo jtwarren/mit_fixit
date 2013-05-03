@@ -30,13 +30,11 @@ Images from freedigitalphotos.net
 </head>
 <body>
     <script type="text/javascript">
-        var dataRef = new Firebase("https://mit-fixit.firebaseio.com");
-        var jobsRef = dataRef.child('jobs/1');
-        // console.log(jobsRef.val());
-        // jobsRef.set({first : 'Fred', last : 'Swanson'});
-        jobsRef.on('value', function(nameSnapshot) {
-            var y = nameSnapshot.val();
-            console.log(y);
+
+        var jobsRef = new Firebase("https://mit-fixit.firebaseio.com/users/students");
+        jobsRef.on('child_added', function(snapshot) {
+            var job = snapshot.val();
+            console.log(job.name);
         });
     </script>
     <div class="container-fluid">
