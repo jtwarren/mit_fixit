@@ -1,0 +1,50 @@
+{
+  "jobs" : {
+    "job1" : {
+      "location" : "McCormick West Penthouse",
+      "title" : "Broken Lightbulb",
+      "text" : "Ran into the lamp because I was rushing. Theres shattered glass everywhere. I tried to clean it up a bit but there are probably still little pieces on the ground. Can you come clean up the glass and replace the lightbulb? Its really dark in here and I enjoy studying here, so if you could come as soon as possible that would be great"
+    },
+    "job2" : {
+      "location" : "McCormick East Penthouse",
+      "title" : "Broken Lightbulb",
+      "text" : "Ran into the lamp because I was rushing. Theres shattered glass everywhere. I tried to clean it up a bit but there are probably still little pieces on the ground. Can you come clean up the glass and replace the lightbulb? Its really dark in here and I enjoy studying here, so if you could come as soon as possible that would be great"
+    }
+  },
+  "users" : {
+    "mechanics" : {
+      "jenks" : {
+        "name" : "Jenks Jenkinson",
+        "phone" : "543.234.2324",
+        "email" : "jenks@mit.edu"
+      },
+      "billy" : {
+        "name" : "Billy Bob",
+        "phone" : "324.654.9373",
+        "email" : "billybob@mit.edu"
+      }
+    },
+    "students" : {
+      "jeffrey" : {
+        "name" : "Jeffrey Warren",
+        "phone" : "603.438.6440",
+        "email" : "jtwarren@mit.edu"
+      },
+      "anurag" : {
+        "name" : "Anurag Kashyap",
+        "phone" : "858.442.3774",
+        "email" : "anurag@mit.edu"
+      },
+      "rebecca" : {
+        "name" : "Rebecca Krosnick",
+        "phone" : "240.505.2222",
+        "email" : "krosnick@mit.edu"
+      },
+      "michelle" : {
+        "name" : "M-Chen",
+        "phone" : "858.754.9619",
+        "email" : "mchen@mit.edu"
+      }
+    }
+  }
+}
