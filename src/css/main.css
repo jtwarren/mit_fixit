@@ -8,6 +8,10 @@ body {
   /*background-color: #eee;*/
 }
 
+.navbar-inner{
+    border-radius: 0px; 
+}
+
 .navbar .logo {
     font-family: 'Bubbler One', sans-serif;
     color: #C41E3A;
