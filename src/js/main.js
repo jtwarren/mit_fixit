@@ -187,6 +187,8 @@ var giveRightPanelAssignedClickHandler = function(jobView, jobModel, assignedBut
         $(".assigned-mechanic-img").attr('src', selectedJob.getAssignedToPic());
         jobView.prependTo($(".assigned-jobs"));
         jobView.find(".mechanic-image").attr('src', selectedJob.getAssignedToPic());
+        jobView.find(".label-area").addClass("assigned-label");
+        jobView.find(".label-area").html("assigned");
     });
 }
 
