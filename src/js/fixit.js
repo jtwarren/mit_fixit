@@ -31,7 +31,7 @@ fixit.Person = function(name, email, phone, profPic ) {
     
 }
 
-fixit.Job = function(title, text, location, time, reporter) {
+fixit.Job = function(title, text, location, time, reporter, status) {
     /* Constructor for fixit.Job object. Takes following parameters:
      - title, a string
      - text, a string
@@ -44,11 +44,11 @@ fixit.Job = function(title, text, location, time, reporter) {
     var location = location;
     var time = time;
     var reporter = reporter;
+    var status = status;
 
     // default values for fields when new fixit.Job object is constructed
     var starred = false;
     var assignedTo = null;
-    var status = "new";
     var updateList = new Array();
     var labelList = new Array();
  
