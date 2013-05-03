@@ -687,7 +687,10 @@ function buttonListeners() {
         $(".updates").scrollTop($(".updates")[0].scrollHeight);
 
         up = new fixit.Update(current_user, content.val(), new Date(), "urgency");
-        selectedJob.addUpdate(up);  
+        selectedJob.addUpdate(up);
+        selectedJob.setJobTime(new Date());
+        jobList.sort(sortByTime);
+        replaceMiddlePanel(selectedTab);
         content.val("");
         $("#update-textarea").focus();
         return false;

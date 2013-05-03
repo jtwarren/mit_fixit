@@ -99,6 +99,10 @@ fixit.Job = function(title, text, location, time, reporter) {
         return time; 
     }
 
+    this.setJobTime = function(newTime) {
+        time = newTime;
+    }
+
 	this.getUpdateList = function() {
 		return updateList;
 	}
