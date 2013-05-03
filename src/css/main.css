@@ -358,3 +358,11 @@ body {
     float: right; 
     margin-right: 15px; 
 }
+
+#jobsearch{
+    width: 650px;
+}
+
+#fixit-logo{
+    padding-right: 60px; 
+}
