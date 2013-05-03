@@ -7,6 +7,7 @@ var jobList = new Array();
 var workers = new Array();
 var contactList = new Array();
 var selectedJob = null;
+var selectedJobView = null;
 var selectedTab = "alltab";
 var current_user = new fixit.Person("Michael McIntyre", "michael@mit.edu", "309.269.2032", "images/houseManager.jpg");
 
@@ -261,6 +262,7 @@ function addJob(currentJob) {
     var job = $(jobContext);
     if(selectedJob === currentJob){
         job.addClass("focus");
+        selectedJobView = job;
     }
     $(job).click(function() {
         selectedJob = currentJob;
@@ -467,9 +469,12 @@ function replaceMiddlePanel(tab) {
                 }
             }
         }
-        if (selectedJob === null) {
-            $(".description-panel").html('<span class="no-job-panel"> No job selected! </span>'); 
-        }/*else{
+    }
+    if (selectedJob === null) {
+        $(".description-panel").html('<span class="no-job-panel"> No job selected! </span>'); 
+    } else {
+        replaceDetails(selectedJob, selectedJobView);
+    }/*else{
             var jobContext = '<div class="job"> \
                     <div class="starred"> <i class="star"></i> </div> \
                     <div> <img class="mechanic-image" src="'
@@ -491,10 +496,7 @@ function replaceMiddlePanel(tab) {
             job.addClass("focus");
             //console.log();
         }*/
-    }
-
 }
-
 
 // Load Address book component. 
 function loadAddressBook() {
