@@ -430,7 +430,22 @@ function replaceMiddlePanel(tab) {
     //                 <div class="completed-jobs job-group"> \
     //                 </div> ';
     // console.log("replaceMiddlePanel() is being called.");
-    var allMiddlePanelHTML = "<h4 class='jobs-heading'> Jobs </h4> \
+    //var allMiddlePanelHTML = "<h4 class='jobs-heading'> Jobs </h4> \
+    var headingName;
+    if(selectedTab === "alltab"){
+        headingName = "All Jobs";
+    }else if(selectedTab === "unassignedtab"){
+        headingName = "Unassigned Jobs";
+    }else if(selectedTab === "assignedtab"){
+        headingName = "Assigned Jobs";
+    }else if(selectedTab === "completedtab"){
+        headingName = "Completed Jobs";
+    }else if(selectedTab === "starredtab"){
+        headingName = "Starred Jobs";
+    }
+
+    var allMiddlePanelHTML = "<h4 class='jobs-heading'>" + headingName +
+                    "</h4> \
                     <div class='jobs job-group'> \
                     </div>";
     //$(".job-group").html("");
