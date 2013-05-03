@@ -657,6 +657,13 @@ function filterJobs(){
                 }
             }
         }
+        if(selectedJob != null){
+            if(!selectedJob.contains(searchText)){
+                $(".description-panel").html('<span class="no-job-panel"> No job selected! </span>');
+            }else{
+                replaceDetails(selectedJob, selectedJobView);
+            }
+        }
     });
 }
 
