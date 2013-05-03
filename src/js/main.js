@@ -410,18 +410,22 @@ function replaceMiddlePanel(tab) {
     $(".panel.job-panel").html("");
     //$(".job-group").html("");
     //console.log(tab);
+    var searchText = document.getElementById("jobsearch").value.toLowerCase();
+    console.log(searchText);
     if(tab === "alltab"){
         $(".panel.job-panel").html(allMiddlePanelHTML);
         for (var i=0; i<jobList.length; i++) {
             var currentJob = jobList[i];
-            addJob(currentJob);
+            if(currentJob.contains(searchText)){
+                addJob(currentJob);
+            }
         }
     }else {
         if(tab === "starredtab"){
             $(".panel.job-panel").html(allMiddlePanelHTML);
             for (var i=0; i<jobList.length; i++) {
                 var currentJob = jobList[i];
-                if(currentJob.isStarred()){
+                if(currentJob.isStarred() && currentJob.contains(searchText)){
                     addJob(currentJob);
                 } 
             }
@@ -436,7 +440,7 @@ function replaceMiddlePanel(tab) {
                         </div>');
                 for (var i=0; i<jobList.length; i++) {
                     var currentJob = jobList[i];
-                    if(currentJob.getStatus() === "new"){
+                    if(currentJob.getStatus() === "new" && currentJob.contains(searchText)){
                         addJob(currentJob);
                     } 
                 }
@@ -449,7 +453,7 @@ function replaceMiddlePanel(tab) {
                         </div>');
                 for (var i=0; i<jobList.length; i++) {
                     var currentJob = jobList[i];
-                    if(currentJob.getStatus() === "assigned"){
+                    if(currentJob.getStatus() === "assigned" && currentJob.contains(searchText)){
                         addJob(currentJob);
                     } 
                 }
@@ -462,7 +466,7 @@ function replaceMiddlePanel(tab) {
                         </div>');
                 for (var i=0; i<jobList.length; i++) {
                     var currentJob = jobList[i];
-                    if(currentJob.getStatus() === "completed"){
+                    if(currentJob.getStatus() === "completed" && currentJob.contains(searchText)){
                         addJob(currentJob);
                     } 
                 }
