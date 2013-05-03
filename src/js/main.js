@@ -192,6 +192,8 @@ var giveRightPanelAssignedClickHandler = function(jobView, jobModel, assignedBut
         jobView.prependTo($(".assigned-jobs"));
         jobView.find(".mechanic-image").attr('src', selectedJob.getAssignedToPic());
         jobView.find(".label-area").addClass("assigned-label");
+        jobView.find(".label-area").removeClass("unassigned-label");
+        jobView.find(".label-area").removeClass("completed-label");
         jobView.find(".label-area").html("assigned");
     });
 }
@@ -206,20 +208,30 @@ var giveRightPanelCompletedClickHandler = function(jobView, jobModel, completedB
             // i.e., job should now be considered 'assigned'
                 // jobView.prependTo($(".assigned-jobs"));
                 jobModel.setStatus("assigned");
+                jobView.find(".label-area").addClass("assigned-label");
+                jobView.find(".label-area").removeClass("completed-label");
+                jobView.find(".label-area").html("assigned");
             } else {
             // job should be considered unassigned
                 // jobView.prependTo($(".unassigned-jobs"));
                 jobModel.setStatus("new");
+                jobView.find(".label-area").addClass("unassigned-label");
+                jobView.find(".label-area").removeClass("completed-label");
+                jobView.find(".label-area").html("unassigned");
             }
             completedButton.html("Mark complete");
         } else {
             jobModel.setStatus("completed");
             // jobView.prependTo($(".completed-jobs"));
             completedButton.html("Mark incomplete");
+            jobView.find(".label-area").addClass("completed-label");
+            jobView.find(".label-area").removeClass("unassigned-label");
+            jobView.find(".label-area").removeClass("assigned-label");
+            jobView.find(".label-area").html("completed");
         }
         //console.log(jobModel.getStatus());
         giveRightPanelCompletedClickHandler(jobView, jobModel, completedButton);
-        replaceMiddlePanel(selectedTab);
+        //replaceMiddlePanel(selectedTab);
     });
 }
 
