@@ -500,8 +500,7 @@ function replaceMiddlePanel(tab) {
         //     console.log(selectedJob);
         //     console.log("selectedJobView");
         //     console.log(selectedJobView);
-            // console.log(selectedJob);
-            // console.log("replacing right panel...");
+
             replaceDetails(selectedJob, selectedJobView);
         }/*else{
             var jobContext = '<div class="job"> \
