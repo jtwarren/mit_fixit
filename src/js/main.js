@@ -387,7 +387,8 @@ function replaceDetails(job, jobView) {
         var $updateText = $('<div class="update-text"/>');
         $updateText.append($('<span class="username">' + update.getUpdater().getName() + " " + '</span>'));
         $updateText.append(update.getText());
-        $updateText.append($('<div class="time">' + update.getTime() + '</div>'));
+        console.log(update.getTime());
+        $updateText.append($('<div class="time">' + $.timeago(update.getTime()) + '</div>'));
 
         $update.append($img);
         $update.append($updateText);
