@@ -443,6 +443,7 @@ function replaceMiddlePanel(tab) {
     }else if(selectedTab === "starredtab"){
         headingName = "Starred Jobs";
     }
+    $("#jobsearch").attr("placeholder", "Search " + headingName);
 
     var allMiddlePanelHTML = "<h4 class='jobs-heading'>" + headingName +
                     "</h4> \
