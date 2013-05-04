@@ -9,16 +9,16 @@ var contactList = new Array();
 var selectedJob = null;
 var selectedJobView = null;
 var selectedTab = "alltab";
-var current_user = new fixit.Person("Michael McIntyre", "michael@mit.edu", "309.269.2032", "images/houseManager.jpg");
+var current_user = new fixit.Person("Michael McIntyre", "michael@mit.edu", "309-269-2032", "images/houseManager.jpg");
 
 $('document').ready(function() {
 
     /** 
      * Middle Panel 
      */
-    var rebecca = new fixit.Person("Rebecca Krosnick", "krosnick@mit.edu", "240.505.2222");
-    var anurag = new fixit.Person("Anurag Kashyap", "anurag@mit.edu", "412.961.2424");
-    var jeff = new fixit.Person("Jeffrey Warren", "jtwarren@mit.edu", "603.438.6440");
+    var rebecca = new fixit.Person("Rebecca Krosnick", "krosnick@mit.edu", "240-505-2222");
+    var anurag = new fixit.Person("Anurag Kashyap", "anurag@mit.edu", "412-961-2424");
+    var jeff = new fixit.Person("Jeffrey Warren", "jtwarren@mit.edu", "603-438-6440");
     
     // Mechanics
     var jenks = new fixit.Person("Jenks", "jenks@mit.edu", "617-777-7777", "images/mechanic1.jpg");
