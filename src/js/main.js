@@ -524,11 +524,19 @@ function replaceMiddlePanel(tab) {
             }
         }
     }
+
+    if ($(".job").length === 0) {
+    // no jobs being displayed in middle panel, put message saying "No jobs to
+    // display"
+        $(".job-group").append($('<span class="no-job-panel no-job-middle-panel">No jobs to be displayed!</span>'));
+    }
+
     if (selectedJob === null) {
         $(".description-panel").html('<span class="no-job-panel"> No job selected! </span>'); 
     } else {
         replaceDetails(selectedJob, selectedJobView);
-    }/*else{
+    }
+    /*else{
  Fixed starring bug (where after selecting a tab and then clicking the right panel star caused nothing to happen)
             var jobContext = '<div class="job"> \
                     <div class="starred"> <i class="star"></i> </div> \

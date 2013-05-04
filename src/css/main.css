@@ -334,6 +334,10 @@ body {
     margin-top: 100px;
 }
 
+.no-job-middle-panel {
+    margin-top: 70px;
+}
+
 .btn-custom {
     font-weight: bold; 
   background-color: hsl(0, 66%, 30%) !important;
