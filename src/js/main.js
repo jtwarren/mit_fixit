@@ -109,6 +109,8 @@ $('document').ready(function() {
         $(".tab-item").removeClass("selected");
         $(this).addClass("selected");
     });
+    
+   
 
 });
 
@@ -188,7 +190,7 @@ var giveRightPanelAssignedClickHandler = function(jobView, jobModel, assignedBut
         jobModel.setStatus("assigned");
         worker = workers[parseInt($(".assigned-mechanic").find(":selected").val())]
         selectedJob.setWorker(worker);
-        $(".assigned-mechanic-img").attr('src', selectedJob.getAssignedToPic());
+        //$(".assigned-mechanic-img").attr('src', selectedJob.getAssignedToPic());
         jobView.prependTo($(".assigned-jobs"));
         jobView.find(".mechanic-image").attr('src', selectedJob.getAssignedToPic());
         jobView.find(".label-area").addClass("assigned-label");
@@ -332,7 +334,7 @@ function replaceDetails(job, jobView) {
                     <div class="assignment shadow"> \
                         <!--<h4>Assignment</h4>--> \
                         <span> \
-                            <img class="assigned-mechanic-img" style="width:50px" src="images/default.png"/> \
+                            <!--<img class="assigned-mechanic-img" style="width:50px" src="images/default.png"/> --> \
                             <select class="assigned-mechanic"> \
                             </select> \
                             <button id="assign-button" type="submit" class="btn btn-custom"><b>Assign</b></button> \
@@ -364,14 +366,22 @@ function replaceDetails(job, jobView) {
     $(".description-panel .description .job-reporter").html(reporter.getName() + ", " + reporter.getEmail() + ", " + reporter.getPhone());
 
     for (var i = 0; i < workers.length; i++) {
-
-        if (job.getWorker() && job.getWorker().getName() === workers[i].getName()) {
-            $(".assigned-mechanic").append($('<option selected="selected" value=' + i + '>' + workers[i].getName() + '</option>'));
-            $(".assigned-mechanic-img").attr('src', job.getAssignedToPic());
+        var currentWorker = job.getWorker();
+        if (currentWorker && currentWorker.getName() === workers[i].getName()) {
+            console.log(workers[i].getPicture());
+            $(".assigned-mechanic").append($('<option selected="selected" value=' + i +
+                ' data-imagesrc="'+workers[i].getPicture()+ '>' + workers[i].getName() + '</option>'));
+            //$(".assigned-mechanic-img").attr('src', job.getAssignedToPic());
         } else {
-            $(".assigned-mechanic").append($('<option value=' + i + '>' + workers[i].getName() + '</option>'));
+            $(".assigned-mechanic").append($('<option value=' + i + ' data-imagesrc="images/default.png">' 
+                + workers[i].getName() + '</option>')); 
         }
     };
+    
+    /*$(".assigned-mechanic").ddslick({
+       width: 300, 
+       height: 300
+    });*/
 
     
     
