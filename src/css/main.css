@@ -12,6 +12,10 @@ body {
     border-radius: 0px; 
 }
 
+.navbar-search{
+    margin-top: 3px;
+}
+
 .navbar .logo {
     font-family: 'Bubbler One', sans-serif;
     color: #C41E3A;
@@ -366,6 +370,7 @@ body {
 
 #jobsearch{
     width: 650px;
+    padding-top: 7px;
 }
 
 #fixit-logo{
