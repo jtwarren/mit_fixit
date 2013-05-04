@@ -70,6 +70,10 @@ body {
 }
 
 .description-panel .description{
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 6px;
+    padding-right: 6px;
     margin-bottom: 0px;
     min-height: 240px;
     max-height: 240px;
@@ -83,7 +87,6 @@ body {
 
 .description-panel .description .job-buttons{
     float: right;
-    padding-right: 5px;
 }
 
 .description-panel .description .job-location{
@@ -360,7 +363,8 @@ body {
 }
 
 #mark_completed_button {
-    
+    width: 141px;
+    margin-left: 2px;
 }
 
 #update-button {
