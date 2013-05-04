@@ -359,7 +359,6 @@ body {
 #assign-button {
     float: right; 
     margin-top: 10px;
-    margin-right: 10px;
 }
 
 #mark_completed_button {
@@ -369,7 +368,7 @@ body {
 
 #update-button {
     float: right; 
-    margin-right: 15px; 
+    margin-right: 11px; 
 }
 
 #jobsearch{
@@ -379,4 +378,9 @@ body {
 
 #fixit-logo{
     padding-right: 60px; 
+}
+
+#update-textarea {
+    width: 547px;
+    margin-bottom: 5px;
 }
