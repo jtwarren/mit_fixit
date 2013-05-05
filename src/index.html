@@ -66,10 +66,10 @@ Images from freedigitalphotos.net
                             </div>
                             <div class = "create-label-modal-body">
                                 <span>
-                                    <input type="text" class= 'create-label-text' placeholder="Enter label name">
+                                    <input type="text" id= 'create-label-text' placeholder="Enter label name">
                                 </span>
                                 <span>
-                                    <button type='submit' class='btn add-btn'><b>Add Label</b></button>
+                                    <button type='close' id="add-btn" class='btn'><b>Add Label</b></button>
                                 </span>
                             </div>
                         </div>
@@ -81,6 +81,9 @@ Images from freedigitalphotos.net
                         <li class="tab-item" id="unassignedtab"><a href="#unassigned">Unassigned</li>
                         <li class="tab-item" id="assignedtab"><a href="#assigned">Assigned</li>
                         <li class="tab-item" id="completedtab"><a href="#completed">Completed</li>
+                    </ul>
+                    <ul id="label-list">
+
                     </ul>
                     <!-- Address Book Modal Layover-->
                     <div class="address-book">
