@@ -47,6 +47,14 @@ body {
     text-align: center;
 }
 
+.btn-createlabel{
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 8px;
+    width: 10px;
+    text-align: center;
+}
+
 .job-panel h4:not(:first-child){
     margin-top: 20px;
 }
@@ -370,4 +378,27 @@ body {
 
 #fixit-logo{
     padding-right: 60px; 
+}
+
+#myLabelCreator{
+    height:200px;
+    width: 400px;
+    overflow:auto;
+    overflow-x: hidden;
+}
+
+#create-label-text{
+    margin: 0px;
+    padding: 0px;
+}
+
+#add-btn{
+    margin: 0px;
+    padding: 0px;
+}
+
+.create-label-modal-body{
+    height:100px; 
+    width: 325px;
+    margin: 10px;
 }
