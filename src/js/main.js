@@ -32,7 +32,7 @@ $('document').ready(function() {
     date1.setMinutes(date1.getMinutes() - Math.floor(Math.random()*60));
     date1.setSeconds(date1.getSeconds() - Math.floor(Math.random()*60));
     var job1 = new fixit.Job("Broken Lightbulb", "Ran into the lamp because I was rushing. There's shattered glass everywhere. I tried to clean it up a bit but there are probably still little pieces on the ground. Can you come clean up the glass and replace the lightbulb? It's really dark in here and I enjoy studying here, so if you could come as soon as possible that would be great", 
-        "McCormick East Penthouse", date1, jeff); 
+        "McCormick East Penthouse", date1, jeff);
     job1.setStatus("assigned");
     job1.setWorker(billy);
 
@@ -42,7 +42,7 @@ $('document').ready(function() {
     date2.setMinutes(date2.getMinutes() - Math.floor(Math.random()*60));
     date2.setSeconds(date2.getSeconds() - Math.floor(Math.random()*60));
     var job2 = new fixit.Job("Door doesn't lock", "The handle turns but I can't press in the button from the inside of the room. I don't feel safe leaving my door unlocked at night, or when I'm gone because my valuables may be stolen. Can you please come fix this asap?",
-        "McCormick room 501", date2, anurag); 
+        "McCormick room 501", date2, anurag);
 
     var date3 = new Date();
     date3.setHours(date3.getHours() - Math.floor(Math.random()*24));
@@ -270,9 +270,11 @@ function addJob(currentJob) {
     // Depending on whether or not the date change is within the day. 
     var currentTime = new Date();    
     if ((currentJob.getJobTime()-currentTime)/1000/60/60/24 < 1) {
-        jobContext += currentJob.getJobTime().toLocaleTimeString(); 
+        // jobContext += currentJob.getJobTime().toLocaleTimeString();
+        jobContext += $.timeago(currentJob.getJobTime());
     } else {
-        jobContext += currentJob.getJobTime().toLocaleDateString(); 
+        // jobContext += currentJob.getJobTime().toLocaleDateString();
+        jobContext += $.timeago(currentJob.getJobTime());
     }
     jobContext += '</div>';
     jobContext += ' </div></div> ';
@@ -385,7 +387,8 @@ function replaceDetails(job, jobView) {
         var $updateText = $('<div class="update-text"/>');
         $updateText.append($('<span class="username">' + update.getUpdater().getName() + " " + '</span>'));
         $updateText.append(update.getText());
-        $updateText.append($('<div class="time">' + update.getTime() + '</div>'));
+        console.log(update.getTime());
+        $updateText.append($('<div class="time">' + $.timeago(update.getTime()) + '</div>'));
 
         $update.append($img);
         $update.append($updateText);
