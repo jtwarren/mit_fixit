@@ -32,15 +32,14 @@ $('document').ready(function() {
     });
 
 
-    // var rebecca = new fixit.Person("Rebecca Krosnick", "krosnick@mit.edu", "240.505.2222");
-    // var anurag = new fixit.Person("Anurag Kashyap", "anurag@mit.edu", "412.961.2424");
-    // var jeff = new fixit.Person("Jeffrey Warren", "jtwarren@mit.edu", "603.438.6440");
+    var rebecca = new fixit.Person("Rebecca Krosnick", "krosnick@mit.edu", "240.505.2222");
+    var anurag = new fixit.Person("Anurag Kashyap", "anurag@mit.edu", "412.961.2424");
+    var jeff = new fixit.Person("Jeffrey Warren", "jtwarren@mit.edu", "603.438.6440");
 
     
     // Add jobs to the database
     var jobsRef = new Firebase("https://mit-fixit.firebaseio.com/jobs");
     jobsRef.on('child_added', function(snapshot) {
-        console.log(snapshot.child("/updates/update1").val());
         var job = snapshot.val();
         var reporter;
         var dataRef = new Firebase('https://mit-fixit.firebaseio.com/users/students/' + job.reporter);
@@ -49,7 +48,30 @@ $('document').ready(function() {
             reporter = new fixit.Person(student.name, student.email, student.phone)
         });
         currentJob = new fixit.Job(job.title, job.text, job.location, job.time, reporter, job.status);
-        addJob(currentJob); 
+        currentJob.setJobRef(snapshot.ref());
+
+        if (job.assigned) {
+            currentJob.setWorker(job.assigned);
+        }
+
+
+        var updates = snapshot.child("/updates").val();
+        if (updates) {
+            $.each(updates, function(i, update){
+                var dataRef = new Firebase('https://mit-fixit.firebaseio.com/users/mechanics/' + update.user);
+                dataRef.on('value', function(snapshot) {
+                    console.log(snapshot.val());
+                    user = snapshot.val()
+                    nUser = new fixit.Person(user.name, user.email, user.phone)
+                });
+                currentJob.addUpdate(new fixit.Update(nUser, update.text, update.time));
+            });
+        }
+
+        
+
+        addJob(currentJob);
+        jobList.push(currentJob);
     });
 
     // jobList.sort(sortByTime);

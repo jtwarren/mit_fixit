@@ -51,20 +51,33 @@ fixit.Job = function(title, text, location, time, reporter, status) {
     var assignedTo = null;
     var updateList = new Array();
     var labelList = new Array();
+
+    var jobRef = null;
+
+    this.setJobRef = function(jr) {
+        jobRef = jr;
+    }
+
+    this.getJobRef = function() {
+        return jobRef;
+    }
  
 
     // setter methods
     // Update the status of this job.
     this.setStatus = function(stat) {
-        status = stat; 
+        status = stat;
+        jobRef.update({"status" : stat})
     }
 
     this.setWorker = function(worker){
-    	assignedTo = worker;
+        assignedTo = worker;
+    	jobRef.update({"assigned" : worker});
     }
 
     this.addUpdate = function(update){
 		updateList.push(update);
+        jobRef.child("/updates").push({"text" : update.getText(), "assigned" : "jenks", "date" : "9302039192"});
 	}
 
     // getter methods
@@ -73,7 +86,13 @@ fixit.Job = function(title, text, location, time, reporter, status) {
     }
 
     this.getWorker = function() {
-        return assignedTo;
+        var dataRef = new Firebase('https://mit-fixit.firebaseio.com/users/mechanics/' + assignedTo);
+        ret = null;
+        dataRef.on('value', function(snapshot) {
+            user = snapshot.val()
+            ret = new fixit.Person(user.name, user.email, user.phone, user.picture)
+        });
+        return ret;
     }
     
     this.getText = function() {
@@ -92,7 +111,7 @@ fixit.Job = function(title, text, location, time, reporter, status) {
         if (assignedTo === null ) {
             return "images/default.png";
         }
-        return assignedTo.getPicture(); 
+        return this.getWorker().getPicture(); 
     }
 
     this.getJobTime = function() {
