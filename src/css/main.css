@@ -391,3 +391,8 @@ body {
 .help-inline {
     margin-top: 5px;
 }
+
+.add-job {
+    float:right;
+    margin-right:5px;
+}

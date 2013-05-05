@@ -445,7 +445,8 @@ function replaceMiddlePanel(tab) {
     }
     $("#jobsearch").attr("placeholder", "Search " + headingName);
 
-    var allMiddlePanelHTML = "<h4 class='jobs-heading'>" + headingName +
+    var allMiddlePanelHTML = " <div class='add-job'> <i class='icon-plus'> </i></div> \
+                    <h4 class='jobs-heading'>" + headingName +
                     "</h4> \
                     <div class='jobs job-group'> \
                     </div>";
