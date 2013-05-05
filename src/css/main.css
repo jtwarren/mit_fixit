@@ -399,3 +399,8 @@ body {
 .white_update {
     background-color: #FFFFFF;
 }
+
+.add-job {
+    float:right;
+    margin-right:5px;
+}

@@ -60,7 +60,7 @@ Images from freedigitalphotos.net
                     </ul>
                     <!-- Address Book Modal Layover-->
                     <div class="address-book">
-                        <a role="button"class="btn btn-address" data-target="#myAddressModal" data-toggle="modal"> 
+                        <a role="button" class="btn btn-address" data-target="#myAddressModal" data-toggle="modal"> 
                                  Address<br/>Book </a>
                                 
                         <div id="myAddressModal" class="modal hide fade" tabindex="-1" role="dialog">
@@ -84,9 +84,28 @@ Images from freedigitalphotos.net
             </div>
             <div class="span6">
                 <div class="panel job-panel">
+                    <div class="add-job"> 
+                        <i class="icon-plus" role="button" data-target="#createJobModal" data-toggle="modal"> </i>
+                        <div id="createJobModal" class="modal hide fade" tabindex="-1" role="dialog">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h3> Create Job </h3>
+                            </div> 
+                            <div class="modal-body">
+		                        <form>
+		                            <fieldset>
+		                                <input type="text" placeholder="Type something...">
+		                                <button type="submit" class="btn">Submit</button>
+		                            </fieldset>
+		                        </form>
+		                    </div>
+	                    </div>
+                    </div>
                     <h4 class="jobs-heading"> All Jobs </h4>
+                    
                     <div class="jobs job-group">  
                     </div>
+                    
                     <!--
                     <h4 class="unassigned-jobs-heading"> Unassigned Jobs </h4>
                     <div class="unassigned-jobs job-group">  
