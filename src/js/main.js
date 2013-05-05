@@ -9,16 +9,16 @@ var contactList = new Array();
 var selectedJob = null;
 var selectedJobView = null;
 var selectedTab = "alltab";
-var current_user = new fixit.Person("Michael McIntyre", "michael@mit.edu", "309.269.2032", "images/houseManager.jpg");
+var current_user = new fixit.Person("Michael McIntyre", "michael@mit.edu", "309-269-2032", "images/houseManager.jpg");
 
 $('document').ready(function() {
 
     /** 
      * Middle Panel 
      */
-    var rebecca = new fixit.Person("Rebecca Krosnick", "krosnick@mit.edu", "240.505.2222");
-    var anurag = new fixit.Person("Anurag Kashyap", "anurag@mit.edu", "412.961.2424");
-    var jeff = new fixit.Person("Jeffrey Warren", "jtwarren@mit.edu", "603.438.6440");
+    var rebecca = new fixit.Person("Rebecca Krosnick", "krosnick@mit.edu", "240-505-2222");
+    var anurag = new fixit.Person("Anurag Kashyap", "anurag@mit.edu", "412-961-2424");
+    var jeff = new fixit.Person("Jeffrey Warren", "jtwarren@mit.edu", "603-438-6440");
     
     // Mechanics
     var jenks = new fixit.Person("Jenks", "jenks@mit.edu", "617-777-7777", "images/mechanic1.jpg");
@@ -32,7 +32,7 @@ $('document').ready(function() {
     date1.setMinutes(date1.getMinutes() - Math.floor(Math.random()*60));
     date1.setSeconds(date1.getSeconds() - Math.floor(Math.random()*60));
     var job1 = new fixit.Job("Broken Lightbulb", "Ran into the lamp because I was rushing. There's shattered glass everywhere. I tried to clean it up a bit but there are probably still little pieces on the ground. Can you come clean up the glass and replace the lightbulb? It's really dark in here and I enjoy studying here, so if you could come as soon as possible that would be great", 
-        "McCormick East Penthouse", date1, jeff); 
+        "McCormick East Penthouse", date1, jeff);
     job1.setStatus("assigned");
     job1.setWorker(billy);
 
@@ -42,7 +42,7 @@ $('document').ready(function() {
     date2.setMinutes(date2.getMinutes() - Math.floor(Math.random()*60));
     date2.setSeconds(date2.getSeconds() - Math.floor(Math.random()*60));
     var job2 = new fixit.Job("Door doesn't lock", "The handle turns but I can't press in the button from the inside of the room. I don't feel safe leaving my door unlocked at night, or when I'm gone because my valuables may be stolen. Can you please come fix this asap?",
-        "McCormick room 501", date2, anurag); 
+        "McCormick room 501", date2, anurag);
 
     var date3 = new Date();
     date3.setHours(date3.getHours() - Math.floor(Math.random()*24));
@@ -270,9 +270,11 @@ function addJob(currentJob) {
     // Depending on whether or not the date change is within the day. 
     var currentTime = new Date();    
     if ((currentJob.getJobTime()-currentTime)/1000/60/60/24 < 1) {
-        jobContext += currentJob.getJobTime().toLocaleTimeString(); 
+        // jobContext += currentJob.getJobTime().toLocaleTimeString();
+        jobContext += $.timeago(currentJob.getJobTime());
     } else {
-        jobContext += currentJob.getJobTime().toLocaleDateString(); 
+        // jobContext += currentJob.getJobTime().toLocaleDateString();
+        jobContext += $.timeago(currentJob.getJobTime());
     }
     jobContext += '</div>';
     jobContext += ' </div></div> ';
@@ -378,14 +380,22 @@ function replaceDetails(job, jobView) {
     $(".updates").empty();
     // $(".updates").append($('<h4>Updates</h4>'))
 
+    var updateDivIsWhite = true;
     $.each(job.getUpdateList(), function(index, update) {
         var $update = $('<div class="update"/>');
+        if (updateDivIsWhite) {
+            $update.addClass("white_update");
+        } else {
+            $update.addClass("gray_update");
+        }
+        updateDivIsWhite = !(updateDivIsWhite);
         var $img = $('<div><img class="update-image" style="width:50px;"'
             +'src="'+ update.getUpdater().getPicture() +'"/></div>');
         var $updateText = $('<div class="update-text"/>');
         $updateText.append($('<span class="username">' + update.getUpdater().getName() + " " + '</span>'));
         $updateText.append(update.getText());
-        $updateText.append($('<div class="time">' + update.getTime() + '</div>'));
+        console.log(update.getTime());
+        $updateText.append($('<div class="time">' + $.timeago(update.getTime()) + '</div>'));
 
         $update.append($img);
         $update.append($updateText);
@@ -443,8 +453,10 @@ function replaceMiddlePanel(tab) {
     }else if(selectedTab === "starredtab"){
         headingName = "Starred Jobs";
     }
+    $("#jobsearch").attr("placeholder", "Search " + headingName);
 
-    var allMiddlePanelHTML = "<h4 class='jobs-heading'>" + headingName +
+    var allMiddlePanelHTML = " <div class='add-job'> <i class='icon-plus'> </i></div> \
+                    <h4 class='jobs-heading'>" + headingName +
                     "</h4> \
                     <div class='jobs job-group'> \
                     </div>";
@@ -524,11 +536,19 @@ function replaceMiddlePanel(tab) {
             }
         }
     }
+
+    if ($(".job").length === 0) {
+    // no jobs being displayed in middle panel, put message saying "No jobs to
+    // display"
+        $(".job-group").append($('<span class="no-job-panel no-job-middle-panel">No jobs to be displayed!</span>'));
+    }
+
     if (selectedJob === null) {
         $(".description-panel").html('<span class="no-job-panel"> No job selected! </span>'); 
     } else {
         replaceDetails(selectedJob, selectedJobView);
-    }/*else{
+    }
+    /*else{
  Fixed starring bug (where after selecting a tab and then clicking the right panel star caused nothing to happen)
             var jobContext = '<div class="job"> \
                     <div class="starred"> <i class="star"></i> </div> \

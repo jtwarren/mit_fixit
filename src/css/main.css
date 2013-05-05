@@ -12,6 +12,10 @@ body {
     border-radius: 0px; 
 }
 
+.navbar-search{
+    margin-top: 3px;
+}
+
 .navbar .logo {
     font-family: 'Bubbler One', sans-serif;
     color: #C41E3A;
@@ -74,6 +78,10 @@ body {
 }
 
 .description-panel .description{
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 6px;
+    padding-right: 6px;
     margin-bottom: 0px;
     min-height: 240px;
     max-height: 240px;
@@ -87,7 +95,6 @@ body {
 
 .description-panel .description .job-buttons{
     float: right;
-    padding-right: 5px;
 }
 
 .description-panel .description .job-location{
@@ -335,6 +342,10 @@ body {
     margin-top: 100px;
 }
 
+.no-job-middle-panel {
+    margin-top: 70px;
+}
+
 .btn-custom {
     font-weight: bold; 
   background-color: hsl(0, 66%, 30%) !important;
@@ -360,20 +371,21 @@ body {
 #assign-button {
     float: right; 
     margin-top: 10px;
-    margin-right: 10px;
 }
 
 #mark_completed_button {
-    
+    width: 141px;
+    margin-left: 2px;
 }
 
 #update-button {
     float: right; 
-    margin-right: 15px; 
+    margin-right: 11px; 
 }
 
 #jobsearch{
     width: 650px;
+    padding-top: 7px;
 }
 
 #fixit-logo{
@@ -401,4 +413,25 @@ body {
     height:100px; 
     width: 325px;
     margin: 10px;
+}
+
+#update-textarea {
+    margin-bottom: 5px;
+}
+
+.help-inline {
+    margin-top: 5px;
+}
+
+.gray_update {
+    background-color: #CCCCCC;
+}
+
+.white_update {
+    background-color: #FFFFFF;
+}
+
+.add-job {
+    float:right;
+    margin-right:5px;
 }
