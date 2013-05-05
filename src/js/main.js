@@ -90,6 +90,20 @@ $('document').ready(function() {
         selectedTab = this.id;
         replaceMiddlePanel(this.id);
         console.log("change selected tab");
+
+    });
+
+    /***** 
+     * Right Panel 
+     */ 
+    if (selectedJob === null) {
+        $(".description-panel").html('<span class="no-job-panel"> No job selected! </span>'); 
+    }
+
+    $(".tab-item").click(function(event) {
+        $(".tab-item").removeClass("selected");
+        $(this).addClass("selected");
+        console.log("change classes");
     });
 
     $("#add-btn").click(function(event){
