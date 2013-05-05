@@ -391,3 +391,11 @@ body {
 .help-inline {
     margin-top: 5px;
 }
+
+.gray_update {
+    background-color: #CCCCCC;
+}
+
+.white_update {
+    background-color: #FFFFFF;
+}

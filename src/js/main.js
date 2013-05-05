@@ -380,8 +380,15 @@ function replaceDetails(job, jobView) {
     $(".updates").empty();
     // $(".updates").append($('<h4>Updates</h4>'))
 
+    var updateDivIsWhite = true;
     $.each(job.getUpdateList(), function(index, update) {
         var $update = $('<div class="update"/>');
+        if (updateDivIsWhite) {
+            $update.addClass("white_update");
+        } else {
+            $update.addClass("gray_update");
+        }
+        updateDivIsWhite = !(updateDivIsWhite);
         var $img = $('<div><img class="update-image" style="width:50px;"'
             +'src="'+ update.getUpdater().getPicture() +'"/></div>');
         var $updateText = $('<div class="update-text"/>');
