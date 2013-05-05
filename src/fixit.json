@@ -9,9 +9,13 @@
       "status" : "new",
       "updates" : {
         "update1" : {
+          "user" : "billy",
+          "time" : "1367599262949",
           "text" : "This is 1 update"
         },
         "update2" : {
+          "user" : "jenks",
+          "time" : "1367599262949",
           "text" : "This is another update"
         }
       }
@@ -22,7 +26,8 @@
       "time" : "1367599272949",
       "reporter" : "jeffrey", 
       "text" : "Ran into the lamp because I was rushing. Theres shattered glass everywhere. I tried to clean it up a bit but there are probably still little pieces on the ground. Can you come clean up the glass and replace the lightbulb? Its really dark in here and I enjoy studying here, so if you could come as soon as possible that would be great",
-      "status" : "assigned"
+      "status" : "assigned",
+      "assigned" : "billy"
     },
     "job3" : {
       "location" : "McCormick North Penthouse",
@@ -38,7 +43,8 @@
       "time" : "1367599272949",
       "reporter" : "jeffrey", 
       "text" : "Ran into the lamp because I was rushing. Theres shattered glass everywhere. I tried to clean it up a bit but there are probably still little pieces on the ground. Can you come clean up the glass and replace the lightbulb? Its really dark in here and I enjoy studying here, so if you could come as soon as possible that would be great",
-      "status" : "completed"
+      "status" : "completed",
+      "assigned" : "billy"
     }
   },
   "users" : {
