@@ -97,6 +97,7 @@ $('document').ready(function() {
     $(".tab-item").click(function(){
         selectedTab = this.id;
         replaceMiddlePanel(this.id);
+        console.log("change selected tab");
     });
 
     /***** 
@@ -109,6 +110,7 @@ $('document').ready(function() {
     $(".tab-item").click(function(event) {
         $(".tab-item").removeClass("selected");
         $(this).addClass("selected");
+        console.log("change classes");
     });
 
     $("#add-btn").click(function(event){
@@ -121,6 +123,10 @@ $('document').ready(function() {
         addNewLabel(name);
     });
 
+    $("#testtab").click(function(event){
+        console.log("testtab clicked");
+    });
+
 });
 
 function addNewLabel(labelName){
@@ -129,7 +135,7 @@ function addNewLabel(labelName){
     labelTypes.sort();
     for(var i = 0; i < labelTypes.length; i++){
         var name = labelTypes[i];
-        leftPanelHTML += '<li class="tab-item" id="' + labelTypes[i] + 'tab"><a href="#' + name + '">' + name + '</li>';
+        leftPanelHTML += '<li class="tab-item" id="' + labelTypes[i] + 'tab"><a href="#' + name + '">' + name + '</a></li>';
     }
     $("#label-list").html(leftPanelHTML);
 }
