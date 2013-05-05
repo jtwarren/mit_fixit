@@ -6,7 +6,15 @@
       "time" : "1367599262949",
       "reporter" : "anurag", 
       "text" : "Ran into the lamp because I was rushing. Theres shattered glass everywhere. I tried to clean it up a bit but there are probably still little pieces on the ground. Can you come clean up the glass and replace the lightbulb? Its really dark in here and I enjoy studying here, so if you could come as soon as possible that would be great",
-      "status" : "new"
+      "status" : "new",
+      "updates" : {
+        "update1" : {
+          "text" : "This is 1 update"
+        },
+        "update2" : {
+          "text" : "This is another update"
+        }
+      }
     },
     "job2" : {
       "location" : "McCormick East Penthouse",
