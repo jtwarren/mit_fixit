@@ -40,6 +40,7 @@ $('document').ready(function() {
     // Add jobs to the database
     var jobsRef = new Firebase("https://mit-fixit.firebaseio.com/jobs");
     jobsRef.on('child_added', function(snapshot) {
+        console.log(snapshot.child("/updates/update1").val());
         var job = snapshot.val();
         var reporter;
         var dataRef = new Firebase('https://mit-fixit.firebaseio.com/users/students/' + job.reporter);
@@ -51,8 +52,8 @@ $('document').ready(function() {
         addJob(currentJob); 
     });
 
-
-    jobList.sort(sortByTime);
+    // jobList.sort(sortByTime);
+    
 
 
     // Loads the address book and allow contacts to be filtered. 
