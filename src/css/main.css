@@ -434,3 +434,12 @@ body {
     float:right;
     margin-right:5px;
 }
+
+#label-list{
+    margin-top: 5px;
+    border-style: solid;
+    border-bottom: none;
+    border-right: none;
+    border-left: none;
+    border-top-width: 1px;
+}

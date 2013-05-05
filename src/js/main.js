@@ -1,5 +1,5 @@
 /////////////////////////////////////////////////////////
-// Main JS files for loading document. 
+// Main JS files for loading document.
 /////////////////////////////////////////////////////////
 
 // An array listing all of the jobs.
@@ -11,6 +11,7 @@ var selectedJob = null;
 var selectedJobView = null;
 var selectedTab = "alltab";
 var current_user = new fixit.Person("Michael McIntyre", "michael@mit.edu", "309-269-2032", "images/houseManager.jpg");
+var labelTypes = new Array();
 
 $('document').ready(function() {
 
@@ -101,7 +102,28 @@ $('document').ready(function() {
         $(this).addClass("selected");
     });
 
+    $("#add-btn").click(function(event){
+        var name = document.getElementById("create-label-text").value;
+        document.getElementById("create-label-text").value = "";
+        $("#myLabelCreator").hide();
+        $(".modal-backdrop").hide();
+        //console.log(name);
+        labelTypes.push(name);
+        addNewLabel(name);
+    });
+
 });
+
+function addNewLabel(labelName){
+    //console.log("TEST");
+    var leftPanelHTML = "";
+    labelTypes.sort();
+    for(var i = 0; i < labelTypes.length; i++){
+        var name = labelTypes[i];
+        leftPanelHTML += '<li class="tab-item" id="' + labelTypes[i] + 'tab"><a href="#' + name + '">' + name + '</li>';
+    }
+    $("#label-list").html(leftPanelHTML);
+}
 
 function sortByTime(a, b){
     var d = new Date();
@@ -137,11 +159,7 @@ var giveMiddlePanelStarIconClickHandler = function(jobView, jobModel, starIcon) 
 }
 
 var giveRightPanelStarIconClickHandler = function(jobView, jobModel, starIcon) {
-    // console.log(jobView);
-    // console.log(starIcon);
     starIcon.click(function(){
-        // console.log(jobView);
-        // console.log(starIcon);
         jobModel.toggleStarred();   // update the model
         if (starIcon.hasClass('filled')) {
         // replace star icon w/ empty star (in both middle panel & right panel)
@@ -220,7 +238,6 @@ var giveRightPanelCompletedClickHandler = function(jobView, jobModel, completedB
             jobView.find(".label-area").removeClass("assigned-label");
             jobView.find(".label-area").html("completed");
         }
-        //console.log(jobModel.getStatus());
         giveRightPanelCompletedClickHandler(jobView, jobModel, completedButton);
         //replaceMiddlePanel(selectedTab);
     });
@@ -271,7 +288,6 @@ function addJob(currentJob) {
     
     var job = $(jobContext);
     if(selectedJob === currentJob){
-        // console.log("selectedJob === currentJob");
         job.addClass("focus");
         selectedJobView = job;
     }
@@ -287,7 +303,6 @@ function addJob(currentJob) {
     giveMiddlePanelStarIconClickHandler(job, currentJob, starIconMiddlePanel);
 
     $(".jobs").append(job);
-    // console.log("job is being appended to thing of class .jobs");
     // if (currentJob.getStatus() == "unassigned" || 
     //     currentJob.getStatus() == "new") {
     //     $(".unassigned-jobs").append(job);
@@ -304,7 +319,6 @@ function addJob(currentJob) {
 
 // Replace the details for a given job
 function replaceDetails(job, jobView) {
-    // console.log("replaceDetails() is being called.");
 
     var rightPanelHTML = '<div class="description shadow"> \
                        <span class="job-title"> \
@@ -384,7 +398,7 @@ function replaceDetails(job, jobView) {
         var $updateText = $('<div class="update-text"/>');
         $updateText.append($('<span class="username">' + update.getUpdater().getName() + " " + '</span>'));
         $updateText.append(update.getText());
-        console.log(update.getTime());
+        //console.log(update.getTime());
         $updateText.append($('<div class="time">' + $.timeago(update.getTime()) + '</div>'));
 
         $update.append($img);
