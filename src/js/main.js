@@ -414,7 +414,7 @@ function replaceDetails(job, jobView) {
         $updateText.append($('<span class="username">' + update.getUpdater().getName() + " " + '</span>'));
         $updateText.append(update.getText());
         //console.log(update.getTime());
-        $updateText.append($('<div class="time">' + $.timeago(update.getTime()) + '</div>'));
+        $updateText.append($('<div class="time">' + $.timeago(update.getTime()) + '<hr class="update_rule" /></div>'));
 
         $update.append($img);
         $update.append($updateText);
@@ -718,7 +718,7 @@ function buttonListeners() {
         var $updateText = $('<div class="update-text"/>');
         $updateText.append($('<span class="username">Michael McIntyre </span>'));
         $updateText.append(content.val());
-        $updateText.append($('<div class="time">' + new Date() + '</div>'));
+        $updateText.append($('<div class="time">' + new Date() + '</div><hr />'));
 
         $update.append($img);
         $update.append($updateText);

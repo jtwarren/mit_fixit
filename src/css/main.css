@@ -141,7 +141,7 @@ body {
 }
 
 .description-panel .updates .update {
-    margin-bottom: 15px;
+    margin-bottom: 0px;
 }
 
 .description-panel .updates .update .username {
@@ -151,6 +151,7 @@ body {
 .description-panel .updates .update .update-text {
     padding-left: 59px;
     position: relative;
+    margin-bottom: 0px;
 }
 
 .description-panel .updates .update .update-text .time {
@@ -426,7 +427,7 @@ body {
 }
 
 .gray_update {
-    background-color: #CCCCCC;
+    background-color: #FFFFFF;
 }
 
 .white_update {
@@ -449,4 +450,9 @@ body {
 
 .btn-create {
     
+}
+
+.update_rule {
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
