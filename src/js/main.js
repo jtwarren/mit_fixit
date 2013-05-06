@@ -29,13 +29,13 @@ $('document').ready(function() {
     var mechanicsRef = new Firebase("https://mit-fixit.firebaseio.com/users/mechanics");
     mechanicsRef.on('child_added', function(snapshot) {
         var mechanic = snapshot.val();
-        workers.push(new fixit.Person(mechanic.name, mechanic.email, mechanic.phone, mechanic.picture))
+        workers.push(new fixit.Person(mechanic.name, mechanic.email, mechanic.phone, mechanic.picture, mechanic.id))
     });
 
 
-    var rebecca = new fixit.Person("Rebecca Krosnick", "krosnick@mit.edu", "240.505.2222");
-    var anurag = new fixit.Person("Anurag Kashyap", "anurag@mit.edu", "412.961.2424");
-    var jeff = new fixit.Person("Jeffrey Warren", "jtwarren@mit.edu", "603.438.6440");
+    // var rebecca = new fixit.Person("Rebecca Krosnick", "krosnick@mit.edu", "240.505.2222");
+    // var anurag = new fixit.Person("Anurag Kashyap", "anurag@mit.edu", "412.961.2424");
+    // var jeff = new fixit.Person("Jeffrey Warren", "jtwarren@mit.edu", "603.438.6440");
 
     
     // Add jobs to the database
@@ -48,7 +48,7 @@ $('document').ready(function() {
             student = snapshot.val()
             reporter = new fixit.Person(student.name, student.email, student.phone)
         });
-        currentJob = new fixit.Job(job.title, job.text, job.location, job.time, reporter, job.status);
+        currentJob = new fixit.Job(job.title, job.text, job.location, job.time, reporter, job.status, job.assigned);
         currentJob.setJobRef(snapshot.ref());
 
         // if (job.assigned) {
@@ -62,7 +62,7 @@ $('document').ready(function() {
                 var dataRef = new Firebase('https://mit-fixit.firebaseio.com/users/mechanics/' + update.user);
                 dataRef.on('value', function(snapshot) {
                     user = snapshot.val()
-                    nUser = new fixit.Person(user.name, user.email, user.phone)
+                    nUser = new fixit.Person(user.name, user.email, user.phone, user.picture, user.id)
                 });
                 currentJob.addUpdate(new fixit.Update(nUser, update.text, update.time), false);
             });
