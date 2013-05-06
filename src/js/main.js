@@ -51,9 +51,9 @@ $('document').ready(function() {
         currentJob = new fixit.Job(job.title, job.text, job.location, job.time, reporter, job.status);
         currentJob.setJobRef(snapshot.ref());
 
-        if (job.assigned) {
-            currentJob.setWorker(job.assigned);
-        }
+        // if (job.assigned) {
+        //     currentJob.setWorker(job.assigned);
+        // }
 
 
         var updates = snapshot.child("/updates").val();
@@ -61,11 +61,10 @@ $('document').ready(function() {
             $.each(updates, function(i, update){
                 var dataRef = new Firebase('https://mit-fixit.firebaseio.com/users/mechanics/' + update.user);
                 dataRef.on('value', function(snapshot) {
-                    console.log(snapshot.val());
                     user = snapshot.val()
                     nUser = new fixit.Person(user.name, user.email, user.phone)
                 });
-                currentJob.addUpdate(new fixit.Update(nUser, update.text, update.time));
+                currentJob.addUpdate(new fixit.Update(nUser, update.text, update.time), false);
             });
         }
 
@@ -733,7 +732,7 @@ function buttonListeners() {
         $(".updates").scrollTop($(".updates")[0].scrollHeight);
 
         up = new fixit.Update(current_user, content.val(), new Date(), "urgency");
-        selectedJob.addUpdate(up);
+        selectedJob.addUpdate(up, true);
         selectedJob.setJobTime(new Date());
         jobList.sort(sortByTime);
         replaceMiddlePanel(selectedTab);
