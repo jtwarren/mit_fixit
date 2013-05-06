@@ -456,3 +456,10 @@ body {
     margin-top: 5px;
     margin-bottom: 5px;
 }
+
+#no-updates-msg {
+    display: block;
+    text-align: center;
+    font-size: 1.3em;
+    margin-top: 75px;
+}

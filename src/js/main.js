@@ -400,6 +400,9 @@ function replaceDetails(job, jobView) {
     // $(".updates").append($('<h4>Updates</h4>'))
 
     var updateDivIsWhite = true;
+    if (job.getUpdateList().length === 0) {
+        $('.updates').after($('<span id="no-updates-msg">No updates to be displayed!</span>'));
+    }
     $.each(job.getUpdateList(), function(index, update) {
         var $update = $('<div class="update"/>');
         if (updateDivIsWhite) {
