@@ -83,6 +83,13 @@
         "phone" : "858.754.9619",
         "email" : "mchen@mit.edu",
         "id" : "michelle"
+      },
+      "michael" : {
+        "name" : "Michael McIntyre",
+        "phone" : "324.231.4353",
+        "email" : "michael@mit.edu",
+        "picture" : "images/houseManager.jpg",
+        "id" : "michael"
       }
     }
   }

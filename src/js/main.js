@@ -99,9 +99,9 @@ $('document').ready(function() {
         var title = $("#inputTitle").val();
         var desc = $("#inputDescription").val();
 
-        jobsRef.push({"location" : location, "title" : title, "text" : desc, "time" : (new Date()).getTime(), "reporter" : "jeffrey", "status" : "new"});
+        jobsRef.push({"location" : location, "title" : title, "text" : desc, "time" : (new Date()).getTime(), "reporter" : "michael", "status" : "new"});
 
-        event.preventDefault();
+        // event.preventDefault();
     });
 
     /***** 
