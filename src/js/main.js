@@ -726,7 +726,7 @@ function buttonListeners() {
 
         up = new fixit.Update(current_user, content.val(), new Date(), "urgency");
         selectedJob.addUpdate(up, true);
-        selectedJob.setJobTime(new Date());
+        selectedJob.setJobTime((new Date()).getTime());
         jobList.sort(sortByTime);
         replaceMiddlePanel(selectedTab);
         content.val("");
