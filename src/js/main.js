@@ -148,15 +148,6 @@ function sortByTime(a, b){
     return (d - a.getJobTime()) - (d - b.getJobTime());
 }
 
-
-// // Load the jobs in a task list for a particular 
-// function loadJobs() {
-//     for (var i=0; i<jobList.length; i++) {
-//         var currentJob = jobList[i];                      
-//         addJob(currentJob); 
-//     }
-// }
-
 var giveMiddlePanelStarIconClickHandler = function(jobView, jobModel, starIcon) {
     starIcon.click(function(){
         jobModel.toggleStarred();   // update the model
@@ -291,7 +282,8 @@ function addJob(currentJob) {
 
     jobContext += '</span>';
     jobContext += labelHTML;
-    jobContext += ' <div class="blurb-time"> ';
+    console.log(currentJob.getJobTime());
+    jobContext += ' <div class="blurb-time"> ' + $.timeago(parseInt(currentJob.getJobTime())) + '</div>';
 
     // Depending on whether or not the date change is within the day. 
     // var currentTime = new Date();    
