@@ -7,11 +7,12 @@ var fixit = {};     // fixit is object representing a module that
                     // functions, global variables, etc. (this is to 
                     // prevent namespace pollution)
 
-fixit.Person = function(name, email, phone, profPic ) {
+fixit.Person = function(name, email, phone, profPic, id) {
     var name = name;
     var email = email;
     var phone = phone;
     var picture = typeof profPic !== 'undefined' ? profPic:"images/default.png";
+    var id = id;
 
     this.getName = function() {
         return name;
@@ -28,10 +29,14 @@ fixit.Person = function(name, email, phone, profPic ) {
     this.getPicture = function() {
         return picture; 
     }
+
+    this.getID = function() {
+        return id;
+    }
     
 }
 
-fixit.Job = function(title, text, location, time, reporter, status) {
+fixit.Job = function(title, text, location, time, reporter, status, assignedTo) {
     /* Constructor for fixit.Job object. Takes following parameters:
      - title, a string
      - text, a string
@@ -48,7 +53,7 @@ fixit.Job = function(title, text, location, time, reporter, status) {
 
     // default values for fields when new fixit.Job object is constructed
     var starred = false;
-    var assignedTo = null;
+    var assignedTo = typeof assignedTo !== 'undefined' ? assignedTo : null;
     var updateList = new Array();
     var labelList = new Array();
 
@@ -71,14 +76,15 @@ fixit.Job = function(title, text, location, time, reporter, status) {
     }
 
     this.setWorker = function(worker){
-        assignedTo = worker;
-    	jobRef.update({"assigned" : worker});
+        assignedTo = worker.getID();
+    	jobRef.update({"assigned" : worker.getID()});
     }
 
     this.addUpdate = function(update, persist){
 		updateList.push(update);
         if (persist) {
-            jobRef.child("/updates").push({"text" : update.getText(), "user" : "jenks", "time" : "9302039192"});
+            ms = (new Date()).getTime();
+            jobRef.child("/updates").push({"text" : update.getText(), "user" : "michael", "time" : ms});
         }
 	}
 
@@ -93,7 +99,7 @@ fixit.Job = function(title, text, location, time, reporter, status) {
             ret = null;
             dataRef.on('value', function(snapshot) {
                 user = snapshot.val()
-                ret = new fixit.Person(user.name, user.email, user.phone, user.picture)
+                ret = new fixit.Person(user.name, user.email, user.phone, user.picture, user.id)
             });
             return ret;
         }
