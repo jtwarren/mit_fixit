@@ -94,23 +94,11 @@ $('document').ready(function() {
 
     filterJobs();
     
+    // Deals with Tabbing on the left. 
     $(".tab-item").click(function(){
         selectedTab = this.id;
         replaceMiddlePanel(this.id);
         console.log("change selected tab");
-    });
-
-    /***** 
-     * Right Panel 
-     */ 
-    if (selectedJob === null) {
-        $(".description-panel").html('<span class="no-job-panel"> No job selected! </span>'); 
-    }
-
-    $(".tab-item").click(function(event) {
-        $(".tab-item").removeClass("selected");
-        $(this).addClass("selected");
-        console.log("change classes");
     });
 
     $("#add-btn").click(function(event){
@@ -122,8 +110,18 @@ $('document').ready(function() {
         addNewLabel(name);
     });
 
+    /***** 
+     * Right Panel 
+     */ 
+    if (selectedJob === null) {
+        $(".description-panel").html('<span class="no-job-panel"> No job selected! </span>'); 
+    }
+
 });
 
+/**
+ * Adds a new label on the left panel. 
+ */
 function addNewLabel(labelName){
     var leftPanelHTML = "";
     labelTypes.sort();
@@ -138,6 +136,7 @@ function addNewLabel(labelName){
         $(this).addClass("selected");
         console.log("change classes");
     });
+    
 }
 
 function sortByTime(a, b){
