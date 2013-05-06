@@ -301,6 +301,9 @@ body {
 
 .jobs-heading {
     margin-top: 5px;
+    margin-right: 200px;
+    font-size: large;
+    font-weight: bold;
 }
 
 .job-panel .jobs {
@@ -449,4 +452,8 @@ body {
 
 .btn-create {
     
+}
+
+.add-label-to-job{
+    margin-bottom: 5px;
 }
