@@ -57,6 +57,7 @@ body {
     margin-bottom: 8px;
     width: 10px;
     text-align: center;
+    
 }
 
 .job-panel h4:not(:first-child){
@@ -443,4 +444,8 @@ body {
     border-right: none;
     border-left: none;
     border-top-width: 1px;
+}
+
+.btn-create {
+    
 }
