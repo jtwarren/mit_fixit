@@ -75,9 +75,11 @@ fixit.Job = function(title, text, location, time, reporter, status) {
     	jobRef.update({"assigned" : worker});
     }
 
-    this.addUpdate = function(update){
+    this.addUpdate = function(update, persist){
 		updateList.push(update);
-        jobRef.child("/updates").push({"text" : update.getText(), "assigned" : "jenks", "date" : "9302039192"});
+        if (persist) {
+            jobRef.child("/updates").push({"text" : update.getText(), "user" : "jenks", "time" : "9302039192"});
+        }
 	}
 
     // getter methods
@@ -86,13 +88,15 @@ fixit.Job = function(title, text, location, time, reporter, status) {
     }
 
     this.getWorker = function() {
-        var dataRef = new Firebase('https://mit-fixit.firebaseio.com/users/mechanics/' + assignedTo);
-        ret = null;
-        dataRef.on('value', function(snapshot) {
-            user = snapshot.val()
-            ret = new fixit.Person(user.name, user.email, user.phone, user.picture)
-        });
-        return ret;
+        if (assignedTo) {
+            var dataRef = new Firebase('https://mit-fixit.firebaseio.com/users/mechanics/' + assignedTo);
+            ret = null;
+            dataRef.on('value', function(snapshot) {
+                user = snapshot.val()
+                ret = new fixit.Person(user.name, user.email, user.phone, user.picture)
+            });
+            return ret;
+        }
     }
     
     this.getText = function() {
