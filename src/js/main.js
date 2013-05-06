@@ -48,7 +48,7 @@ $('document').ready(function() {
             student = snapshot.val()
             reporter = new fixit.Person(student.name, student.email, student.phone)
         });
-        currentJob = new fixit.Job(job.title, job.text, job.location, job.time, reporter, job.status, job.assigned);
+        currentJob = new fixit.Job(job.title, job.text, job.location, job.time, reporter, job.status, job.assigned, job.starred);
         currentJob.setJobRef(snapshot.ref());
 
         // if (job.assigned) {
@@ -257,7 +257,8 @@ function addJob(currentJob) {
     var jobContext = '<div class="job"> \
         <div class="starred"> <img class="star" src="images/star-hollow.png"/> </div> \
         <div> <img class="mechanic-image" src="';
-//images/star_filled2.png
+
+    console.log(currentJob.isStarred());
     if(currentJob.isStarred()){
         jobContext = '<div class="job"> \
         <div class="starred"> <img class="star filled" src="images/star_filled2.png"> </div> \

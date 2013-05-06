@@ -36,7 +36,7 @@ fixit.Person = function(name, email, phone, profPic, id) {
     
 }
 
-fixit.Job = function(title, text, location, time, reporter, status, assignedTo) {
+fixit.Job = function(title, text, location, time, reporter, status, assignedTo, starred) {
     /* Constructor for fixit.Job object. Takes following parameters:
      - title, a string
      - text, a string
@@ -52,7 +52,7 @@ fixit.Job = function(title, text, location, time, reporter, status, assignedTo) 
     var status = status;
 
     // default values for fields when new fixit.Job object is constructed
-    var starred = false;
+    var starred = starred;
     var assignedTo = typeof assignedTo !== 'undefined' ? assignedTo : null;
     var updateList = new Array();
     var labelList = new Array();
@@ -142,6 +142,11 @@ fixit.Job = function(title, text, location, time, reporter, status, assignedTo) 
 
     this.toggleStarred = function() {
         starred = !(starred);
+        if (starred) {
+            jobRef.update({"starred" : true})
+        } else {
+            jobRef.update({"starred" : false})
+        }
     }
 
     this.isStarred = function() {
