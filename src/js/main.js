@@ -446,6 +446,7 @@ function replaceDetails(job, jobView) {
         if (update.getUpdater().getName() === 'Michael McIntyre') {
             var delete_update_button = $('<span><a href="#" class="delete-update-button">x</a></span>');
             delete_update_button.click(function() {
+                update.deleteSelf();
                 $img.remove();
                 $updateText.remove();
                 selectedJob.getUpdateList().splice(index, 1);

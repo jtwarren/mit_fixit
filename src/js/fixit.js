@@ -174,12 +174,16 @@ fixit.Update = function(updater, text, time, urgency) {
 
     var updateRef = null;
 
-    this.setJobRef = function(ur) {
+    this.setUpdateRef = function(ur) {
         updateRef = ur;
     }
 
-    this.getJobRef = function() {
+    this.getUpdateRef = function() {
         return updateRef;
+    }
+
+    this.deleteSelf = function() {
+        updateRef.remove();
     }
 
     this.getUpdater = function() {
