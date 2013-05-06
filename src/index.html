@@ -62,7 +62,7 @@ Images from freedigitalphotos.net
                     <!-- Create Label Layover-->
 
                     <div class="create-label">
-                        <a role="button"class="btn btn-createlabel btn-custom btn-create" data-target="#myLabelCreator" data-toggle="modal"> 
+                        <a role="button" class="btn btn-createlabel btn-custom btn-create" data-target="#myLabelCreator" data-toggle="modal"> 
                                  + </a> 
                                 
                         <div id="myLabelCreator" class="modal hide fade" tabindex="-1" role="dialog">
@@ -75,7 +75,7 @@ Images from freedigitalphotos.net
                                     <input type="text" id= 'create-label-text' placeholder="Enter label name">
                                 </span>
                                 <span>
-                                    <button type='close' id="add-btn" class="btn"><b>Add Label</b></button>
+                                    <button type="button" class="btn btn-custom btn-addLabel-modal" id="add-btn" data-dismiss="modal"><b>Add Label</b></button>
                                 </span>
                             </div>
                         </div>
@@ -117,6 +117,7 @@ Images from freedigitalphotos.net
             </div>
             <div class="span6">
                 <div class="panel job-panel">
+                    <!-- create a button for adding a new job for a modal overlay -->
                     <div class="add-job"> 
                         <a role="button" class="btn btn-create btn-custom" data-target="#createJobModal" data-toggle="modal"> + </a>
                         <div id="createJobModal" class="modal hide fade" tabindex="-1" role="dialog">
@@ -134,8 +135,10 @@ Images from freedigitalphotos.net
 		                    </div>
 	                    </div>
                     </div>
+                    
                     <h4 class="jobs-heading"> All Jobs </h4>
                     
+                    <!-- main middle panel -->
                     <div class="jobs job-group">  
                     </div>
                     
