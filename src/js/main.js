@@ -411,7 +411,16 @@ function replaceDetails(job, jobView) {
             +'src="'+ update.getUpdater().getPicture() +'"/></div>');
         var $updateText = $('<div class="update-text"/>');
         $updateText.append($('<span class="username">' + update.getUpdater().getName() + " " + '</span>'));
-        $updateText.append(update.getText());
+        if (update.getUpdater().getName() === 'Michael McIntyre') {
+            var delete_update_button = $('<span><a href="#" class="delete-update-button">x</a></span>');
+            delete_update_button.click(function() {
+                $img.remove();
+                $updateText.remove();
+                selectedJob.getUpdateList().splice(index, 1);
+            })
+            $updateText.append(delete_update_button);
+        }
+        $updateText.append($('<div>'+update.getText()+'</div>'));
         //console.log(update.getTime());
         $updateText.append($('<div class="time">' + $.timeago(update.getTime()) + '<hr class="update_rule" /></div>'));
 
