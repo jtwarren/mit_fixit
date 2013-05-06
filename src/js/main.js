@@ -368,21 +368,45 @@ function replaceDetails(job, jobView) {
     for (var i = 0; i < workers.length; i++) {
         var currentWorker = job.getWorker();
         if (currentWorker && currentWorker.getName() === workers[i].getName()) {
-            console.log(workers[i].getPicture());
             $(".assigned-mechanic").append($('<option selected="selected" value=' + i +
-                ' data-imagesrc="'+workers[i].getPicture()+ '>' + workers[i].getName() + '</option>'));
+                ' data-image="'+workers[i].getPicture()+ '>' + workers[i].getName() + '</option>'));
             //$(".assigned-mechanic-img").attr('src', job.getAssignedToPic());
         } else {
-            $(".assigned-mechanic").append($('<option value=' + i + ' data-imagesrc="images/default.png">' 
+
+            $(".assigned-mechanic").append($('<option value=' + i + ' data-image="'+workers[i].getPicture()+'">' 
                 + workers[i].getName() + '</option>')); 
         }
     };
-    
-    /*$(".assigned-mechanic").ddslick({
-       width: 300, 
-       height: 300
+    /*
+    $(".assigned-mechanic").ddslick({
+        imagePosition: "left",
+        selectText: "No mechanic selected", 
+        onSelected: function (data) {
+            console.log(data);
+        }
     });*/
+    function format(worker) {
 
+        var originalOption = worker.element;
+        var currentWorker; 
+        for ( var i=0; i<workers.length; i++) {
+            var tempWorker = workers[i]; 
+            if (tempWorker.getName() === worker.text) {
+                currentWorker = tempWorker; 
+                break; 
+            }
+        }
+        if (!originalOption) {
+            "<img class='assigned-mechanic-option' src='images/default.png' />" + currentWorker.getName();
+        }
+        return "<img class='assigned-mechanic-option' src='" + currentWorker.getPicture() + "' />" + currentWorker.getName();
+    }
+    
+    $(".assigned-mechanic").select2({
+        formatResult: format,
+        formatSelection: format,
+        placeholder: "Select a mechanic to assign:",
+    }); 
     
     
     $(".updates").empty();

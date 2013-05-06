@@ -366,3 +366,44 @@ body {
 #fixit-logo{
     padding-right: 60px; 
 }
+
+/* CSS Formatting for the ddslick dropdown
+.dd-selected {
+    height:50px; 
+}
+
+.dd-selected-image {
+    height:40px;
+    width: 40px; 
+    padding:0px; 
+}
+
+.dd-selected-text {
+    line-height:40px;
+}
+
+.dd-container {
+    width:290px;
+}
+
+.dd-option-image {
+    height: 40px; 
+    width: 40px; 
+}
+
+.dd-option {
+    padding: 5px; 
+}
+
+.dd-option-text {
+    line-height: 40px; 
+}*/
+
+.assigned-mechanic-option {
+    width: 30px; 
+    height: 30px; 
+}
+
+.select2-container{
+    width: 300px; 
+}
