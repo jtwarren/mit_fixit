@@ -56,17 +56,32 @@ $('document').ready(function() {
         // }
 
 
-        var updates = snapshot.child("/updates").val();
-        if (updates) {
-            $.each(updates, function(i, update){
-                var dataRef = new Firebase('https://mit-fixit.firebaseio.com/users/mechanics/' + update.user);
+        var updates = snapshot.child("/updates");
+
+        updates.forEach(function(childSnapshot) {
+            update = childSnapshot.val();
+            var dataRef = new Firebase('https://mit-fixit.firebaseio.com/users/mechanics/' + update.user);
                 dataRef.on('value', function(snapshot) {
                     user = snapshot.val()
                     nUser = new fixit.Person(user.name, user.email, user.phone, user.picture, user.id)
                 });
-                currentJob.addUpdate(new fixit.Update(nUser, update.text, update.time), false);
-            });
-        }
+            var up = new fixit.Update(nUser, update.text, update.time);
+            up.setUpdateRef(childSnapshot.ref());
+            currentJob.addUpdate(up, false);
+        });
+
+
+        // if (updates) {
+        //     $.each(updates, function(i, update){
+        //         var dataRef = new Firebase('https://mit-fixit.firebaseio.com/users/mechanics/' + update.user);
+        //         console.log(update.ref());
+        //         dataRef.on('value', function(snapshot) {
+        //             user = snapshot.val()
+        //             nUser = new fixit.Person(user.name, user.email, user.phone, user.picture, user.id)
+        //         });
+        //         currentJob.addUpdate(new fixit.Update(nUser, update.text, update.time), false);
+        //     });
+        // }
 
         
 
@@ -93,6 +108,7 @@ $('document').ready(function() {
     });
 
     $('#create-job-form').on('submit', function(event) {
+
         var jobsRef = new Firebase("https://mit-fixit.firebaseio.com/jobs");
 
         var location = $("#inputLocation").val();
@@ -101,7 +117,11 @@ $('document').ready(function() {
 
         jobsRef.push({"location" : location, "title" : title, "text" : desc, "time" : (new Date()).getTime(), "reporter" : "michael", "status" : "new"});
 
-        // event.preventDefault();
+        $("#inputLocation").val("");
+        $("#inputTitle").val("");
+        $("#inputDescription").val("");
+
+        $('#createJobModal').modal('hide');
     });
 
     /***** 

@@ -1,95 +1,132 @@
 {
   "jobs" : {
-    "job1" : {
-      "location" : "McCormick West Penthouse",
-      "title" : "Broken Lightbulb",
-      "time" : "1367599262949",
-      "reporter" : "anurag", 
-      "text" : "Ran into the lamp because I was rushing. Theres shattered glass everywhere. I tried to clean it up a bit but there are probably still little pieces on the ground. Can you come clean up the glass and replace the lightbulb? Its really dark in here and I enjoy studying here, so if you could come as soon as possible that would be great",
-      "status" : "new"
-    },
-    "job2" : {
-      "location" : "McCormick East Penthouse",
-      "title" : "Broken Lightbulb",
-      "time" : "1367599272949",
-      "reporter" : "jeffrey", 
-      "text" : "Ran into the lamp because I was rushing. Theres shattered glass everywhere. I tried to clean it up a bit but there are probably still little pieces on the ground. Can you come clean up the glass and replace the lightbulb? Its really dark in here and I enjoy studying here, so if you could come as soon as possible that would be great",
-      "status" : "assigned",
-      "assigned" : "billy"
-    },
     "job3" : {
+      "status" : "new",
       "location" : "McCormick North Penthouse",
       "title" : "Broken Lightbulb",
+      "reporter" : "anurag",
       "time" : "1367599262949",
-      "reporter" : "anurag", 
-      "text" : "Ran into the lamp because I was rushing. Theres shattered glass everywhere. I tried to clean it up a bit but there are probably still little pieces on the ground. Can you come clean up the glass and replace the lightbulb? Its really dark in here and I enjoy studying here, so if you could come as soon as possible that would be great",
-      "status" : "new"
+      "text" : "Ran into the lamp because I was rushing. Theres shattered glass everywhere. I tried to clean it up a bit but there are probably still little pieces on the ground. Can you come clean up the glass and replace the lightbulb? Its really dark in here and I enjoy studying here, so if you could come as soon as possible that would be great"
+    },
+    "job1" : {
+      "status" : "new",
+      "location" : "McCormick West Penthouse",
+      "title" : "Broken Lightbulb",
+      "reporter" : "anurag",
+      "updates" : {
+        "-Itw3r0xDGZjxBQzIOSn" : {
+          "user" : "michael",
+          "time" : 1367881247608,
+          "text" : "Hey"
+        },
+        "-Itw49X56-CWH_YV6rWm" : {
+          "user" : "michael",
+          "time" : 1367881331925,
+          "text" : "new"
+        },
+        "-Itw3uCBe3gHfGhT642E" : {
+          "user" : "michael",
+          "time" : 1367881260614,
+          "text" : "Ran into the lamp because I was rushing. Theres shattered glass everywhere. I tried to clean it up a bit but there are probably still little pieces on the ground. Can you come clean up the glass and replace the lightbulb? Its really dark in here and I enjoy studying here, so if you could come as soon as possible that would be great"
+        },
+        "-Itw3rVTOOU0y4Hy3kS_" : {
+          "user" : "michael",
+          "time" : 1367881249561,
+          "text" : "Hi"
+        },
+        "-Itw44Nrh42PuJWIpq95" : {
+          "user" : "michael",
+          "time" : 1367881310853,
+          "text" : "new"
+        }
+      },
+      "time" : 1367881331926,
+      "text" : "Ran into the lamp because I was rushing. Theres shattered glass everywhere. I tried to clean it up a bit but there are probably still little pieces on the ground. Can you come clean up the glass and replace the lightbulb? Its really dark in here and I enjoy studying here, so if you could come as soon as possible that would be great"
     },
     "job4" : {
+      "status" : "completed",
       "location" : "McCormick South Penthouse",
       "title" : "Broken Lightbulb",
+      "assigned" : "billy",
+      "reporter" : "jeffrey",
       "time" : "1367599272949",
-      "reporter" : "jeffrey", 
-      "text" : "Ran into the lamp because I was rushing. Theres shattered glass everywhere. I tried to clean it up a bit but there are probably still little pieces on the ground. Can you come clean up the glass and replace the lightbulb? Its really dark in here and I enjoy studying here, so if you could come as soon as possible that would be great",
-      "status" : "completed",
-      "assigned" : "billy"
+      "text" : "Ran into the lamp because I was rushing. Theres shattered glass everywhere. I tried to clean it up a bit but there are probably still little pieces on the ground. Can you come clean up the glass and replace the lightbulb? Its really dark in here and I enjoy studying here, so if you could come as soon as possible that would be great"
+    },
+    "-Itw50tsgV1wSRjGmpFa" : {
+      "starred" : true,
+      "status" : "new",
+      "location" : "McCormick - Room 501",
+      "title" : "Vomit on the floor",
+      "reporter" : "michael",
+      "time" : 1367881558738,
+      "text" : "There is an extremely large volume of vomit on the floor and I am unsure how to go about cleaning it up.  I would appreciate if someone could clean it for me."
+    },
+    "job2" : {
+      "starred" : false,
+      "status" : "assigned",
+      "location" : "McCormick East Penthouse",
+      "title" : "Broken Lightbulb",
+      "assigned" : "billy",
+      "reporter" : "jeffrey",
+      "time" : "1367599272949",
+      "text" : "Ran into the lamp because I was rushing. Theres shattered glass everywhere. I tried to clean it up a bit but there are probably still little pieces on the ground. Can you come clean up the glass and replace the lightbulb? Its really dark in here and I enjoy studying here, so if you could come as soon as possible that would be great"
     }
   },
   "users" : {
     "mechanics" : {
       "jenks" : {
         "name" : "Jenks Jenkinson",
-        "phone" : "543.234.2324",
-        "email" : "jenks@mit.edu",
         "picture" : "images/mechanic1.jpg",
-        "id" : "jenks"
+        "phone" : "543.234.2324",
+        "id" : "jenks",
+        "email" : "jenks@mit.edu"
       },
       "billy" : {
         "name" : "Billy Bob",
-        "phone" : "324.654.9373",
-        "email" : "billybob@mit.edu",
         "picture" : "images/mechanic2.jpg",
-        "id" : "billy"
+        "phone" : "324.654.9373",
+        "id" : "billy",
+        "email" : "billybob@mit.edu"
       },
       "michael" : {
         "name" : "Michael McIntyre",
-        "phone" : "324.231.4353",
-        "email" : "michael@mit.edu",
         "picture" : "images/houseManager.jpg",
-        "id" : "michael"
+        "phone" : "324.231.4353",
+        "id" : "michael",
+        "email" : "michael@mit.edu"
       }
     },
     "students" : {
+      "michelle" : {
+        "name" : "M-Chen",
+        "phone" : "858.754.9619",
+        "id" : "michelle",
+        "email" : "mchen@mit.edu"
+      },
       "jeffrey" : {
         "name" : "Jeffrey Warren",
         "phone" : "603.438.6440",
-        "email" : "jtwarren@mit.edu",
-        "id" : "jeffrey"
+        "id" : "jeffrey",
+        "email" : "jtwarren@mit.edu"
       },
       "anurag" : {
         "name" : "Anurag Kashyap",
         "phone" : "858.442.3774",
-        "email" : "anurag@mit.edu",
-        "id" : "anurag"
+        "id" : "anurag",
+        "email" : "anurag@mit.edu"
       },
       "rebecca" : {
         "name" : "Rebecca Krosnick",
         "phone" : "240.505.2222",
-        "email" : "krosnick@mit.edu",
-        "id" : "rebecca"
-      },
-      "michelle" : {
-        "name" : "M-Chen",
-        "phone" : "858.754.9619",
-        "email" : "mchen@mit.edu",
-        "id" : "michelle"
+        "id" : "rebecca",
+        "email" : "krosnick@mit.edu"
       },
       "michael" : {
         "name" : "Michael McIntyre",
-        "phone" : "324.231.4353",
-        "email" : "michael@mit.edu",
         "picture" : "images/houseManager.jpg",
-        "id" : "michael"
+        "phone" : "324.231.4353",
+        "id" : "michael",
+        "email" : "michael@mit.edu"
       }
     }
   }
