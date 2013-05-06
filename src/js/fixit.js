@@ -130,6 +130,7 @@ fixit.Job = function(title, text, location, time, reporter, status, assignedTo, 
 
     this.setJobTime = function(newTime) {
         time = newTime;
+        jobRef.update({"time" : newTime});
     }
 
 	this.getUpdateList = function() {

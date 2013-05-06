@@ -88,8 +88,20 @@ $('document').ready(function() {
     $(".tab-item").click(function(){
         selectedTab = this.id;
         replaceMiddlePanel(this.id);
-        console.log("change selected tab");
+        // console.log("change selected tab");
 
+    });
+
+    $('#create-job-form').on('submit', function(event) {
+        var jobsRef = new Firebase("https://mit-fixit.firebaseio.com/jobs");
+
+        var location = $("#inputLocation").val();
+        var title = $("#inputTitle").val();
+        var desc = $("#inputDescription").val();
+
+        jobsRef.push({"location" : location, "title" : title, "text" : desc, "time" : (new Date()).getTime(), "reporter" : "jeffrey", "status" : "new"});
+
+        event.preventDefault();
     });
 
     /***** 
@@ -102,7 +114,7 @@ $('document').ready(function() {
     $(".tab-item").click(function(event) {
         $(".tab-item").removeClass("selected");
         $(this).addClass("selected");
-        console.log("change classes");
+        // console.log("change classes");
     });
 
     $("#add-btn").click(function(event){
@@ -138,7 +150,7 @@ function addNewLabel(labelName){
     $(".tab-item").click(function(event) {
         $(".tab-item").removeClass("selected");
         $(this).addClass("selected");
-        console.log("change classes");
+        // console.log("change classes");
     });
     
 }
@@ -258,7 +270,7 @@ function addJob(currentJob) {
         <div class="starred"> <img class="star" src="images/star-hollow.png"/> </div> \
         <div> <img class="mechanic-image" src="';
 
-    console.log(currentJob.isStarred());
+    // console.log(currentJob.isStarred());
     if(currentJob.isStarred()){
         jobContext = '<div class="job"> \
         <div class="starred"> <img class="star filled" src="images/star_filled2.png"> </div> \
@@ -283,7 +295,7 @@ function addJob(currentJob) {
 
     jobContext += '</span>';
     jobContext += labelHTML;
-    console.log(currentJob.getJobTime());
+    // console.log(currentJob.getJobTime());
     jobContext += ' <div class="blurb-time"> ' + $.timeago(parseInt(currentJob.getJobTime())) + '</div>';
 
     // Depending on whether or not the date change is within the day. 
