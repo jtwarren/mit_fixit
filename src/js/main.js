@@ -118,19 +118,13 @@ $('document').ready(function() {
         document.getElementById("create-label-text").value = "";
         $("#myLabelCreator").hide();
         $(".modal-backdrop").hide();
-        //console.log(name);
         labelTypes.push(name);
         addNewLabel(name);
-    });
-
-    $("#testtab").click(function(event){
-        console.log("testtab clicked");
     });
 
 });
 
 function addNewLabel(labelName){
-    //console.log("TEST");
     var leftPanelHTML = "";
     labelTypes.sort();
     for(var i = 0; i < labelTypes.length; i++){
@@ -138,6 +132,12 @@ function addNewLabel(labelName){
         leftPanelHTML += '<li class="tab-item" id="' + labelTypes[i] + 'tab"><a href="#' + name + '">' + name + '</a></li>';
     }
     $("#label-list").html(leftPanelHTML);
+    
+    $(".tab-item").click(function(event) {
+        $(".tab-item").removeClass("selected");
+        $(this).addClass("selected");
+        console.log("change classes");
+    });
 }
 
 function sortByTime(a, b){
