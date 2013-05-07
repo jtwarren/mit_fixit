@@ -135,8 +135,8 @@ body {
 }*/
 
 .description-panel .updates {
-    padding-top: 2px;
-    max-height: 150px;
+    padding-top: 0px;
+    max-height: 185px;
     overflow: auto;
 }
 
@@ -492,4 +492,9 @@ body {
 
 .topbar{
     height: 50px;
+}
+
+.delete-update-button {
+    float: right;
+    margin-right: 23px;
 }

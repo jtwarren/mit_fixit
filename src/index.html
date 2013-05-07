@@ -123,11 +123,29 @@ Images from freedigitalphotos.net
                                         <h3> Create Job </h3>
                                     </div> 
                                     <div class="modal-body">
-                                        <form>
-                                            <fieldset>
-                                                <input type="text" placeholder="Type something...">
-                                                <button type="submit" class="btn">Submit</button>
-                                            </fieldset>
+                                        <form class="form-horizontal" id="create-job-form">
+                                            <div class="control-group">
+                                                <label class="control-label" for="inputLocation">Location</label>
+                                                <div class="controls">
+                                                    <input type="text" id="inputLocation" placeholder="McCormick - Room 501">
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label class="control-label" for="inputTitle">Title</label>
+                                                <div class="controls">
+                                                    <input type="text" id="inputTitle" placeholder="Title">
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label class="control-label" for="inputDescription">Description</label>
+                                                <div class="controls">
+                                                    <textarea type="text" id="inputDescription" placeholder="Description" rows="7"></textarea>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <button id="create-job-close-btn" type="button" data-dismiss="modal" class="btn">Cancel</button>
+                                                <button id="create-job" type="submit" class="btn btn-custom">Create Job</button>
+                                            </div>
                                         </form>
                                     </div>
                                 </div>

@@ -48,7 +48,7 @@ $('document').ready(function() {
             student = snapshot.val()
             reporter = new fixit.Person(student.name, student.email, student.phone)
         });
-        currentJob = new fixit.Job(job.title, job.text, job.location, job.time, reporter, job.status, job.assigned);
+        currentJob = new fixit.Job(job.title, job.text, job.location, job.time, reporter, job.status, job.assigned, job.starred);
         currentJob.setJobRef(snapshot.ref());
 
         // if (job.assigned) {
@@ -56,17 +56,32 @@ $('document').ready(function() {
         // }
 
 
-        var updates = snapshot.child("/updates").val();
-        if (updates) {
-            $.each(updates, function(i, update){
-                var dataRef = new Firebase('https://mit-fixit.firebaseio.com/users/mechanics/' + update.user);
+        var updates = snapshot.child("/updates");
+
+        updates.forEach(function(childSnapshot) {
+            update = childSnapshot.val();
+            var dataRef = new Firebase('https://mit-fixit.firebaseio.com/users/mechanics/' + update.user);
                 dataRef.on('value', function(snapshot) {
                     user = snapshot.val()
                     nUser = new fixit.Person(user.name, user.email, user.phone, user.picture, user.id)
                 });
-                currentJob.addUpdate(new fixit.Update(nUser, update.text, update.time), false);
-            });
-        }
+            var up = new fixit.Update(nUser, update.text, update.time);
+            up.setUpdateRef(childSnapshot.ref());
+            currentJob.addUpdate(up, false);
+        });
+
+
+        // if (updates) {
+        //     $.each(updates, function(i, update){
+        //         var dataRef = new Firebase('https://mit-fixit.firebaseio.com/users/mechanics/' + update.user);
+        //         console.log(update.ref());
+        //         dataRef.on('value', function(snapshot) {
+        //             user = snapshot.val()
+        //             nUser = new fixit.Person(user.name, user.email, user.phone, user.picture, user.id)
+        //         });
+        //         currentJob.addUpdate(new fixit.Update(nUser, update.text, update.time), false);
+        //     });
+        // }
 
         
 
@@ -88,6 +103,23 @@ $('document').ready(function() {
     $(".tab-item").click(function(){
         selectedTab = this.id;
         replaceMiddlePanel(this.id);
+    });
+
+    $('#create-job-form').on('submit', function(event) {
+
+        var jobsRef = new Firebase("https://mit-fixit.firebaseio.com/jobs");
+
+        var location = $("#inputLocation").val();
+        var title = $("#inputTitle").val();
+        var desc = $("#inputDescription").val();
+
+        jobsRef.push({"location" : location, "title" : title, "text" : desc, "time" : (new Date()).getTime(), "reporter" : "michael", "status" : "new"});
+
+        $("#inputLocation").val("");
+        $("#inputTitle").val("");
+        $("#inputDescription").val("");
+
+        $('#createJobModal').modal('hide');
     });
 
     /***** 
@@ -150,15 +182,6 @@ function sortByTime(a, b){
     var d = new Date();
     return (d - a.getJobTime()) - (d - b.getJobTime());
 }
-
-
-// // Load the jobs in a task list for a particular 
-// function loadJobs() {
-//     for (var i=0; i<jobList.length; i++) {
-//         var currentJob = jobList[i];                      
-//         addJob(currentJob); 
-//     }
-// }
 
 var giveMiddlePanelStarIconClickHandler = function(jobView, jobModel, starIcon) {
     starIcon.click(function(){
@@ -269,7 +292,8 @@ function addJob(currentJob) {
     var jobContext = '<div class="job"> \
         <div class="starred"> <img class="star" src="images/star-hollow.png"/> </div> \
         <div> <img class="mechanic-image" src="';
-//images/star_filled2.png
+
+    // console.log(currentJob.isStarred());
     if(currentJob.isStarred()){
         jobContext = '<div class="job"> \
         <div class="starred"> <img class="star filled" src="images/star_filled2.png"> </div> \
@@ -294,7 +318,8 @@ function addJob(currentJob) {
 
     jobContext += '</span>';
     jobContext += labelHTML;
-    jobContext += ' <div class="blurb-time"> ';
+    // console.log(currentJob.getJobTime());
+    jobContext += ' <div class="blurb-time"> ' + $.timeago(parseInt(currentJob.getJobTime())) + '</div>';
 
     // Depending on whether or not the date change is within the day. 
     // var currentTime = new Date();    
@@ -440,7 +465,17 @@ function replaceDetails(job, jobView) {
             +'src="'+ update.getUpdater().getPicture() +'"/></div>');
         var $updateText = $('<div class="update-text"/>');
         $updateText.append($('<span class="username">' + update.getUpdater().getName() + " " + '</span>'));
-        $updateText.append(update.getText());
+        if (update.getUpdater().getName() === 'Michael McIntyre') {
+            var delete_update_button = $('<span><a href="#" class="delete-update-button">x</a></span>');
+            delete_update_button.click(function() {
+                update.deleteSelf();
+                $img.remove();
+                $updateText.remove();
+                selectedJob.getUpdateList().splice(index, 1);
+            })
+            $updateText.append(delete_update_button);
+        }
+        $updateText.append($('<div>'+update.getText()+'</div>'));
         //console.log(update.getTime());
         $updateText.append($('<div class="time">' + $.timeago(update.getTime()) + '<hr class="update_rule" /></div>'));
 
@@ -792,7 +827,7 @@ function buttonListeners() {
 
         up = new fixit.Update(current_user, content.val(), new Date(), "urgency");
         selectedJob.addUpdate(up, true);
-        selectedJob.setJobTime(new Date());
+        selectedJob.setJobTime((new Date()).getTime());
         jobList.sort(sortByTime);
         replaceMiddlePanel(selectedTab);
         content.val("");
