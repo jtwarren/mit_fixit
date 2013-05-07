@@ -103,6 +103,16 @@ $('document').ready(function() {
     $(".tab-item").click(function(){
         selectedTab = this.id;
         replaceMiddlePanel(this.id);
+        if(selectedJob === null){
+            $(".add-label-to-job").html("");
+        }else{
+            $(".add-label-to-job").html("<form action='' class='labelform'> \
+                                    <select class ='labeldropdown' name='labellist'> \
+                                        <option value='selectlabels'>Select labels</option> \
+                                    </select> \
+                                </form>");
+        }
+        updateLabelDropDown();
     });
 
     $('#create-job-form').on('submit', function(event) {
@@ -174,6 +184,16 @@ function addNewLabel(labelName){
     $(".tab-item").click(function(){
         selectedTab = this.id;
         replaceMiddlePanel(this.id);
+        if(selectedJob === null){
+            $(".add-label-to-job").html("");
+        }else{
+            $(".add-label-to-job").html("<form action='' class='labelform'> \
+                                    <select class ='labeldropdown' name='labellist'> \
+                                        <option value='selectlabels'>Select labels</option> \
+                                    </select> \
+                                </form>");
+        }
+        updateLabelDropDown();
     });
     /*var labelHTML = '<option value="selectlabels">Select labels</option>';
     for(var i = 0; i < labelTypes.length; i++){
@@ -344,11 +364,28 @@ function addJob(currentJob) {
         selectedJobView = job;
     }
     $(job).click(function() {
+        var jobAlreadySelected = false;
+        //console.log(selectedJob);
+        if(selectedJob != null){
+            jobAlreadySelected = true;
+        }
         selectedJob = currentJob;
         selectedJobView = job;
         $(".job-panel .job-group .job").removeClass("focus");
         job.addClass("focus");
         replaceDetails(currentJob, job);
+        if(!jobAlreadySelected){
+            //console.log("add html");
+            //console.log($(".add-label-to-job"));
+            //$(".add-label-to-job").html("text");
+            $(".add-label-to-job").html("<form action='' class='labelform'> \
+                                    <select class ='labeldropdown' name='labellist'> \
+                                        <option value='selectlabels'>Select labels</option> \
+                                    </select> \
+                                </form>");
+
+            //console.log($(".add-label-to-job"));
+        }
         updateLabelDropDown();
     });
 
@@ -573,12 +610,7 @@ function replaceMiddlePanel(tab) {
                                     </div> \
                                 </div> \
                             </span> \
-                            <span class 'add-label-to-job'> \
-                                <form action='' class='labelform'> \
-                                    <select class ='labeldropdown' name='labellist'> \
-                                        <option value='selectlabels'>Select labels</option> \
-                                    </select> \
-                                </form> \
+                            <span class='add-label-to-job'> \
                             </span> \
                         </span> \
                     </div> \
@@ -676,7 +708,8 @@ function replaceMiddlePanel(tab) {
     }
 
     if (selectedJob === null) {
-        $(".description-panel").html('<span class="no-job-panel"> No job selected! </span>'); 
+        $(".description-panel").html('<span class="no-job-panel"> No job selected! </span>');
+        $(".add-label-to-job").html("");
     } else {
         replaceDetails(selectedJob, selectedJobView);
     }
