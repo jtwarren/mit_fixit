@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MIT Fixit</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Bubbler+One' rel='stylesheet' type='text/css'>
+    <link href="css/main.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/booklayout.css" />
+    
+    <script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
+    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/timeago.js"></script>
+    <script type="text/javascript" src="js/fixit.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/contact.js"></script>
+
+    <script type='text/javascript' src='https://cdn.firebase.com/v0/firebase.js'></script>
+
+    <script type='text/javascript' src='https://cdn.firebase.com/v0/firebase-auth-client.js'></script>
+
+
+        <meta charset="utf-8">
+    <title>Bootstrap, from Twitter</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="../bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      /* Override some defaults */
+      html, body {
+        background-color: #eee;
+      }
+      body {
+        padding-top: 90px; 
+      }
+      .container {
+        width: 300px;
+      }
+
+      /* The white background content wrapper */
+      .container > .content {
+        background-color: #fff;
+        padding: 20px;
+        margin: 0 -20px; 
+        -webkit-border-radius: 10px 10px 10px 10px;
+           -moz-border-radius: 10px 10px 10px 10px;
+                border-radius: 10px 10px 10px 10px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+                box-shadow: 0 1px 2px rgba(0,0,0,.15);
+      }
+
+      .login-form {
+        margin-left: 65px;
+      }
+    
+      legend {
+        margin-right: -50px;
+        font-weight: bold;
+        color: #404040;
+      }
+
+    </style>
+    
+</head>
+<body>
+      <div class="container">
+    <div class="content">
+      <div class="row">
+        <div class="login-form">
+          <h2>Login</h2>
+          <form action="">
+            <fieldset>
+              <div class="clearfix">
+                <input id="email" type="text" placeholder="Username">
+              </div>
+              <div class="clearfix">
+                <input id="password" type="password" placeholder="Password">
+              </div>
+              <button id="submit" class="btn btn-primary" type="submit">Sign in</button>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div> 
+    <script>
+
+    var firebase = new Firebase("https://mit-fixit.firebaseio.com/");
+    
+    var authClient = new FirebaseAuthClient(firebase, function(error, user) {
+        if (error) {
+            console.log(error);
+        } else if (user) {
+            window.location.href = "index.html";
+        } else {
+            // user is logged out
+        }
+    });
+
+    $("#submit").click(function() {
+        authClient.login('password', {
+            email: $("#email").val(),
+            password: $("#password").val()
+        });
+        return false;
+    });
+
+    </script>
+</body>
+</html>
