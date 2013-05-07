@@ -88,6 +88,10 @@ fixit.Job = function(title, text, location, time, reporter, status, assignedTo) 
         }
 	}
 
+    this.addLabel = function(name){
+        labelList.push(name);
+    }
+
     // getter methods
     this.getTitle = function() {
         return title;
@@ -138,6 +142,10 @@ fixit.Job = function(title, text, location, time, reporter, status, assignedTo) 
 
     this.getReporter = function () {
         return reporter;
+    }
+
+    this.getLabels = function (){
+        return labelList;
     }
 
     this.toggleStarred = function() {

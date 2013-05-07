@@ -302,9 +302,12 @@ body {
 
 .jobs-heading {
     margin-top: 5px;
-    margin-right: 200px;
+    margin-right: 5px;
     font-size: large;
     font-weight: bold;
+    max-width: 150px;
+    /*display: inline;*/
+    float:left;
 }
 
 .job-panel .jobs {
@@ -438,7 +441,7 @@ body {
 }
 
 .add-job {
-    float:right;
+    float:left;
     margin-right:5px;
 }
 
@@ -457,6 +460,8 @@ body {
 
 .add-label-to-job{
     margin-bottom: 5px;
+    width: 200px;
+    float:right;
 }
 
 .update_rule {
@@ -469,4 +474,22 @@ body {
     text-align: center;
     font-size: 1.3em;
     margin-top: 75px;
+}
+
+.labeldropdown{
+    /*float:left;
+    display: inline;*/
+    width: 200px;
+}
+
+.labelform{
+    max-width:200px;
+    margin:0px;
+    padding:0px;
+    /*display: inline;*/
+    float:right;
+}
+
+.topbar{
+    height: 50px;
 }

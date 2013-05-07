@@ -88,8 +88,6 @@ $('document').ready(function() {
     $(".tab-item").click(function(){
         selectedTab = this.id;
         replaceMiddlePanel(this.id);
-        console.log("change selected tab");
-
     });
 
     /***** 
@@ -102,7 +100,6 @@ $('document').ready(function() {
     $(".tab-item").click(function(event) {
         $(".tab-item").removeClass("selected");
         $(this).addClass("selected");
-        console.log("change classes");
     });
 
     $("#add-btn").click(function(event){
@@ -138,8 +135,14 @@ function addNewLabel(labelName){
     $(".tab-item").click(function(event) {
         $(".tab-item").removeClass("selected");
         $(this).addClass("selected");
-        console.log("change classes");
     });
+    updateLabelDropDown();
+    /*var labelHTML = '<option value="selectlabels">Select labels</option>';
+    for(var i = 0; i < labelTypes.length; i++){
+        var name = labelTypes[i];
+        labelHTML += '<option value="' + name.toLowerCase() + '">' + name + '</option>';
+    }
+    $(".labeldropdown").html(labelHTML);*/
     
 }
 
@@ -315,6 +318,7 @@ function addJob(currentJob) {
         $(".job-panel .job-group .job").removeClass("focus");
         job.addClass("focus");
         replaceDetails(currentJob, job);
+        updateLabelDropDown();
     });
 
     var starIconMiddlePanel = job.find('.star');
@@ -333,6 +337,24 @@ function addJob(currentJob) {
     //     // there is a problem with this job. 
     //     console.log('current status is invalid');
     // }            
+}
+
+function updateLabelDropDown(){
+    /*var labelHTML = '<option value="selectlabels">Select labels</option>';
+    var selectedJobLabels = selectedJob.getLabels();
+    for(var i = 0; i < selectedJobLabels; i++){
+        var name = selectedJobLabels[i];
+        labelHTML += '<option value="' + name.toLowerCase() + '">' + name + '</option>';
+    }
+    $(".labeldropdown").html(labelHTML);*/
+    var labelHTML = '<option value="selectlabels">Select labels</option>';
+    if(selectedJob != null){
+        for(var i = 0; i < labelTypes.length; i++){
+            var name = labelTypes[i];
+            labelHTML += '<option value="' + name.toLowerCase() + '">' + name + '</option>';
+        }
+    }
+    $(".labeldropdown").html(labelHTML);
 }
 
 // Replace the details for a given job
@@ -480,9 +502,44 @@ function replaceMiddlePanel(tab) {
     }
     $("#jobsearch").attr("placeholder", "Search " + headingName);
 
-    var allMiddlePanelHTML = " <div class='add-job'> <i class='icon-plus'> </i></div> \
+    /*var allMiddlePanelHTML = " <div class='add-job'> <i class='icon-plus'> </i></div> \
                     <h4 class='jobs-heading'>" + headingName +
                     "</h4> \
+                    <div class='jobs job-group'> \
+                    </div>";*/
+
+    var allMiddlePanelHTML = "<div class='topbar'> \
+                        <span> \
+                            <span class='jobs-heading'>";
+    allMiddlePanelHTML += headingName;
+    allMiddlePanelHTML += "</span> \
+                            <span class='add-job'> \
+                                <a role='button' class='btn btn-create btn-custom' data-target='#createJobModal' data-toggle='modal'> + </a> \
+                                <div id='createJobModal' class='modal hide fade' tabindex='-1' role='dialog'> \
+                                    <div class='modal-header'> \
+                                        <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button> \
+                                        <h3> Create Job </h3> \
+                                    </div> \
+                                    <div class='modal-body'> \
+                                        <form> \
+                                            <fieldset> \
+                                                <input type='text' placeholder='Type something...''> \
+                                                <button type='submit' class='btn'>Submit</button> \
+                                            </fieldset> \
+                                        </form> \
+                                    </div> \
+                                </div> \
+                            </span> \
+                            <span class 'add-label-to-job'> \
+                                <form action='' class='labelform'> \
+                                    <select class ='labeldropdown' name='labellist'> \
+                                        <option value='selectlabels'>Select labels</option> \
+                                    </select> \
+                                </form> \
+                            </span> \
+                        </span> \
+                    </div> \
+                    <!-- main middle panel --> \
                     <div class='jobs job-group'> \
                     </div>";
     //$(".job-group").html("");
@@ -490,7 +547,7 @@ function replaceMiddlePanel(tab) {
     //$(".job-group").html("");
     //console.log(tab);
     var searchText = document.getElementById("jobsearch").value.toLowerCase();
-    console.log(searchText);
+    //console.log(searchText);
     if(tab === "alltab"){
         // console.log("alltab");
         $(".panel.job-panel").html(allMiddlePanelHTML);
@@ -573,6 +630,8 @@ function replaceMiddlePanel(tab) {
     } else {
         replaceDetails(selectedJob, selectedJobView);
     }
+
+    updateLabelDropDown();
     /*else{
  Fixed starring bug (where after selecting a tab and then clicking the right panel star caused nothing to happen)
             var jobContext = '<div class="job"> \
