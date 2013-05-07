@@ -164,11 +164,17 @@ function addNewLabel(labelName){
     }
     $("#label-list").html(leftPanelHTML);
     
+    updateLabelDropDown();
+
     $(".tab-item").click(function(event) {
         $(".tab-item").removeClass("selected");
         $(this).addClass("selected");
     });
-    updateLabelDropDown();
+
+    $(".tab-item").click(function(){
+        selectedTab = this.id;
+        replaceMiddlePanel(this.id);
+    });
     /*var labelHTML = '<option value="selectlabels">Select labels</option>';
     for(var i = 0; i < labelTypes.length; i++){
         var name = labelTypes[i];
@@ -534,6 +540,8 @@ function replaceMiddlePanel(tab) {
         headingName = "Completed Jobs";
     }else if(selectedTab === "starredtab"){
         headingName = "Starred Jobs";
+    }else{
+        headingName = selectedTab.substring(0, selectedTab.length-3) + " Jobs";
     }
     $("#jobsearch").attr("placeholder", "Search " + headingName);
 
@@ -649,6 +657,13 @@ function replaceMiddlePanel(tab) {
                 if(selectedJob != null && selectedJob.getStatus() != "completed"){
                     selectedJob = null;
                     selectedJobView = null;
+                }
+            }else{
+                for (var i=0; i<jobList.length; i++) {
+                    var currentJob = jobList[i];
+                    if(currentJob.getLabels().indexOf(selectedTab.substring(0, selectedTab.length-3)) != -1 && currentJob.contains(searchText)){
+                        addJob(currentJob);
+                    } 
                 }
             }
         }
