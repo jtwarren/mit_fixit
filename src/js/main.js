@@ -334,8 +334,8 @@ function replaceDetails(job, jobView) {
                     <div class="assignment shadow"> \
                         <!--<h4>Assignment</h4>--> \
                         <span> \
-                            <!--<img class="assigned-mechanic-img" style="width:50px" src="images/default.png"/> --> \
-                            <select class="assigned-mechanic"> \
+                            <!--<img class="assigned-mechanic-img" style="width:50px" src="images/default.png"/> -->\
+                            <select class="assigned-mechanic" data-placeholder="TEST"> \
                             </select> \
                             <button id="assign-button" type="submit" class="btn btn-custom"><b>Assign</b></button> \
                         </span> \
@@ -365,12 +365,12 @@ function replaceDetails(job, jobView) {
     var reporter = job.getReporter();
     $(".description-panel .description .job-reporter").html(reporter.getName() + ", " + reporter.getEmail() + ", " + reporter.getPhone());
 
+    $(".assigned-mechanic").append("<option value='default'>Select a mechanic:</option> ");
     for (var i = 0; i < workers.length; i++) {
         var currentWorker = job.getWorker();
         if (currentWorker && currentWorker.getName() === workers[i].getName()) {
             $(".assigned-mechanic").append($('<option selected="selected" value=' + i +
-                ' data-image="'+workers[i].getPicture()+ '>' + workers[i].getName() + '</option>'));
-            //$(".assigned-mechanic-img").attr('src', job.getAssignedToPic());
+                ' data-image="'+workers[i].getPicture()+ '>' + 'Currently Assigned:'+ workers[i].getName() + '</option>'));
         } else {
 
             $(".assigned-mechanic").append($('<option value=' + i + ' data-image="'+workers[i].getPicture()+'">' 
@@ -396,8 +396,10 @@ function replaceDetails(job, jobView) {
                 break; 
             }
         }
-        if (!originalOption) {
-            "<img class='assigned-mechanic-option' src='images/default.png' />" + currentWorker.getName();
+        console.log(worker.text);
+        debugger; 
+        if (!originalOption || !currentWorker || worker.text === 'Select a mechanic:') {
+            "<img class='assigned-mechanic-option' src='images/default.png' /> No mechanic selected.";
         }
         return "<img class='assigned-mechanic-option' src='" + currentWorker.getPicture() + "' />" + currentWorker.getName();
     }
@@ -405,7 +407,7 @@ function replaceDetails(job, jobView) {
     $(".assigned-mechanic").select2({
         formatResult: format,
         formatSelection: format,
-        placeholder: "Select a mechanic to assign:",
+        placeholder: "Select a mechanic to assign:"
     }); 
     
     
