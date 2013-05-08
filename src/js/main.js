@@ -655,9 +655,6 @@ function replaceMiddlePanel(tab) {
                             <span class='jobs-heading'>";
     allMiddlePanelHTML += headingName;
     allMiddlePanelHTML += "</span> \
-                            <span class='add-job'> \
-                                <a role='button' class='btn btn-create btn-custom' data-target='#createJobModal' data-toggle='modal'> + </a> \
-                            </span> \
                             <span class='add-label-to-job'> \
                             </span> \
                         </span> \
