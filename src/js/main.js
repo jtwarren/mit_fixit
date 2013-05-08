@@ -125,7 +125,7 @@ $('document').ready(function() {
 
         var jobRef = jobsRef.push({"location" : location, "title" : title, "text" : desc, "time" : (new Date()).getTime(), "reporter" : "michael", "status" : "new"});
 
-        jobRef.setPriority((new Date()).getTime());
+        jobRef.setPriority(1/(new Date()).getTime());
 
         $("#inputLocation").val("");
         $("#inputTitle").val("");

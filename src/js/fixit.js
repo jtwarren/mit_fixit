@@ -86,7 +86,9 @@ fixit.Job = function(title, text, location, time, reporter, status, assignedTo, 
         if (persist) {
             ms = (new Date()).getTime();
             updateRef = jobRef.child("/updates").push({"text" : update.getText(), "user" : "michael", "time" : ms});
+            jobRef.setPriority(1/(new Date()).getTime());
         }
+        // 
         return updateRef;
 	}
 
