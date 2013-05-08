@@ -502,19 +502,20 @@ function replaceDetails(job, jobView) {
                     </div> \
                     <div class="assignment shadow"> \
                         <!--<h4>Assignment</h4>--> \
-                        <span> \
-                            <div class="currently-assigned-text"> Currently Assigned: </div> \
-                            <span>  \
+                         \
+                            <!--<span class="currently-assigned-text"><b>Assigned to:</b> </span>--> \
+                            <span class="mechanic-selection-widget-container">  \
                                 <img class="assigned-mechanic-img" style="width:50px" src="images/default.png"/> \
-                                <div class="assigned-mechanic-name"> No one.</div>\
-                            </span> \
-                            <select class="assigned-mechanic"> \
+                                <span class="assigned-mechanic-name"> No one.</span></span>\
+                                <span id="mechanic-selection-widget"> \
+                                <select class="assigned-mechanic"> \
                             </select> \
-                            <button id="assign-button" type="submit" class="btn btn-custom"><b>Assign</b></button> \
-                            <button id="reassign-button" type="submit" class="btn btn-custom" style="display: none"> \
+                            <button id="assign-button" type="submit" class="btn btn-custom"><b>Assign</b></button></span> \
+                            <!--<button id="reassign-button" type="submit" class="btn btn-custom" style="display: none"> \
                                 <b>Reassign</b> \
-                            </button> \
-                        </span> \
+                            </button>--> \
+                            </span> \
+                         \
                     </div> \
                     <div class="panel-updates shadow"> \
                         <div class="updates"> \
@@ -544,9 +545,12 @@ function replaceDetails(job, jobView) {
     if (!job.getWorker()) {
         //$(".assigned-mechanic").append('<option selected="selected" value=""> Select a mechanic. </option>');
         for (var i = 0; i < workers.length; i++) {
+            if (i === 0) {
+                $(".assigned-mechanic").append($('<option selected="selected" value="none">' + "Select a mechanic." + '</option>'));
+            }
             if (job.getWorker() && job.getWorker().getName() === workers[i].getName()) {
                 $(".assigned-mechanic").append($('<option selected="selected" value=' + i + '>' + workers[i].getName() + '</option>'));
-                $(".assigned-mechanic-img").attr('src', job.getAssignedToPic());
+                //$(".assigned-mechanic-img").attr('src', job.getAssignedToPic());
             } else {
                 $(".assigned-mechanic").append($('<option value=' + i + '>' + workers[i].getName() + '</option>'));
             }
