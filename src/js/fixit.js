@@ -88,12 +88,12 @@ fixit.Job = function(title, text, location, time, reporter, status, assignedTo, 
             updateRef = jobRef.child("/updates").push({"text" : update.getText(), "user" : "michael", "time" : ms});
             jobRef.setPriority(1/(new Date()).getTime());
         }
-        // 
         return updateRef;
 	}
 
     this.addLabel = function(name){
         labelList.push(name);
+        pdateRef = jobRef.child("/labels").push({"label" : name});
     }
 
     // getter methods

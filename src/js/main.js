@@ -100,24 +100,24 @@ $('document').ready(function() {
         updateLabelDropDown();
     });
 
-    $('#create-job-form').on('submit', function(event) {
+    // $('#create-job-form').on('submit', function(event) {
 
-        var jobsRef = new Firebase("https://mit-fixit.firebaseio.com/jobs");
+    //     var jobsRef = new Firebase("https://mit-fixit.firebaseio.com/jobs");
 
-        var location = $("#inputLocation").val();
-        var title = $("#inputTitle").val();
-        var desc = $("#inputDescription").val();
+    //     var location = $("#inputLocation").val();
+    //     var title = $("#inputTitle").val();
+    //     var desc = $("#inputDescription").val();
 
-        var jobRef = jobsRef.push({"location" : location, "title" : title, "text" : desc, "time" : (new Date()).getTime(), "reporter" : "michael", "status" : "new"});
+    //     var jobRef = jobsRef.push({"location" : location, "title" : title, "text" : desc, "time" : (new Date()).getTime(), "reporter" : "michael", "status" : "new"});
 
-        jobRef.setPriority(1/(new Date()).getTime());
+    //     jobRef.setPriority(1/(new Date()).getTime());
 
-        $("#inputLocation").val("");
-        $("#inputTitle").val("");
-        $("#inputDescription").val("");
+    //     $("#inputLocation").val("");
+    //     $("#inputTitle").val("");
+    //     $("#inputDescription").val("");
 
-        $('#createJobModal').modal('hide');
-    });
+    //     $('#createJobModal').modal('hide');
+    // });
 
 
     /***** 
@@ -610,19 +610,19 @@ function replaceMiddlePanel(tab) {
                                             <div class='control-group'> \
                                                 <label class='control-label' for='inputLocation'>Location</label> \
                                                 <div class='controls'> \
-                                                    <input type='text' id='inputLocation' placeholder='McCormick - Room 501'> \
+                                                    <input type='text' id='inputLocation' placeholder='McCormick - Room 501' required> \
                                                 </div> \
                                             </div> \
                                             <div class='control-group'> \
                                                 <label class='control-label' for='inputTitle'>Title</label> \
                                                 <div class='controls'> \
-                                                    <input type='text' id='inputTitle' placeholder='Title'> \
+                                                    <input type='text' id='inputTitle' placeholder='Title' required> \
                                                 </div> \
                                             </div> \
                                             <div class='control-group'> \
                                                 <label class='control-label' for='inputDescription'>Description</label> \
                                                 <div class='controls'> \
-                                                    <textarea type='text' id='inputDescription' placeholder='Description' rows='7'></textarea> \
+                                                    <textarea type='text' id='inputDescription' placeholder='Description' rows='7' required></textarea> \
                                                 </div> \
                                             </div> \
                                             <div> \
@@ -737,8 +737,16 @@ function replaceMiddlePanel(tab) {
         replaceDetails(selectedJob, selectedJobView);
     }
 
+    addCreateListener();
+
+    $(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
+
     updateLabelDropDown();
 
+
+}
+
+var addCreateListener = function() {
     $('#create-job-form').on('submit', function(event) {
 
         var jobsRef = new Firebase("https://mit-fixit.firebaseio.com/jobs");
@@ -755,7 +763,7 @@ function replaceMiddlePanel(tab) {
         $("#inputTitle").val("");
         $("#inputDescription").val("");
 
-        $('#createJobModal').modal('hide');
+        $('.modal.in').modal('hide');
     });
 }
 
