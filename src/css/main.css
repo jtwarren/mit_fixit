@@ -397,7 +397,9 @@ body {
 }
 
 .tab-panel .selected {
+    color: #C41E3A;
     font-weight: bold;
+
 }
 
 #assign-button {
