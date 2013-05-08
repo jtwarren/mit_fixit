@@ -151,6 +151,10 @@ $('document').ready(function() {
 
     });
 
+    $("#logout-button").click(function() {
+        window.location.href = "login.html";
+    });
+
     $(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
     $('#create-job-form').on('submit', function(event) {
 
