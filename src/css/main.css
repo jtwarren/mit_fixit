@@ -55,9 +55,7 @@ body {
     display: block;
     margin-top: 10px;
     margin-bottom: 8px;
-    width: 10px;
     text-align: center;
-    
 }
 
 .job-panel h4:not(:first-child){
@@ -240,7 +238,7 @@ body {
 
 .job .job-description-text .assigned-label{
     /*background-color: blue;*/
-    background: #CDD2FF;
+    background-color: #CDD2FF;
     /*color: white;*/
 }
 
@@ -473,7 +471,8 @@ body {
 }
 
 .btn-create {
-    
+    margin-bottom: 15px;
+    margin-top: 15px;  
 }
 
 .add-label-to-job{
