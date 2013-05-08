@@ -234,7 +234,7 @@ Images from freedigitalphotos.net
             <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
             <h3> Create Job </h3>
         </div> 
-        <div class='modal-body'>
+        <div class='create-job-modal-body'>
             <form class='form-horizontal' id='create-job-form'>
                 <div class='control-group'>
                     <label class='control-label' for='inputLocation'>Location</label>
@@ -254,9 +254,10 @@ Images from freedigitalphotos.net
                         <textarea type='text' id='inputDescription' placeholder='Description' rows='7'></textarea>
                     </div>
                 </div>
-                <div>
-                    <button id='create-job-close-btn' type='button' data-dismiss='modal' class='btn'>Cancel</button>
+                <div id="create-job-buttons">
                     <button id='create-job' type='submit' class='btn btn-custom'>Create Job</button>
+                    <button id='create-job-close-btn' type='button' data-dismiss='modal' class='btn'>Cancel</button>
+
                 </div>
             </form>
         </div>

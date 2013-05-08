@@ -993,5 +993,3 @@ function buttonListeners() {
     });
 }
 
-// Get the corresponding worker 
-

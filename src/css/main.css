@@ -508,3 +508,26 @@ body {
     margin-top: 10px;
     padding-bottom: 10px;
 }
+
+#create-job {
+    margin:10px;
+}
+
+#create-job-close-btn {
+
+}
+
+#create-job-buttons {
+    width: 200px; 
+    margin-left: auto;
+    margin-right: auto; 
+}
+
+.create-job-modal-body {
+    width: 560px; 
+    margin-top: 20px; 
+}
+
+#inputDescription {
+    resize:none; 
+}
