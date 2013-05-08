@@ -40,9 +40,8 @@ $('document').ready(function() {
         var label = snapshot.val();
 
         labelTypes.push(label.name)
-        labelColorPairs[label.name] = label.color
 
-        addNewLabel(label.name);
+        addNewLabel(label.name, label.color);
     });
 
 
@@ -116,25 +115,6 @@ $('document').ready(function() {
         }
     });
 
-    // $('#create-job-form').on('submit', function(event) {
-
-    //     var jobsRef = new Firebase("https://mit-fixit.firebaseio.com/jobs");
-
-    //     var location = $("#inputLocation").val();
-    //     var title = $("#inputTitle").val();
-    //     var desc = $("#inputDescription").val();
-
-    //     var jobRef = jobsRef.push({"location" : location, "title" : title, "text" : desc, "time" : (new Date()).getTime(), "reporter" : "michael", "status" : "new"});
-
-    //     jobRef.setPriority(1/(new Date()).getTime());
-
-    //     $("#inputLocation").val("");
-    //     $("#inputTitle").val("");
-    //     $("#inputDescription").val("");
-
-    //     $('#createJobModal').modal('hide');
-    // });
-
 
     /***** 
      * Right Panel 
@@ -153,8 +133,14 @@ $('document').ready(function() {
         document.getElementById("create-label-text").value = "";
         $("#myLabelCreator").hide();
         $(".modal-backdrop").hide();
-        labelTypes.push(name);
-        addNewLabel(name);
+        // labelTypes.push(name);
+
+
+        // addNewLabel(name);
+
+        var labelsRef = new Firebase("https://mit-fixit.firebaseio.com/labels");
+        labelsRef.push({"name" : name, "color" : "red"});
+
     });
 
     $(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
@@ -191,9 +177,9 @@ $('document').ready(function() {
 /**
  * Adds a new label on the left panel. 
  */
-function addNewLabel(labelName){
+function addNewLabel(labelName, color){
     //newLabel = labelName;
-    labelColorPairs[labelName] = "purple";
+    labelColorPairs[labelName] = color;
     var leftPanelHTML = "";
     labelTypes.sort();
     for(var i = 0; i < labelTypes.length; i++){
@@ -411,7 +397,7 @@ function addJob(currentJob) {
     jobContext += "<span class=list-of-labels>";
     jobContext += labelHTML;
 
-    if (currentJob.getLabel()) {
+    if (currentJob.getLabel() != null) {
         var jobLabel = currentJob.getLabel();
         var thelabelhtml = '<span class="' + jobLabel + '-label label-area">' + jobLabel + '</span>';
             jobContext += thelabelhtml;
@@ -445,6 +431,11 @@ function addJob(currentJob) {
         createLabelCSS(newLabel);
         newLabel = false;c
     }*/
+
+    for(var i = 0; i < labelTypes.length; i++){
+        createLabelCSS(labelTypes[i]);
+    }    
+
     $(job).click(function() {
         var jobAlreadySelected = false;
         //console.log(selectedJob);
@@ -1002,6 +993,4 @@ function buttonListeners() {
         return false;
     });
 }
-
-// Get the corresponding worker 
 
