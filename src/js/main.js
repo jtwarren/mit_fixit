@@ -41,9 +41,12 @@ $('document').ready(function() {
     mechanicsRef.on('child_added', function(snapshot) {
         var label = snapshot.val();
 
-        labelTypes.push(label.name)
+        var nameOfLabel = label.name;
+        nameOfLabel = nameOfLabel.replace(" ", "");
 
-        addNewLabel(label.name, label.color);
+        labelTypes.push(nameOfLabel)
+
+        addNewLabel(nameOfLabel, label.color);
     });
 
 
