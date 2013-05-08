@@ -527,6 +527,7 @@ function replaceDetails(job, jobView) {
         $update.append($img);
         $update.append($updateText);
         $(".updates").append($update);
+        $(".updates").scrollTop($('.updates').height());
     });
 
     if (job.isStarred()) {
@@ -873,10 +874,12 @@ function buttonListeners() {
         $update.append($img);
         $update.append($updateText);
         $(".updates").append($update);
-        $(".updates").scrollTop($(".updates")[0].scrollHeight);
+        $(".updates").scrollTop($('.updates').height());
+        // $(".updates").scrollTop($(".updates")[0].scrollHeight);
 
-        up = new fixit.Update(current_user, content.val(), new Date(), "urgency");
-        selectedJob.addUpdate(up, true);
+        var up = new fixit.Update(current_user, content.val(), new Date(), "urgency");
+        var ur = selectedJob.addUpdate(up, true);
+        up.setUpdateRef(ur);
         selectedJob.setJobTime((new Date()).getTime());
         jobList.sort(sortByTime);
         replaceMiddlePanel(selectedTab);
