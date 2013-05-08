@@ -583,3 +583,7 @@ body {
 #myAddressModal {
     width: auto; 
 }
+
+#appendix {
+    font-style: italic;
+}
