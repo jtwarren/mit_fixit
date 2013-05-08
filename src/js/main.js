@@ -411,7 +411,7 @@ function addJob(currentJob) {
     jobContext += "<span class=list-of-labels>";
     jobContext += labelHTML;
 
-    if (currentJob.getLabel()) {
+    if (currentJob.getLabel() != null) {
         var jobLabel = currentJob.getLabel();
         var thelabelhtml = '<span class="' + jobLabel + '-label label-area">' + jobLabel + '</span>';
             jobContext += thelabelhtml;
@@ -445,6 +445,11 @@ function addJob(currentJob) {
         createLabelCSS(newLabel);
         newLabel = false;c
     }*/
+
+    for(var i = 0; i < labelTypes.length; i++){
+        createLabelCSS(labelTypes[i]);
+    }    
+
     $(job).click(function() {
         var jobAlreadySelected = false;
         //console.log(selectedJob);
