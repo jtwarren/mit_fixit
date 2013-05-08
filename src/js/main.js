@@ -413,7 +413,8 @@ function addJob(currentJob) {
     if (currentJob.getLabel() != null) {
         var jobLabel = currentJob.getLabel();
         var thelabelhtml = '<span class="' + jobLabel + '-label specific-label-area">' + jobLabel + '</span>';
-            jobContext += thelabelhtml;
+        jobContext += thelabelhtml;
+        console.log(jobLabel + '-label');
         /*for(var i = 0; i < sortedJobs.length; i++){
             var thelabelhtml = '<span class="' + sortedJobs[i] + '-label label-area">' + sortedJobs[i] + '</span>';
             jobContext += thelabelhtml;
@@ -445,9 +446,9 @@ function addJob(currentJob) {
         newLabel = false;c
     }*/
 
-    for(var i = 0; i < labelTypes.length; i++){
+    /*for(var i = 0; i < labelTypes.length; i++){
         createLabelCSS(labelTypes[i]);
-    }    
+    }*/
 
     $(job).click(function() {
         var jobAlreadySelected = false;
@@ -499,7 +500,10 @@ function addJob(currentJob) {
     //     // Job should not have a different status.
     //     // there is a problem with this job. 
     //     console.log('current status is invalid');
-    // }            
+    // }
+    for(var i = 0; i < labelTypes.length; i++){
+        createLabelCSS(labelTypes[i]);
+    }           
 }
 
 function updateLabelDropDown(){
@@ -588,7 +592,6 @@ function dropDownChangedUpdateLabel(name){
 function createLabelCSS(labelName){
     var c = labelColorPairs[labelName];
     $("."+labelName+"-label").css("background-color", c);
-    console.log(c);
     //console.log("."+labelName+"-label");
 }
 
@@ -755,6 +758,7 @@ function replaceDetails(job, jobView) {
 }
 
 function replaceMiddlePanel(tab) {
+    console.log("middle panel");
     var headingName;
     if(selectedTab === "alltab"){
         headingName = "All Jobs";
