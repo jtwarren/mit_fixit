@@ -51,11 +51,6 @@ $('document').ready(function() {
         currentJob = new fixit.Job(job.title, job.text, job.location, job.time, reporter, job.status, job.assigned, job.starred);
         currentJob.setJobRef(snapshot.ref());
 
-        // if (job.assigned) {
-        //     currentJob.setWorker(job.assigned);
-        // }
-
-
         var updates = snapshot.child("/updates");
 
         updates.forEach(function(childSnapshot) {
@@ -70,26 +65,13 @@ $('document').ready(function() {
             currentJob.addUpdate(up, false);
         });
 
-
-        // if (updates) {
-        //     $.each(updates, function(i, update){
-        //         var dataRef = new Firebase('https://mit-fixit.firebaseio.com/users/mechanics/' + update.user);
-        //         console.log(update.ref());
-        //         dataRef.on('value', function(snapshot) {
-        //             user = snapshot.val()
-        //             nUser = new fixit.Person(user.name, user.email, user.phone, user.picture, user.id)
-        //         });
-        //         currentJob.addUpdate(new fixit.Update(nUser, update.text, update.time), false);
-        //     });
-        // }
-
-        
-
-        addJob(currentJob);
+        // addJob(currentJob);
         jobList.push(currentJob);
+
+        jobList.sort(sortByTime);
+        replaceMiddlePanel(selectedTab);
     });
 
-    // jobList.sort(sortByTime);
     
 
 
@@ -136,6 +118,7 @@ $('document').ready(function() {
 
         $('#createJobModal').modal('hide');
     });
+
 
     /***** 
      * Right Panel 
@@ -420,6 +403,7 @@ function addJob(currentJob) {
     var starIconMiddlePanel = job.find('.star');
     giveMiddlePanelStarIconClickHandler(job, currentJob, starIconMiddlePanel);
 
+
     $(".jobs").append(job);
     // if (currentJob.getStatus() == "unassigned" || 
     //     currentJob.getStatus() == "new") {
@@ -592,19 +576,6 @@ function replaceDetails(job, jobView) {
 }
 
 function replaceMiddlePanel(tab) {
-    // console.log("replaceMiddlePanel() is being called.");
-    // console.log("replaceMiddlePanel() is being called.");
-    // var allMiddlePanelHTML = '<h4> Unassigned Jobs </h4> \
-    //                 <div class="unassigned-jobs job-group">  \
-    //                 </div> \
-    //                 <h4> Assigned Jobs </h4> \
-    //                 <div class="assigned-jobs job-group"> \
-    //                 </div> \
-    //                 <h4> Completed Jobs </h4> \
-    //                 <div class="completed-jobs job-group"> \
-    //                 </div> ';
-    // console.log("replaceMiddlePanel() is being called.");
-    //var allMiddlePanelHTML = "<h4 class='jobs-heading'> Jobs </h4> \
     var headingName;
     if(selectedTab === "alltab"){
         headingName = "All Jobs";
@@ -621,11 +592,6 @@ function replaceMiddlePanel(tab) {
     }
     $("#jobsearch").attr("placeholder", "Search " + headingName);
 
-    /*var allMiddlePanelHTML = " <div class='add-job'> <i class='icon-plus'> </i></div> \
-                    <h4 class='jobs-heading'>" + headingName +
-                    "</h4> \
-                    <div class='jobs job-group'> \
-                    </div>";*/
 
     var allMiddlePanelHTML = "<div class='topbar'> \
                         <span> \
@@ -638,13 +604,31 @@ function replaceMiddlePanel(tab) {
                                     <div class='modal-header'> \
                                         <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button> \
                                         <h3> Create Job </h3> \
-                                    </div> \
+                                    </div>  \
                                     <div class='modal-body'> \
-                                        <form> \
-                                            <fieldset> \
-                                                <input type='text' placeholder='Type something...''> \
-                                                <button type='submit' class='btn'>Submit</button> \
-                                            </fieldset> \
+                                        <form class='form-horizontal' id='create-job-form'> \
+                                            <div class='control-group'> \
+                                                <label class='control-label' for='inputLocation'>Location</label> \
+                                                <div class='controls'> \
+                                                    <input type='text' id='inputLocation' placeholder='McCormick - Room 501'> \
+                                                </div> \
+                                            </div> \
+                                            <div class='control-group'> \
+                                                <label class='control-label' for='inputTitle'>Title</label> \
+                                                <div class='controls'> \
+                                                    <input type='text' id='inputTitle' placeholder='Title'> \
+                                                </div> \
+                                            </div> \
+                                            <div class='control-group'> \
+                                                <label class='control-label' for='inputDescription'>Description</label> \
+                                                <div class='controls'> \
+                                                    <textarea type='text' id='inputDescription' placeholder='Description' rows='7'></textarea> \
+                                                </div> \
+                                            </div> \
+                                            <div> \
+                                                <button id='create-job-close-btn' type='button' data-dismiss='modal' class='btn'>Cancel</button> \
+                                                <button id='create-job' type='submit' class='btn btn-custom'>Create Job</button> \
+                                            </div> \
                                         </form> \
                                     </div> \
                                 </div> \
@@ -754,29 +738,25 @@ function replaceMiddlePanel(tab) {
     }
 
     updateLabelDropDown();
-    /*else{
- Fixed starring bug (where after selecting a tab and then clicking the right panel star caused nothing to happen)
-            var jobContext = '<div class="job"> \
-                    <div class="starred"> <i class="star"></i> </div> \
-                    <div> <img class="mechanic-image" src="'
-        
-            jobContext += selectedJob.getAssignedToPic(); 
-            jobContext += '" style="width:50px;" /> </div> \
-                    <div class="job-description-text"> \
-                    <div class="job-display-text">'
-                
-            jobContext += selectedJob.getTitle().substring(0, 50);
-            jobContext += '</div> <span class="blurb-location">'
-            jobContext += selectedJob.getLocation(); 
-            jobContext += '</span> <div class="blurb-time"> '
-            jobContext += selectedJob.getJobTime().toLocaleString(); 
-            jobContext += '</div> </div></div> ';
-    
-            var job = $(jobContext);
-            $(".job-panel .job-group .job").removeClass("focus");
-            job.addClass("focus");
-            //console.log();
-        }*/
+
+    $('#create-job-form').on('submit', function(event) {
+
+        var jobsRef = new Firebase("https://mit-fixit.firebaseio.com/jobs");
+
+        var location = $("#inputLocation").val();
+        var title = $("#inputTitle").val();
+        var desc = $("#inputDescription").val();
+
+        var jobRef = jobsRef.push({"location" : location, "title" : title, "text" : desc, "time" : (new Date()).getTime(), "reporter" : "michael", "status" : "new"});
+
+        jobRef.setPriority(1/(new Date()).getTime());
+
+        $("#inputLocation").val("");
+        $("#inputTitle").val("");
+        $("#inputDescription").val("");
+
+        $('#createJobModal').modal('hide');
+    });
 }
 
 
