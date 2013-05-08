@@ -15,7 +15,7 @@ var labelTypes = new Array();
 //var newLabel = false;
 var labelColorPairs = {};
 
-var noLabelSelected = "Select a label for this job.";
+var noLabelSelected = "Select a label for a job";
 
 $('document').ready(function() {
 
@@ -147,7 +147,7 @@ $('document').ready(function() {
         // addNewLabel(name);
 
         var labelsRef = new Firebase("https://mit-fixit.firebaseio.com/labels");
-        labelsRef.push({"name" : name, "color" : "red"});
+        labelsRef.push({"name" : name, "color" : "#FFCCF2"});
 
     });
 
@@ -979,7 +979,7 @@ function loadAddressBook() {
     	$("#c" + c).append(contactText);
     	//$("#c" + c).append(typeImg);
     	$("#c" + c).css('top', topLoc + "px");
-    	$("#c" + c).css('height', 70 + "px");
+    	$("#c" + c).css('height', 77 + "px");
     	    
     }
 }
@@ -1009,7 +1009,7 @@ function filterContacts(){
                 $("#c" + c).append(contactText);
                 $("#c" + c).append(typeImg);
                 $("#c" + c).css('top', topLoc + "px");
-                $("#c" + c).css('height', 70 + "px");
+                $("#c" + c).css('height', 77 + "px");
             }
         }
     });
