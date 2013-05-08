@@ -476,7 +476,7 @@ body {
     margin-top: 75px;
 }
 
-.labeldropdown{
+#labeldropdown{
     /*float:left;
     display: inline;*/
     width: 200px;
