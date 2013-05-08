@@ -141,6 +141,26 @@ $('document').ready(function() {
         addNewLabel(name);
     });
 
+    $(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
+    $('#create-job-form').on('submit', function(event) {
+
+        var jobsRef = new Firebase("https://mit-fixit.firebaseio.com/jobs");
+
+        var location = $("#inputLocation").val();
+        var title = $("#inputTitle").val();
+        var desc = $("#inputDescription").val();
+
+        var jobRef = jobsRef.push({"location" : location, "title" : title, "text" : desc, "time" : (new Date()).getTime(), "reporter" : "michael", "status" : "new"});
+
+        jobRef.setPriority(1/(new Date()).getTime());
+
+        $("#inputLocation").val("");
+        $("#inputTitle").val("");
+        $("#inputDescription").val("");
+
+        $('.modal.in').modal('hide');
+    });
+
     /***** 
      * Right Panel 
      */ 
@@ -600,38 +620,6 @@ function replaceMiddlePanel(tab) {
     allMiddlePanelHTML += "</span> \
                             <span class='add-job'> \
                                 <a role='button' class='btn btn-create btn-custom' data-target='#createJobModal' data-toggle='modal'> + </a> \
-                                <div id='createJobModal' class='modal hide fade' tabindex='-1' role='dialog'> \
-                                    <div class='modal-header'> \
-                                        <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button> \
-                                        <h3> Create Job </h3> \
-                                    </div>  \
-                                    <div class='modal-body'> \
-                                        <form class='form-horizontal' id='create-job-form'> \
-                                            <div class='control-group'> \
-                                                <label class='control-label' for='inputLocation'>Location</label> \
-                                                <div class='controls'> \
-                                                    <input type='text' id='inputLocation' placeholder='McCormick - Room 501' required> \
-                                                </div> \
-                                            </div> \
-                                            <div class='control-group'> \
-                                                <label class='control-label' for='inputTitle'>Title</label> \
-                                                <div class='controls'> \
-                                                    <input type='text' id='inputTitle' placeholder='Title' required> \
-                                                </div> \
-                                            </div> \
-                                            <div class='control-group'> \
-                                                <label class='control-label' for='inputDescription'>Description</label> \
-                                                <div class='controls'> \
-                                                    <textarea type='text' id='inputDescription' placeholder='Description' rows='7' required></textarea> \
-                                                </div> \
-                                            </div> \
-                                            <div> \
-                                                <button id='create-job-close-btn' type='button' data-dismiss='modal' class='btn'>Cancel</button> \
-                                                <button id='create-job' type='submit' class='btn btn-custom'>Create Job</button> \
-                                            </div> \
-                                        </form> \
-                                    </div> \
-                                </div> \
                             </span> \
                             <span class='add-label-to-job'> \
                             </span> \
@@ -736,35 +724,9 @@ function replaceMiddlePanel(tab) {
     } else {
         replaceDetails(selectedJob, selectedJobView);
     }
-
-    addCreateListener();
-
-    $(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
-
     updateLabelDropDown();
 
 
-}
-
-var addCreateListener = function() {
-    $('#create-job-form').on('submit', function(event) {
-
-        var jobsRef = new Firebase("https://mit-fixit.firebaseio.com/jobs");
-
-        var location = $("#inputLocation").val();
-        var title = $("#inputTitle").val();
-        var desc = $("#inputDescription").val();
-
-        var jobRef = jobsRef.push({"location" : location, "title" : title, "text" : desc, "time" : (new Date()).getTime(), "reporter" : "michael", "status" : "new"});
-
-        jobRef.setPriority(1/(new Date()).getTime());
-
-        $("#inputLocation").val("");
-        $("#inputTitle").val("");
-        $("#inputDescription").val("");
-
-        $('.modal.in').modal('hide');
-    });
 }
 
 
