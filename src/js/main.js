@@ -1003,11 +1003,11 @@ function filterContacts(){
                 var contactImg = '<div class="imgdiv" id="i' + c + '"><img class="contactImg" src="' +
                     contact.getPicture() + '" /></div>';
                 var contactText = '<div class="contactText" id="t' + c + '">' + name + phone + email + '</div';
-                var typeImg = '<div><img class="typeImg" src="images/wrench.gif"/></div>';
+                //var typeImg = '<div><img class="typeImg" src="images/wrench.gif"/></div>';
 
                 $("#c" + c).append(contactImg);
                 $("#c" + c).append(contactText);
-                $("#c" + c).append(typeImg);
+                //$("#c" + c).append(typeImg);
                 $("#c" + c).css('top', topLoc + "px");
                 $("#c" + c).css('height', 77 + "px");
             }
