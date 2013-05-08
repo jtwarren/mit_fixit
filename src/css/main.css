@@ -114,12 +114,25 @@ body {
 }
 
 .assigned-mechanic-img {
-    padding-right: 5px;
+    width: 50px;
+    height: 50px;
+    border-width: 1px;
+    border-style: solid;
+    margin-left: 0px;
+    margin-top: 0px;
+}
+
+.assigned-mechanic-name {
+    margin-left: 2px;
+    padding-top: 50px;
+    margin-bottom: 0px;
 }
 
 .assigned-mechanic {
+    margin-top: 10px;
     margin-bottom: 0px;
     padding-left: 10px;
+    width: 200px;
 }
 
 
@@ -375,8 +388,8 @@ body {
 }
 
 #assign-button {
-    float: right; 
     margin-top: 10px;
+    margin-left: 0px;
 }
 
 #reassign-button {
@@ -516,6 +529,28 @@ body {
     text-align: center;
     margin-top: 10px;
     padding-bottom: 10px;
+}
+
+#mechanic-selection-widget {
+    float: right;
+}
+
+#mechanic-selection-widget-container{
+    width:500px;
+    height: 300px;
+}
+
+.assignment-buttons {
+    float: right;
+    margin-top: 10px;
+}
+
+.unassign-button {
+    margin-left: 5px;
+}
+
+.reassign-button {
+    margin-left: 5px;
 }
 
 #create-job {
