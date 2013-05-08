@@ -418,8 +418,7 @@ body {
 }
 
 #myLabelCreator{
-    height:200px;
-    width: 400px;
+    height:180px;
     overflow:auto;
     overflow-x: hidden;
 }
@@ -446,7 +445,7 @@ body {
     width: 325px;
     margin-left:auto; 
     margin-right:auto; 
-    margin-top: 20px; 
+    margin-top: 30px; 
 }
 
 #update-textarea {
@@ -575,4 +574,12 @@ body {
 
 #inputDescription {
     resize:none; 
+}
+
+#inputtext { 
+    width: 475px; 
+}
+
+#myAddressModal {
+    width: auto; 
 }
