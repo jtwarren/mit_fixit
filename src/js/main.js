@@ -555,7 +555,7 @@ function createLabelCSS(labelName){
 
 // Replace the details for a given job
 function replaceDetails(job, jobView) {
-
+    console.log("replaceDetails is bieng called...");
     var rightPanelHTML = '<div class="description shadow"> \
                        <span class="job-title"> \
                             <span></span> \
@@ -631,9 +631,14 @@ function replaceDetails(job, jobView) {
         $(".assigned-mechanic-name").text(job.getWorker().getName());
         $(".mechanic-selection-widget-container").append($('<span class="assignment-buttons"><button class="btn btn-custom reassign-button">Re-Assign</button><button class="btn btn-custom unassign-button">Un-Assign</button></span>'));
         $(".unassign-button").click(function(){
-            console.log(job.getWorker().getName());
-            job.setWorker(null);
+            // console.log(job.getWorker().getName());
+            job.unassign();
             replaceDetails(job, jobView);
+            // console.log(job.getWorker());
+        });
+
+        $(".reassign-button").click(function(){
+            
         });
         $(".assigned-mechanic").hide(); 
         $("#assign-button").hide(); 

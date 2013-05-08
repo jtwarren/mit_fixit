@@ -171,7 +171,7 @@ fixit.Job = function(title, text, location, time, reporter, status, assignedTo, 
 	}
 
     this.unassign = function() {
-        console.log("unassign");
+        // console.log("unassign");
         jobRef.update({"status" : "new", "assigned" : null});
     }
 }
