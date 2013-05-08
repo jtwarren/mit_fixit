@@ -398,7 +398,7 @@ function replaceDetails(job, jobView) {
         }
         console.log(worker.text);
         debugger; 
-        if (!originalOption || !currentWorker || worker.text === 'Select a mechanic:') {
+        if (!originalOption) {
             "<img class='assigned-mechanic-option' src='images/default.png' /> No mechanic selected.";
         }
         return "<img class='assigned-mechanic-option' src='" + currentWorker.getPicture() + "' />" + currentWorker.getName();
