@@ -658,7 +658,7 @@ function replaceDetails(job, jobView) {
                             <!--<span class="currently-assigned-text"><b>Assigned to:</b> </span>--> \
                             <span class="mechanic-selection-widget-container">  \
                                 <img class="assigned-mechanic-img" style="width:50px" src="images/default.png"/> \
-                                <span class="assigned-mechanic-name"> No one.</span></span>\
+                                <span class="assigned-mechanic-name"> No one</span></span>\
                                 <span id="mechanic-selection-widget"> \
                                 <select class="assigned-mechanic"> \
                             </select> \

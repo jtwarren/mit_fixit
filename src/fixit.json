@@ -1,89 +1,213 @@
 {
   "jobs" : {
-    "-Itxed2rOB8Bq6T3C9HX" : {
-      ".priority" : 7.310076183346178E-13,
-      "starred" : true,
-      "status" : "assigned",
-      "location" : "McCormick - Room 717",
-      "title" : "Noise complaint",
-      "assigned" : "billy",
-      "reporter" : "michael",
-      "updates" : {
-        "-Iu0ct6vG1PU__-AXsXL" : {
-          "user" : "michael",
-          "time" : 1367974579300,
-          "text" : "Hes"
-        },
-        "-Iu0cqPBKgkuU4qn97AM" : {
-          "user" : "michael",
-          "time" : 1367974568181,
-          "text" : "Hey"
-        }
-      },
-      "time" : 1367974799331,
-      "text" : "These people are being far too loud.  Please tell them to be quiet!",
-      "labels" : {
-        "-Iu0rIRuZWYly0dZUcx6" : {
-          "label" : "cool"
-        }
-      }
-    },
-    "-Iu0YOHqDyw5RZ3Z3uFu" : {
-      ".priority" : 7.310071296842209E-13,
-      "starred" : true,
+    "-Iu3GoVh0F87cdhJp1zX" : {
+      ".priority" : 7.309833018548428E-13,
       "status" : "completed",
       "location" : "McCormick - East Penthouse",
-      "title" : "Light bulbs smashed",
+      "label" : "electricity",
+      "title" : "Broken light bulb",
       "assigned" : "billy",
       "reporter" : "michael",
       "updates" : {
-        "-Iu0hB0aC0QFC-wBlCXp" : {
+        "-Iu3LuIBjuhlZaR8z-6f" : {
+          "user" : "billy",
+          "time" : 1365601110316,
+          "text" : "There are no lightbulbs in the supply room, can you order some?"
+        },
+        "-Iu3MH-MFbwfGRuB6eEr" : {
           "user" : "michael",
-          "time" : 1367975713766,
-          "text" : "new"
+          "time" : 1365601110316,
+          "text" : "I ordered some light bulbs from home depot.  They should arrive by Wednesday morning and they'll be in the supply closet."
         }
       },
-      "time" : 1367975713770,
-      "text" : "There are several light bulbs smashed in the penthouse of McCormick hall.  There are several light bulbs smashed in the penthouse of McCormick hall.  There are several light bulbs smashed in the penthouse of McCormick hall.  There are several light bulbs smashed in the penthouse of McCormick hall.",
-      "labels" : {
-        "-Iu0rIRqIdOd6TiZ3JJz" : {
-          "label" : "cool"
-        }
-      }
+      "time" : 1365601110316,
+      "text" : "There are several light bulbs smashed in the penthouse of McCormick hall. There are several light bulbs smashed in the penthouse of McCormick hall. There are several light bulbs smashed in the penthouse of McCormick hall. There are several light bulbs smashed in the penthouse of McCormick hall."
     },
-    "-Iu0tfrK7hOIzUpWxI6h" : {
-      ".priority" : 7.310053788664006E-13,
+    "-Iu3HHldxnIiKbCRf6zl" : {
+      ".priority" : 7.309832587402948E-13,
       "starred" : true,
-      "status" : "assigned",
-      "location" : "MacGregor - J317",
-      "title" : "Poop on the floor",
-      "assigned" : "billy",
-      "reporter" : "anurag",
-      "time" : 1367978990164,
-      "text" : "There is so much poop on the floor and I don't know what to do.  It smells really bad and I think I might throw up."
-    },
-    "-Itw50tsgV1wSRjGmpFa" : {
-      ".priority" : 7.310062362499579E-13,
-      "starred" : true,
-      "status" : "assigned",
-      "location" : "McCormick - Room 501",
+      "status" : "completed",
+      "location" : "McCormick - Room 313",
       "title" : "Vomit on the floor",
-      "assigned" : "michael",
+      "assigned" : "jenks",
       "reporter" : "michael",
       "updates" : {
-        "-Iu0naHo1qOKerxFz36h" : {
+        "-Iu3M_lcxAvRyIS4T5l0" : {
+          "user" : "jenks",
+          "time" : 1366465227346,
+          "text" : "Sounds good, thanks!"
+        },
+        "-Iu3MZ1tYZNIn0BCwMzX" : {
           "user" : "michael",
-          "time" : 1367977385704,
-          "text" : "Hey"
+          "time" : 1366465227346,
+          "text" : "We'll make an exception this time, but this student should clean up their own vomit in the future."
         }
       },
-      "time" : 1367977385706,
-      "text" : "There is an extremely large volume of vomit on the floor and I am unsure how to go about cleaning it up.  I would appreciate if someone could clean it for me.",
-      "labels" : {
-        "-Iu0rIRoCZS4YdLEayaB" : {
-          "label" : "cool"
+      "time" : 1366465227346,
+      "text" : "There is an extremely large volume of vomit on the floor and I am unsure how to go about cleaning it up. I would appreciate if someone could clean it for me."
+    },
+    "-Iu3HnXqqihFvSB2lDhZ" : {
+      ".priority" : 7.309839290163862E-13,
+      "status" : "completed",
+      "location" : "McCormick - 4th East",
+      "label" : "plumbing",
+      "title" : "Toilet clogged",
+      "assigned" : "jenks",
+      "reporter" : "michael",
+      "time" : 1367760868270,
+      "text" : "The toilet in the rightmost stall has been clogged for a few days.  I've tried to flush it and even plunge it but nothing seems to be working.  You might want to bring a heavy duty plunger.  "
+    },
+    "-Iu3HswLpHVxwcJkg74t" : {
+      ".priority" : 7.309831186976649E-13,
+      "status" : "new",
+      "location" : "Baker - 612",
+      "title" : "Door lock jammed",
+      "reporter" : "michael",
+      "time" : 1368020648387,
+      "text" : "The lock to my room is jammed and it's really hard to lock/unlock.  I often run to class and don't have time to deal with the lock.  It looks like there might be gum or some other sticky substance in the door."
+    },
+    "-Iu3H7ForFzwexha3V5Q" : {
+      ".priority" : 7.309831675755487E-13,
+      "status" : "completed",
+      "location" : "McCormick - 7th West",
+      "title" : "Wobbly chair",
+      "assigned" : "jenks",
+      "reporter" : "michael",
+      "updates" : {
+        "-Iu3NEQBjoFDSEwHBVqF" : {
+          "user" : "jenks",
+          "time" : 1366897380661,
+          "text" : "Got it, thanks!"
+        },
+        "-Iu3NBoFmsVuqgnj1hPY" : {
+          "user" : "michael",
+          "time" : 1366897380661,
+          "text" : "There should be screws and extra parts in the supply closet. Let me know if you need anything!"
         }
-      }
+      },
+      "time" : 1366897380661,
+      "text" : "One of the chairs in the 7th west kitchen is very wobbly.  My friend was just sitting in the chair, minding her own business.  Before anyone knew it, she was on the floor with a minor concusssion.  "
+    },
+    "-Iu3Ivmf3tL6UGNxLcWR" : {
+      ".priority" : 7.309828287503283E-13,
+      "starred" : true,
+      "status" : "assigned",
+      "location" : "McCormick - 6th West",
+      "label" : "plumbing",
+      "title" : "Refridgerator not cold enough",
+      "assigned" : "billy",
+      "reporter" : "michael",
+      "updates" : {
+        "-Iu3PeDTzfPAzvbBMK39" : {
+          "user" : "michael",
+          "time" : 1368010396692,
+          "text" : "This students seems to be very demanding.  Just check this out to make sure the fridge is working."
+        }
+      },
+      "time" : 1368010396692,
+      "text" : "I have a lot of chemicals that I need to keep at exactly 33.6 degrees and the refridgerator in the kitchen is not cold enough.  Is there any way this could be fixed to accomodate my needs?"
+    },
+    "-Iu3GuDd_rbmB8CPX4T7" : {
+      ".priority" : 7.30984054463358E-13,
+      "status" : "new",
+      "location" : "Maseeh - 3091",
+      "title" : "Window leak",
+      "reporter" : "michael",
+      "time" : 1368018897117,
+      "text" : "The window in my room leaks every time it rains.  I have been putting a towel on the window to soak up the water but I'd really appreciate if this could be fixed."
+    },
+    "-Iu3HRf6vKe-tsyKgkQu" : {
+      ".priority" : 7.309823171534546E-13,
+      "starred" : true,
+      "status" : "assigned",
+      "location" : "Baker - 341",
+      "label" : "electricity",
+      "title" : "Spotty wifi service",
+      "assigned" : "billy",
+      "reporter" : "michael",
+      "updates" : {
+        "-Iu3TLUkiGyeLNvCGnu4" : {
+          "user" : "michael",
+          "time" : 1368022148458,
+          "text" : "Sounds good. Keep me posted, Billy."
+        },
+        "-Iu3Qr-8gyQ9lkUQQKIV" : {
+          "user" : "billy",
+          "time" : 1367999954688,
+          "text" : "I will bring a new router to the 3rd floor and run some tests."
+        },
+        "-Iu3JR05W-G-t3wDMqON" : {
+          "user" : "michael",
+          "time" : 1367998540359,
+          "text" : "This issue needs to be taken care of ASAP.  Finals are coming up and wifi issues are top priority."
+        }
+      },
+      "time" : 1368022148466,
+      "text" : "The wifi in my room is spotty at best.  I've run various connection tests and they all report very poor status.  I am paying to live in a dorm and I should have good wifi.  I need to get my work done and I'm very upset about this.  Please send someone to put a wifi router in my room as soon as possible.  I am willing to pay for special wifi service."
+    },
+    "-Iu3I9f_FHFHG_tqLD2F" : {
+      ".priority" : 7.309838783761557E-13,
+      "starred" : false,
+      "status" : "new",
+      "location" : "Maseeh - 6042",
+      "title" : "Hole in the wall",
+      "reporter" : "michael",
+      "time" : 1367933684304,
+      "text" : "I got into a fight with my friend and accidentally punched a hole in the wall.  I am scared because there are visible wires. The hole is about 6 inches in diameter about 3-4 inches deep."
+    },
+    "-Iu3H-SakETEYg6Il-hP" : {
+      ".priority" : 7.309829795265909E-13,
+      "starred" : true,
+      "status" : "assigned",
+      "location" : "Baker - 617",
+      "label" : "electricity",
+      "title" : "Heater not working",
+      "assigned" : "billy",
+      "reporter" : "michael",
+      "updates" : {
+        "-Iu3O_KlOVUI3FyGrQbC" : {
+          "user" : "billy",
+          "time" : 1367675327619,
+          "text" : "New parts have been ordered and will arrive next week."
+        }
+      },
+      "time" : 1367675327619,
+      "text" : "The heater in my room is not working.  There was a large spark last time I tried to turn the heater on; it came from the knob.  The heater hasn't worked since and it's getting really cold!"
+    },
+    "-Iu3HWlNhAwbT1q-BWq5" : {
+      ".priority" : 7.30983023505662E-13,
+      "starred" : false,
+      "status" : "assigned",
+      "location" : "McCormick - Basement",
+      "title" : "Dryer stuck",
+      "assigned" : "billy",
+      "reporter" : "michael",
+      "updates" : {
+        "-Iu3OGEqrOhWOpczLoXF" : {
+          "user" : "billy",
+          "time" : 1367502468105,
+          "text" : "I have ordered new parts and they will be in within a week or two."
+        }
+      },
+      "time" : 1367502468105,
+      "text" : "In an attempt to wash my collection of pet rocks, I somehow broke the dryer.  The washer machine worked fine; however, when I came down to get my rocks out of the dryer, I couldn't open the door.  It appears that one of the rocks is now lodged against the door preventing it from being opened."
+    },
+    "-Iu3Hf67O3KUkIRvlQcN" : {
+      ".priority" : 7.309829325584493E-13,
+      "status" : "assigned",
+      "location" : "McCormick - Country Kitchen",
+      "title" : "Mice in the kitchen",
+      "assigned" : "jenks",
+      "reporter" : "michael",
+      "updates" : {
+        "-Iu3Oun9xZzBec1dz0P6" : {
+          "user" : "michael",
+          "time" : 1367761801361,
+          "text" : "I've placed several traps and put down some rat poison.  I will check back every couple of days to reassess.  "
+        }
+      },
+      "time" : 1367761801361,
+      "text" : "I've been seeing a lot of mice in the kitchen recently.  I see them a lot during the hours of 10:00pm and 3:00am.  I would estimate that there are ~5-6 mice based on how many I've seen (they're not all the same size/color).  This really freaks me out when I study alone so could you please set up some traps ASAP!?"
     }
   },
   "users" : {
@@ -143,15 +267,15 @@
         "email" : "michael@mit.edu"
       }
     }
-  }, 
+  },
   "labels" : {
     "electricity" : {
       "name" : "electricity",
-      "color" : "red"
+      "color" : "#FFCCCC"
     },
     "plumming" : {
-      "name" : "plumming",
-      "color" : "red"
+      "name" : "plumbing",
+      "color" : "#EFCCFF"
     }
   }
 }
