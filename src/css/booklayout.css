@@ -43,10 +43,11 @@
 }
 
 .contact{
-	position:absolute;
+	/*position:absolute;*/
 	border-style: solid;
 	width: 520px;
-	display:table;
+	height: 65px;
+	/*display:table;*/
 }
 
 .contact .name{
@@ -69,11 +70,11 @@
 
 .contactImg{
 	float:left;
-	height:75px;
-	width:75px;
+	height:50px;
+	width:50px;
 	vertical-align:middle;
-	margin-left: 10px; 
-	margin-top:5px; 
+	margin-left: 15px; 
+	margin-top:10px; 
 }
 
 .contactText{

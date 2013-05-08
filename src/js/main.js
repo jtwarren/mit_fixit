@@ -979,7 +979,7 @@ function loadAddressBook() {
     	$("#c" + c).append(contactText);
     	//$("#c" + c).append(typeImg);
     	$("#c" + c).css('top', topLoc + "px");
-    	$("#c" + c).css('height', 77 + "px");
+    	$("#c" + c).css('height', 70 + "px");
     	    
     }
 }
@@ -1009,7 +1009,7 @@ function filterContacts(){
                 $("#c" + c).append(contactText);
                 $("#c" + c).append(typeImg);
                 $("#c" + c).css('top', topLoc + "px");
-                $("#c" + c).css('height', 77 + "px");
+                $("#c" + c).css('height', 70 + "px");
             }
         }
     });

@@ -605,7 +605,11 @@ body {
     font-style: italic;
     font-size:0.9em;
 }
-
+/*
 #inputtext {
     position: fixed;
 }
+
+#table {
+    max-height: 275px;
+}*/
