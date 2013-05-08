@@ -542,7 +542,7 @@ function replaceDetails(job, jobView) {
     $(".description-panel .description .job-reporter").html(reporter.getName() + ", " + reporter.getEmail() + ", " + reporter.getPhone());
 
     if (!job.getWorker()) {
-        $(".assigned-mechanic").append('<option selected="selected" value=""> Select a mechanic. </option>');
+        //$(".assigned-mechanic").append('<option selected="selected" value=""> Select a mechanic. </option>');
         for (var i = 0; i < workers.length; i++) {
             if (job.getWorker() && job.getWorker().getName() === workers[i].getName()) {
                 $(".assigned-mechanic").append($('<option selected="selected" value=' + i + '>' + workers[i].getName() + '</option>'));
