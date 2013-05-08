@@ -307,7 +307,9 @@ var giveRightPanelAssignedClickHandler = function(jobView, jobModel, assignedBut
             $("#assign-button").hide(); 
             $("#reassign-button").show(); 
             $("#reassign-button").click(function() {
-                alert("I WANT TO REASSIGN");
+                $("#assign-button").show(); 
+                $(".assigned-mechanic").show();
+                $("#reassign-button").hide(); 
             }); 
         } else {
             alert("Unassigning mechanic"); 
@@ -556,7 +558,9 @@ function replaceDetails(job, jobView) {
         $("#assign-button").hide(); 
         $("#reassign-button").show(); 
         $("#reassign-button").click(function() {
-            alert("I WANT TO REASSIGN");
+             $("#assign-button").show(); 
+             $(".assigned-mechanic").show();
+             $("#reassign-button").hide(); 
         }); 
     }
     
