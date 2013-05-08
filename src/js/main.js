@@ -365,12 +365,12 @@ function replaceDetails(job, jobView) {
     var reporter = job.getReporter();
     $(".description-panel .description .job-reporter").html(reporter.getName() + ", " + reporter.getEmail() + ", " + reporter.getPhone());
 
-    $(".assigned-mechanic").append("<option value='default'>Select a mechanic:</option> ");
-    for (var i = 0; i < workers.length; i++) {
+    $(".assigned-mechanic").append("<option value='0'>Select a mechanic:</option> ");
+    for (var i = 1; i < workers.length+1; i++) {
         var currentWorker = job.getWorker();
         if (currentWorker && currentWorker.getName() === workers[i].getName()) {
-            $(".assigned-mechanic").append($('<option selected="selected" value=' + i +
-                ' data-image="'+workers[i].getPicture()+ '>' + 'Currently Assigned:'+ workers[i].getName() + '</option>'));
+            $(".assigned-mechanic").append($('<option value=' + i +
+                ' data-image="'+workers[i].getPicture()+ '>' + workers[i].getName() + '</option>'));
         } else {
 
             $(".assigned-mechanic").append($('<option value=' + i + ' data-image="'+workers[i].getPicture()+'">' 
