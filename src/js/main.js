@@ -336,6 +336,7 @@ var giveRightPanelAssignedClickHandler = function(jobView, jobModel, assignedBut
             jobModel.unassign();
             replaceDetails(jobModel, jobView);
             replaceMiddlePanel(selectedTab);
+            updateLabelDropDown();
             // console.log(job.getWorker());
         });
         } else {
@@ -895,7 +896,16 @@ function replaceMiddlePanel(tab) {
     } else {
         replaceDetails(selectedJob, selectedJobView);
     }
-    updateLabelDropDown();
+
+    if(selectedJob != null){
+        $(".add-label-to-job").html("<form action='' class='labelform'> \
+                                    <select id ='labeldropdown' name='labellist' multiple='multiple'> \
+                                        <option value='selectlabels'>" + noLabelSelected + "</option> \
+                                    </select> \
+                                </form>");
+
+        updateLabelDropDown();
+    }
 
 
 }
