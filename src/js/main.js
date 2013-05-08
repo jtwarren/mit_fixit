@@ -152,6 +152,10 @@ $('document').ready(function() {
     });
 
     $("#logout-button").click(function() {
+            var firebase = new Firebase("https://mit-fixit.firebaseio.com/");
+    
+        var authClient = new FirebaseAuthClient(firebase);
+        authClient.unauth();
         window.location.href = "login.html";
     });
 
