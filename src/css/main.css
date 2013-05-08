@@ -598,15 +598,8 @@ body {
     resize:none; 
 }
 
-#inputtext { 
-    width: 475px; 
-}
-
-#myAddressModal {
-    width: auto; 
-}
-
 #appendix {
     margin-top: 30px;
     font-style: italic;
+    font-size:0.9em;
 }

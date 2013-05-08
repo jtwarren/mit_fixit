@@ -1,7 +1,8 @@
 ﻿#inputtext{
 	float: left;
-	margin: 10px; 
-	width: 375px;
+	margin: 10px;
+	margin-top: 0px;  
+	width: 475px;
 }
 
 #table{
@@ -10,14 +11,18 @@
 	left: 10px;
 	margin:12px; 
 	vertical-align:middle; 
+	margin-left: auto;
+	margin-right: auto; 
 }
 
 #search{
-	position:absolute;
-	top: 0;
+    position:absolute;
+	top: 15px;
 	left: 12px;
+	right: 12px; 
+	/*position: fixed;*/
 	height: 30px;
-	width: 400px;
+	width: auto;
 }
 
 #searchbutton{
@@ -29,19 +34,18 @@
 #myAddressModal{
 	overflow:auto;
 	overflow-x: hidden; 
-	height:500px;
-	width: 460px; 
 }
 
 .modal-body{
-    height:500px; 
-    width: 425px;
+    height:400px; 
+    width: auto;
+    margin-bottom:10px; 
 }
 
 .contact{
 	position:absolute;
 	border-style: solid;
-	width: 400px;
+	width: 520px;
 	display:table;
 }
 
@@ -68,12 +72,14 @@
 	height:75px;
 	width:75px;
 	vertical-align:middle;
+	margin-left: 10px; 
+	margin-top:5px; 
 }
 
 .contactText{
 	float:left;
-	padding-left:25px;
-	padding-top: 1px;
+	padding-left:40px;
+	padding-top: 5px;
 	display:table-cell;
 	vertical-align:middle;
 }
