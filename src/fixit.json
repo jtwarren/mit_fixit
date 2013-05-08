@@ -4,7 +4,7 @@
       ".priority" : 7.309833018548428E-13,
       "status" : "completed",
       "location" : "McCormick - East Penthouse",
-      "label" : "electricity",
+      "label" : "Electricity",
       "title" : "Broken light bulb",
       "assigned" : "billy",
       "reporter" : "michael",
@@ -50,7 +50,7 @@
       ".priority" : 7.309839290163862E-13,
       "status" : "completed",
       "location" : "McCormick - 4th East",
-      "label" : "plumbing",
+      "label" : "Plumbing",
       "title" : "Toilet clogged",
       "assigned" : "jenks",
       "reporter" : "michael",
@@ -93,7 +93,7 @@
       "starred" : true,
       "status" : "assigned",
       "location" : "McCormick - 6th West",
-      "label" : "plumbing",
+      "label" : "Plumbing",
       "title" : "Refridgerator not cold enough",
       "assigned" : "billy",
       "reporter" : "michael",
@@ -118,10 +118,10 @@
     },
     "-Iu3HRf6vKe-tsyKgkQu" : {
       ".priority" : 7.309823171534546E-13,
-      "starred" : true,
+      "starred" : false,
       "status" : "assigned",
       "location" : "Baker - 341",
-      "label" : "electricity",
+      "label" : "Plumbing",
       "title" : "Spotty wifi service",
       "assigned" : "billy",
       "reporter" : "michael",
@@ -160,7 +160,7 @@
       "starred" : true,
       "status" : "assigned",
       "location" : "Baker - 617",
-      "label" : "electricity",
+      "label" : "Electricity",
       "title" : "Heater not working",
       "assigned" : "billy",
       "reporter" : "michael",
@@ -269,13 +269,21 @@
     }
   },
   "labels" : {
+    "-Iu3WxvMl0dIk1yds4GO" : {
+      "name" : "Construction",
+      "color" : "#FFCCF2"
+    },
     "electricity" : {
-      "name" : "electricity",
+      "name" : "Electricity",
       "color" : "#FFCCCC"
     },
     "plumming" : {
-      "name" : "plumbing",
+      "name" : "Plumbing",
       "color" : "#EFCCFF"
+    },
+    "-Iu3Xh7ZoncAxdsxoTIR" : {
+      "name" : "",
+      "color" : "#FFCCF2"
     }
   }
 }
