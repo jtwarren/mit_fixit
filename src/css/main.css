@@ -202,7 +202,7 @@ body {
 }
 
 .job .job-description-text .blurb-time{
-    font-size: 1em;
+    font-size: .8em;
     float: right; 
     padding-right: 10px;
 }
