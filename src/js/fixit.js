@@ -82,10 +82,12 @@ fixit.Job = function(title, text, location, time, reporter, status, assignedTo, 
 
     this.addUpdate = function(update, persist){
 		updateList.push(update);
+        var updateRef = null
         if (persist) {
             ms = (new Date()).getTime();
-            jobRef.child("/updates").push({"text" : update.getText(), "user" : "michael", "time" : ms});
+            updateRef = jobRef.child("/updates").push({"text" : update.getText(), "user" : "michael", "time" : ms});
         }
+        return updateRef;
 	}
 
     this.addLabel = function(name){
