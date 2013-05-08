@@ -466,7 +466,7 @@ body {
 }
 
 .add-job {
-    float:left;
+    /*float:left;*/
     margin-right:5px;
 }
 
