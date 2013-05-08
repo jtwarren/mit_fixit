@@ -53,11 +53,6 @@ $('document').ready(function() {
         currentJob = new fixit.Job(job.title, job.text, job.location, job.time, reporter, job.status, job.assigned, job.starred);
         currentJob.setJobRef(snapshot.ref());
 
-        // if (job.assigned) {
-        //     currentJob.setWorker(job.assigned);
-        // }
-
-
         var updates = snapshot.child("/updates");
 
         updates.forEach(function(childSnapshot) {
@@ -72,26 +67,13 @@ $('document').ready(function() {
             currentJob.addUpdate(up, false);
         });
 
-
-        // if (updates) {
-        //     $.each(updates, function(i, update){
-        //         var dataRef = new Firebase('https://mit-fixit.firebaseio.com/users/mechanics/' + update.user);
-        //         console.log(update.ref());
-        //         dataRef.on('value', function(snapshot) {
-        //             user = snapshot.val()
-        //             nUser = new fixit.Person(user.name, user.email, user.phone, user.picture, user.id)
-        //         });
-        //         currentJob.addUpdate(new fixit.Update(nUser, update.text, update.time), false);
-        //     });
-        // }
-
-        
-
-        addJob(currentJob);
+        // addJob(currentJob);
         jobList.push(currentJob);
+
+        jobList.sort(sortByTime);
+        replaceMiddlePanel(selectedTab);
     });
 
-    // jobList.sort(sortByTime);
     
 
 
@@ -113,9 +95,9 @@ $('document').ready(function() {
                                     </select> \
                                 </form>");
             //<option value='selectlabels'>Select labels</option> \
-            /*$("#labeldropdown").multiselect({
-                header: false
-            });*/
+            /* $("#labeldropdown").multiselect({
+             //   header: false
+           // }); */
         }
         updateLabelDropDown();
         for(var i = 0; i < labelTypes.length; i++){
@@ -123,24 +105,25 @@ $('document').ready(function() {
         }
     });
 
-    $('#create-job-form').on('submit', function(event) {
+    // $('#create-job-form').on('submit', function(event) {
 
-        var jobsRef = new Firebase("https://mit-fixit.firebaseio.com/jobs");
+    //     var jobsRef = new Firebase("https://mit-fixit.firebaseio.com/jobs");
 
-        var location = $("#inputLocation").val();
-        var title = $("#inputTitle").val();
-        var desc = $("#inputDescription").val();
+    //     var location = $("#inputLocation").val();
+    //     var title = $("#inputTitle").val();
+    //     var desc = $("#inputDescription").val();
 
-        var jobRef = jobsRef.push({"location" : location, "title" : title, "text" : desc, "time" : (new Date()).getTime(), "reporter" : "michael", "status" : "new"});
+    //     var jobRef = jobsRef.push({"location" : location, "title" : title, "text" : desc, "time" : (new Date()).getTime(), "reporter" : "michael", "status" : "new"});
 
-        jobRef.setPriority(1/(new Date()).getTime());
+    //     jobRef.setPriority(1/(new Date()).getTime());
 
-        $("#inputLocation").val("");
-        $("#inputTitle").val("");
-        $("#inputDescription").val("");
+    //     $("#inputLocation").val("");
+    //     $("#inputTitle").val("");
+    //     $("#inputDescription").val("");
 
-        $('#createJobModal').modal('hide');
-    });
+    //     $('#createJobModal').modal('hide');
+    // });
+
 
     /***** 
      * Right Panel 
@@ -161,6 +144,26 @@ $('document').ready(function() {
         $(".modal-backdrop").hide();
         labelTypes.push(name);
         addNewLabel(name);
+    });
+
+    $(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
+    $('#create-job-form').on('submit', function(event) {
+
+        var jobsRef = new Firebase("https://mit-fixit.firebaseio.com/jobs");
+
+        var location = $("#inputLocation").val();
+        var title = $("#inputTitle").val();
+        var desc = $("#inputDescription").val();
+
+        var jobRef = jobsRef.push({"location" : location, "title" : title, "text" : desc, "time" : (new Date()).getTime(), "reporter" : "michael", "status" : "new"});
+
+        jobRef.setPriority(1/(new Date()).getTime());
+
+        $("#inputLocation").val("");
+        $("#inputTitle").val("");
+        $("#inputDescription").val("");
+
+        $('.modal.in').modal('hide');
     });
 
     /***** 
@@ -300,15 +303,31 @@ var giveRightPanelAssignedClickHandler = function(jobView, jobModel, assignedBut
     assignedButton.click(function() {
         $(".job-buttons").find("#mark_completed_button").html("Mark complete");
         jobModel.setStatus("assigned");
-        worker = workers[parseInt($(".assigned-mechanic").find(":selected").val())]
-        selectedJob.setWorker(worker);
-        $(".assigned-mechanic-img").attr('src', selectedJob.getAssignedToPic());
-        jobView.prependTo($(".assigned-jobs"));
-        jobView.find(".mechanic-image").attr('src', selectedJob.getAssignedToPic());
-        jobView.find(".label-area").addClass("assigned-label");
-        jobView.find(".label-area").removeClass("unassigned-label");
-        jobView.find(".label-area").removeClass("completed-label");
-        jobView.find(".label-area").html("assigned");
+        console.log($(".assigned-mechanic").find(":selected").val());
+        if (parseInt($(".assigned-mechanic").find(":selected").val()) >= 0) {
+            worker = workers[parseInt($(".assigned-mechanic").find(":selected").val())]
+            selectedJob.setWorker(worker);
+            $(".assigned-mechanic-img").attr('src', selectedJob.getAssignedToPic());
+            jobView.prependTo($(".assigned-jobs"));
+            jobView.find(".mechanic-image").attr('src', selectedJob.getAssignedToPic());
+            jobView.find(".label-area").addClass("assigned-label");
+            jobView.find(".label-area").removeClass("unassigned-label");
+            jobView.find(".label-area").removeClass("completed-label");
+            jobView.find(".label-area").html("assigned");
+            console.log("hiding"); 
+            $(".assigned-mechanic-name").text(selectedJob.getWorker().getName());
+            $(".assigned-mechanic").hide(); 
+            $("#assign-button").hide(); 
+            $("#reassign-button").show(); 
+            $("#reassign-button").click(function() {
+                $("#assign-button").show(); 
+                $(".assigned-mechanic").show();
+                $("#reassign-button").hide(); 
+            }); 
+        } else {
+            alert("Unassigning mechanic"); 
+        }
+        
     });
 }
 
@@ -448,6 +467,7 @@ function addJob(currentJob) {
     var starIconMiddlePanel = job.find('.star');
     giveMiddlePanelStarIconClickHandler(job, currentJob, starIconMiddlePanel);
 
+
     $(".jobs").append(job);
     // if (currentJob.getStatus() == "unassigned" || 
     //     currentJob.getStatus() == "new") {
@@ -550,10 +570,17 @@ function replaceDetails(job, jobView) {
                     <div class="assignment shadow"> \
                         <!--<h4>Assignment</h4>--> \
                         <span> \
-                            <img class="assigned-mechanic-img" style="width:50px" src="images/default.png"/> \
+                            <div class="currently-assigned-text"> Currently Assigned: </div> \
+                            <span>  \
+                                <img class="assigned-mechanic-img" style="width:50px" src="images/default.png"/> \
+                                <div class="assigned-mechanic-name"> No one.</div>\
+                            </span> \
                             <select class="assigned-mechanic"> \
                             </select> \
                             <button id="assign-button" type="submit" class="btn btn-custom"><b>Assign</b></button> \
+                            <button id="reassign-button" type="submit" class="btn btn-custom" style="display: none"> \
+                                <b>Reassign</b> \
+                            </button> \
                         </span> \
                     </div> \
                     <div class="panel-updates shadow"> \
@@ -581,15 +608,29 @@ function replaceDetails(job, jobView) {
     var reporter = job.getReporter();
     $(".description-panel .description .job-reporter").html(reporter.getName() + ", " + reporter.getEmail() + ", " + reporter.getPhone());
 
-    for (var i = 0; i < workers.length; i++) {
-
-        if (job.getWorker() && job.getWorker().getName() === workers[i].getName()) {
-            $(".assigned-mechanic").append($('<option selected="selected" value=' + i + '>' + workers[i].getName() + '</option>'));
-            $(".assigned-mechanic-img").attr('src', job.getAssignedToPic());
-        } else {
-            $(".assigned-mechanic").append($('<option value=' + i + '>' + workers[i].getName() + '</option>'));
-        }
-    };
+    if (!job.getWorker()) {
+        //$(".assigned-mechanic").append('<option selected="selected" value=""> Select a mechanic. </option>');
+        for (var i = 0; i < workers.length; i++) {
+            if (job.getWorker() && job.getWorker().getName() === workers[i].getName()) {
+                $(".assigned-mechanic").append($('<option selected="selected" value=' + i + '>' + workers[i].getName() + '</option>'));
+                $(".assigned-mechanic-img").attr('src', job.getAssignedToPic());
+            } else {
+                $(".assigned-mechanic").append($('<option value=' + i + '>' + workers[i].getName() + '</option>'));
+            }
+        };
+    } else {
+        $(".assigned-mechanic-img").attr('src', job.getAssignedToPic());
+        $(".assigned-mechanic-name").text(job.getWorker().getName());
+        $(".assigned-mechanic").hide(); 
+        $("#assign-button").hide(); 
+        $("#reassign-button").show(); 
+        $("#reassign-button").click(function() {
+             $("#assign-button").show(); 
+             $(".assigned-mechanic").show();
+             $("#reassign-button").hide(); 
+        }); 
+    }
+    
 
     
     
@@ -629,6 +670,8 @@ function replaceDetails(job, jobView) {
         $update.append($img);
         $update.append($updateText);
         $(".updates").append($update);
+        $(".updates").scrollTop(999999999);
+        // $(".updates").scrollTop($('.updates').height());
     });
 
     if (job.isStarred()) {
@@ -657,19 +700,6 @@ function replaceDetails(job, jobView) {
 }
 
 function replaceMiddlePanel(tab) {
-    // console.log("replaceMiddlePanel() is being called.");
-    // console.log("replaceMiddlePanel() is being called.");
-    // var allMiddlePanelHTML = '<h4> Unassigned Jobs </h4> \
-    //                 <div class="unassigned-jobs job-group">  \
-    //                 </div> \
-    //                 <h4> Assigned Jobs </h4> \
-    //                 <div class="assigned-jobs job-group"> \
-    //                 </div> \
-    //                 <h4> Completed Jobs </h4> \
-    //                 <div class="completed-jobs job-group"> \
-    //                 </div> ';
-    // console.log("replaceMiddlePanel() is being called.");
-    //var allMiddlePanelHTML = "<h4 class='jobs-heading'> Jobs </h4> \
     var headingName;
     if(selectedTab === "alltab"){
         headingName = "All Jobs";
@@ -686,11 +716,6 @@ function replaceMiddlePanel(tab) {
     }
     $("#jobsearch").attr("placeholder", "Search " + headingName);
 
-    /*var allMiddlePanelHTML = " <div class='add-job'> <i class='icon-plus'> </i></div> \
-                    <h4 class='jobs-heading'>" + headingName +
-                    "</h4> \
-                    <div class='jobs job-group'> \
-                    </div>";*/
 
     var allMiddlePanelHTML = "<div class='topbar'> \
                         <span> \
@@ -699,20 +724,6 @@ function replaceMiddlePanel(tab) {
     allMiddlePanelHTML += "</span> \
                             <span class='add-job'> \
                                 <a role='button' class='btn btn-create btn-custom' data-target='#createJobModal' data-toggle='modal'> + </a> \
-                                <div id='createJobModal' class='modal hide fade' tabindex='-1' role='dialog'> \
-                                    <div class='modal-header'> \
-                                        <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button> \
-                                        <h3> Create Job </h3> \
-                                    </div> \
-                                    <div class='modal-body'> \
-                                        <form> \
-                                            <fieldset> \
-                                                <input type='text' placeholder='Type something...''> \
-                                                <button type='submit' class='btn'>Submit</button> \
-                                            </fieldset> \
-                                        </form> \
-                                    </div> \
-                                </div> \
                             </span> \
                             <span class='add-label-to-job'> \
                             </span> \
@@ -817,31 +828,9 @@ function replaceMiddlePanel(tab) {
     } else {
         replaceDetails(selectedJob, selectedJobView);
     }
-
     updateLabelDropDown();
-    /*else{
- Fixed starring bug (where after selecting a tab and then clicking the right panel star caused nothing to happen)
-            var jobContext = '<div class="job"> \
-                    <div class="starred"> <i class="star"></i> </div> \
-                    <div> <img class="mechanic-image" src="'
-        
-            jobContext += selectedJob.getAssignedToPic(); 
-            jobContext += '" style="width:50px;" /> </div> \
-                    <div class="job-description-text"> \
-                    <div class="job-display-text">'
-                
-            jobContext += selectedJob.getTitle().substring(0, 50);
-            jobContext += '</div> <span class="blurb-location">'
-            jobContext += selectedJob.getLocation(); 
-            jobContext += '</span> <div class="blurb-time"> '
-            jobContext += selectedJob.getJobTime().toLocaleString(); 
-            jobContext += '</div> </div></div> ';
-    
-            var job = $(jobContext);
-            $(".job-panel .job-group .job").removeClass("focus");
-            job.addClass("focus");
-            //console.log();
-        }*/
+
+
 }
 
 
@@ -975,10 +964,13 @@ function buttonListeners() {
         $update.append($img);
         $update.append($updateText);
         $(".updates").append($update);
-        $(".updates").scrollTop($(".updates")[0].scrollHeight);
+        $(".updates").scrollTop(999999999);
+        // $(".updates").scrollTop($('.updates').height());
+        // $(".updates").scrollTop($(".updates")[0].scrollHeight);
 
-        up = new fixit.Update(current_user, content.val(), new Date(), "urgency");
-        selectedJob.addUpdate(up, true);
+        var up = new fixit.Update(current_user, content.val(), new Date(), "urgency");
+        var ur = selectedJob.addUpdate(up, true);
+        up.setUpdateRef(ur);
         selectedJob.setJobTime((new Date()).getTime());
         jobList.sort(sortByTime);
         replaceMiddlePanel(selectedTab);
@@ -987,4 +979,6 @@ function buttonListeners() {
         return false;
     });
 }
+
+// Get the corresponding worker 
 

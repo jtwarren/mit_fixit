@@ -381,6 +381,11 @@ body {
     margin-top: 10px;
 }
 
+#reassign-button {
+    /*float: right; */
+    margin-top: 10px;
+}
+
 #mark_completed_button {
     width: 141px;
     margin-left: 2px;
@@ -497,4 +502,10 @@ body {
 .delete-update-button {
     float: right;
     margin-right: 23px;
+}
+
+#appendix{
+    text-align: center;
+    margin-top: 10px;
+    padding-bottom: 10px;
 }

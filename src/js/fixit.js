@@ -88,7 +88,6 @@ fixit.Job = function(title, text, location, time, reporter, status, assignedTo, 
             updateRef = jobRef.child("/updates").push({"text" : update.getText(), "user" : "michael", "time" : ms});
             jobRef.setPriority(1/(new Date()).getTime());
         }
-        // 
         return updateRef;
 	}
 
@@ -169,6 +168,11 @@ fixit.Job = function(title, text, location, time, reporter, status, assignedTo, 
 	this.contains = function(searchText){
 		return (title.toLowerCase().indexOf(searchText) != -1 || text.toLowerCase().indexOf(searchText) != -1 || location.toLowerCase().indexOf(searchText) != -1);
 	}
+
+    this.unassign = function() {
+        console.log("unassign");
+        jobRef.update({"status" : "new", "assigned" : null});
+    }
 }
 
 fixit.Update = function(updater, text, time, urgency) {
