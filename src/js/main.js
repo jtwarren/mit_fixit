@@ -152,10 +152,9 @@ $('document').ready(function() {
     });
 
     $("#logout-button").click(function() {
-            var firebase = new Firebase("https://mit-fixit.firebaseio.com/");
-    
-        var authClient = new FirebaseAuthClient(firebase);
-        authClient.unauth();
+        // var firebase = new Firebase("https://mit-fixit.firebaseio.com/");
+        // var authClient = new FirebaseAuthClient(firebase);
+        // authClient.unauth();
         window.location.href = "login.html";
     });
 
@@ -816,7 +815,7 @@ function replaceMiddlePanel(tab) {
     }else{
         headingName = selectedTab.substring(0, selectedTab.length-3) + " Jobs";
     }
-    $("#jobsearch").attr("placeholder", "Search " + headingName + " (e.g., 'heater')");
+    $("#jobsearch").attr("placeholder", "Search " + headingName + " (e.g., 'dining')");
 
 
     var allMiddlePanelHTML = "<div class='topbar'> \
