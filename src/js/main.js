@@ -15,6 +15,8 @@ var labelTypes = new Array();
 //var newLabel = false;
 var labelColorPairs = {};
 
+var noLabelSelected = "No label selected";
+
 $('document').ready(function() {
 
     var firebase = new Firebase("https://mit-fixit.firebaseio.com/");
@@ -102,6 +104,7 @@ $('document').ready(function() {
         }else{
             $(".add-label-to-job").html("<form action='' class='labelform'> \
                                     <select id ='labeldropdown' name='labellist' multiple='multiple'> \
+                                        <option value='selectlabels'>" + noLabelSelected + "</option> \
                                     </select> \
                                 </form>");
             //<option value='selectlabels'>Select labels</option> \
@@ -197,6 +200,7 @@ function addNewLabel(labelName, color){
     }else{
         $(".add-label-to-job").html("<form action='' class='labelform'> \
                     <select id ='labeldropdown' name='labellist' multiple='multiple'> \
+                        <option value='selectlabels'>" + noLabelSelected + "</option> \
                     </select> \
                     </form>");
             /*$("#labeldropdown").multiselect({
@@ -218,6 +222,7 @@ function addNewLabel(labelName, color){
         }else{
             $(".add-label-to-job").html("<form action='' class='labelform'> \
                                     <select id ='labeldropdown' name='labellist' multiple='multiple'> \
+                                        <option value='selectlabels'>" + noLabelSelected + "</option> \
                                     </select> \
                                 </form>");
             /*$("#labeldropdown").multiselect({
@@ -465,6 +470,7 @@ function addJob(currentJob) {
             //$(".add-label-to-job").html("text");
             $(".add-label-to-job").html("<form action='' class='labelform'> \
                                     <select id ='labeldropdown' name='labellist' multiple='multiple'> \
+                                        <option value='selectlabels'>" + noLabelSelected + "</option> \
                                     </select> \
                                 </form>");
             /*$("#labeldropdown").multiselect({
@@ -475,6 +481,7 @@ function addJob(currentJob) {
         //}
         $(".add-label-to-job").html("<form action='' class='labelform'> \
                                     <select id ='labeldropdown' name='labellist' multiple='multiple'> \
+                                        <option value='selectlabels'>" + noLabelSelected + "</option> \
                                     </select> \
                                 </form>");
         updateLabelDropDown();
@@ -509,24 +516,35 @@ function updateLabelDropDown(){
     $(".labeldropdown").html(labelHTML);*/
     var labelHTML = "";
     if(selectedJob != null){
+        labelHTML += "<option value='selectlabels'>" + noLabelSelected + "</option>";
         for(var i = 0; i < labelTypes.length; i++){
             var name = labelTypes[i];
             labelHTML += '<option value="' + name.toLowerCase() + '">' + name + '</option>';
         }
         $("#labeldropdown").html(labelHTML);
-        $("#labeldropdown").multiselect({
+        /*$("#labeldropdown").multiselect({
             header: false,
             noneSelectedText: "Labels applied",
             selectedText: "Labels applied",
             click: function(event, ui){
                 checkboxesChangedUpdateLabels(ui.value, ui.text);
             }
+        });*/
+        $("#labeldropdown").multiselect({
+            multiple: false,
+            header: false,
+            noneSelectedText: "Apply a label",
+            //selectedText: "Labels applied",
+            selectedList: 1,
+            click: function(event, ui){
+                dropDownChangedUpdateLabel(ui.text);
+            }
         });
 
     }
 }
 
-function checkboxesChangedUpdateLabels(isChecked, name){
+/*function checkboxesChangedUpdateLabels(isChecked, name){
     if(isChecked){
         selectedJob.changeLabel(name);
     }else{
@@ -539,23 +557,36 @@ function checkboxesChangedUpdateLabels(isChecked, name){
     var labelHTML = '<span class="' + labeltext + '-label label-area">' + labeltext + '</span>';
 
     var jobLabel = selectedJob.getLabel();
-    /*for(var i = 0; i < labelsOfJob.length; i++){
-        var thelabelhtml = '<span class="' + labelsOfJob[i] + '-label label-area">' + labelsOfJob[i] + '</span>';
-        labelHTML += thelabelhtml;
-    }*/
+    
     var thelabelhtml = '<span class="' + jobLabel + '-label label-area">' + jobLabel + '</span>';
     labelHTML += thelabelhtml;
     selectedJobView.find(".list-of-labels").html(labelHTML);
     for(var i = 0; i < labelTypes.length; i++){
         createLabelCSS(labelTypes[i]);
     }
-    /*if(newLabel != false){
-        createLabelCSS(newLabel);
-        newLabel = false;
-    }*/
-    /*selectedJobView.find(".list-of-labels").addClass(name + "-label");
-    selectedJobView.find(".list-of-labels").html(name);*/
 
+}*/
+
+function dropDownChangedUpdateLabel(name){
+    if(name === noLabelSelected){
+        selectedJob.changeLabel(null);
+    }else{
+        selectedJob.changeLabel(name);
+    }
+    var labeltext = selectedJob.getStatus();
+    if(labeltext === "new"){
+        labeltext = "unassigned";
+    }
+    var labelHTML = '<span class="' + labeltext + '-label label-area">' + labeltext + '</span>';
+
+    var jobLabel = selectedJob.getLabel();
+    
+    var thelabelhtml = '<span class="' + jobLabel + '-label label-area">' + jobLabel + '</span>';
+    labelHTML += thelabelhtml;
+    selectedJobView.find(".list-of-labels").html(labelHTML);
+    for(var i = 0; i < labelTypes.length; i++){
+        createLabelCSS(labelTypes[i]);
+    }
 }
 
 function createLabelCSS(labelName){
