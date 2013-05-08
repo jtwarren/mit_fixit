@@ -550,9 +550,9 @@ function updateLabelDropDown(){
             }
         });
 
-        $("#labeldropdown").multiselect("widget").find(selectedJob.getLabel()).each(function(){
+        /*$("#labeldropdown").multiselect("widget").find(selectedJob.getLabel()).each(function(){
             this.click();
-        });
+        });*/
 
         //console.log($("#labeldropdown").multiselect.("option").map(this.value));
 
