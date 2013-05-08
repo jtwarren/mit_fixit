@@ -93,7 +93,7 @@ fixit.Job = function(title, text, location, time, reporter, status, assignedTo, 
 
     this.addLabel = function(name){
         labelList.push(name);
-        pdateRef = jobRef.child("/labels").push({"label" : name});
+        // pdateRef = jobRef.child("/labels").push({"label" : name});
     }
 
     // getter methods
@@ -169,6 +169,11 @@ fixit.Job = function(title, text, location, time, reporter, status, assignedTo, 
 	this.contains = function(searchText){
 		return (title.toLowerCase().indexOf(searchText) != -1 || text.toLowerCase().indexOf(searchText) != -1 || location.toLowerCase().indexOf(searchText) != -1);
 	}
+
+    this.unassign = function() {
+        console.log("unassign");
+        jobRef.update({"status" : "new", "assigned" : null});
+    }
 }
 
 fixit.Update = function(updater, text, time, urgency) {
