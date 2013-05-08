@@ -926,15 +926,17 @@ function loadAddressBook() {
     //data model
     var alan = new Contact("Alan Michelson", "617-584-2094", "michelson@mit.edu", "images/mechanic4.jpg");
     var becky = new Contact("Becky Folds", "617-543-1352", "beks@mit.edu", "images/mechanic5.jpg");
-    var billy = new Contact("Billy", "617-777-7778", "billy@mit.edu", "images/mechanic2.jpg");
+    var billy = new Contact("Billy Bob", "617-777-7778", "billy@mit.edu", "images/mechanic2.jpg");
     var homeDepot = new Contact("Home Depot", "617-940-0184", "contact@homedepot.com", "images/homedepot.jpg");
     var jenks = new Contact("Jenks Jenkinson", "617-239-8971", "jenks@mit.edu","images/mechanic1.jpg");
+    var tim = new Contact("Tim Campbell", "617-874-5047", "tcampbell@mit.edu","images/mechanic6.jpg");
 
     contactList.push(alan);
     contactList.push(becky);
     contactList.push(billy); 
     contactList.push(homeDepot);
     contactList.push(jenks);
+    contactList.push(tim); 
 
     for(var c = 0; c < contactList.length; c++){
     	var contacthtml = '<div class="contact" id="c' + c + '">' + '</div>';

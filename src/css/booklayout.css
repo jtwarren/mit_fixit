@@ -21,7 +21,6 @@
 	right: 12px; 
 	height: 30px;
 	width: auto;
-	style="position:fixed;"
 }
 
 #searchbutton{
@@ -38,6 +37,7 @@
 .modal-body{
     height:400px; 
     width: auto;
+    margin-bottom:10px; 
 }
 
 .contact{
