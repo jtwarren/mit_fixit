@@ -498,3 +498,9 @@ body {
     float: right;
     margin-right: 23px;
 }
+
+#appendix{
+    text-align: center;
+    margin-top: 20px;
+    padding-bottom: 10px;
+}
