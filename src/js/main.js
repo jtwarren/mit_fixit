@@ -482,8 +482,10 @@ function replaceDetails(job, jobView) {
                         <!--<h4>Assignment</h4>--> \
                         <span> \
                             <div class="currently-assigned-text"> Currently Assigned: </div> \
-                            <img class="assigned-mechanic-img" style="width:50px" src="images/default.png"/> \
-                            <div class="assigned-mechanic-name"> No one.</div>\
+                            <span>  \
+                                <img class="assigned-mechanic-img" style="width:50px" src="images/default.png"/> \
+                                <div class="assigned-mechanic-name"> No one.</div>\
+                            </span> \
                             <select class="assigned-mechanic"> \
                             </select> \
                             <button id="assign-button" type="submit" class="btn btn-custom"><b>Assign</b></button> \
