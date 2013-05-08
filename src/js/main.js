@@ -788,7 +788,7 @@ function replaceMiddlePanel(tab) {
     }else{
         headingName = selectedTab.substring(0, selectedTab.length-3) + " Jobs";
     }
-    $("#jobsearch").attr("placeholder", "Search " + headingName);
+    $("#jobsearch").attr("placeholder", "Search " + headingName + " (e.g., 'McCormick', 'dining')");
 
 
     var allMiddlePanelHTML = "<div class='topbar'> \
