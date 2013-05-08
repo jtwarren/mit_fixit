@@ -442,6 +442,7 @@ body {
 
 #update-textarea {
     margin-bottom: 5px;
+    resize:none; 
 }
 
 .help-inline {
