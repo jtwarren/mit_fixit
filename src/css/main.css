@@ -246,18 +246,18 @@ body {
 
 .job .job-description-text .unassigned-label{
     /*background-color: green;*/
-    background-color: #CDFFE5;
+    background-color: #CDEEFF;
 }
 
 .job .job-description-text .assigned-label{
     /*background-color: blue;*/
-    background-color: #CDD2FF;
+    background-color: #CDFFD1;
     /*color: white;*/
 }
 
 .job .job-description-text .completed-label{
     /*background-color: red;*/
-    background-color: #FFEECD;
+    background-color: #FFF7CD;
     /*color: white;*/
 }
 
@@ -405,6 +405,7 @@ body {
 #assign-button {
     margin-top: 10px;
     margin-left: 0px;
+    width:98px; 
 }
 
 #reassign-button {
