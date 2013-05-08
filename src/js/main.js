@@ -111,9 +111,9 @@ $('document').ready(function() {
                                     </select> \
                                 </form>");
             //<option value='selectlabels'>Select labels</option> \
-            /*$("#labeldropdown").multiselect({
-                header: false
-            });*/
+            /* $("#labeldropdown").multiselect({
+             //   header: false
+           // }); */
         }
         updateLabelDropDown();
     });
@@ -287,15 +287,29 @@ var giveRightPanelAssignedClickHandler = function(jobView, jobModel, assignedBut
     assignedButton.click(function() {
         $(".job-buttons").find("#mark_completed_button").html("Mark complete");
         jobModel.setStatus("assigned");
-        worker = workers[parseInt($(".assigned-mechanic").find(":selected").val())]
-        selectedJob.setWorker(worker);
-        $(".assigned-mechanic-img").attr('src', selectedJob.getAssignedToPic());
-        jobView.prependTo($(".assigned-jobs"));
-        jobView.find(".mechanic-image").attr('src', selectedJob.getAssignedToPic());
-        jobView.find(".label-area").addClass("assigned-label");
-        jobView.find(".label-area").removeClass("unassigned-label");
-        jobView.find(".label-area").removeClass("completed-label");
-        jobView.find(".label-area").html("assigned");
+        console.log($(".assigned-mechanic").find(":selected").val());
+        if (parseInt($(".assigned-mechanic").find(":selected").val()) >= 0) {
+            worker = workers[parseInt($(".assigned-mechanic").find(":selected").val())]
+            selectedJob.setWorker(worker);
+            $(".assigned-mechanic-img").attr('src', selectedJob.getAssignedToPic());
+            jobView.prependTo($(".assigned-jobs"));
+            jobView.find(".mechanic-image").attr('src', selectedJob.getAssignedToPic());
+            jobView.find(".label-area").addClass("assigned-label");
+            jobView.find(".label-area").removeClass("unassigned-label");
+            jobView.find(".label-area").removeClass("completed-label");
+            jobView.find(".label-area").html("assigned");
+            console.log("hiding"); 
+            $(".assigned-mechanic-name").text(selectedJob.getWorker().getName());
+            $(".assigned-mechanic").hide(); 
+            $("#assign-button").hide(); 
+            $("#reassign-button").show(); 
+            $("#reassign-button").click(function() {
+                alert("I WANT TO REASSIGN");
+            }); 
+        } else {
+            alert("Unassigning mechanic"); 
+        }
+        
     });
 }
 
@@ -483,10 +497,15 @@ function replaceDetails(job, jobView) {
                     <div class="assignment shadow"> \
                         <!--<h4>Assignment</h4>--> \
                         <span> \
+                            <div class="currently-assigned-text"> Currently Assigned: </div> \
                             <img class="assigned-mechanic-img" style="width:50px" src="images/default.png"/> \
+                            <div class="assigned-mechanic-name"> No one.</div>\
                             <select class="assigned-mechanic"> \
                             </select> \
                             <button id="assign-button" type="submit" class="btn btn-custom"><b>Assign</b></button> \
+                            <button id="reassign-button" type="submit" class="btn btn-custom" style="display: none"> \
+                                <b>Reassign</b> \
+                            </button> \
                         </span> \
                     </div> \
                     <div class="panel-updates shadow"> \
@@ -514,16 +533,27 @@ function replaceDetails(job, jobView) {
     var reporter = job.getReporter();
     $(".description-panel .description .job-reporter").html(reporter.getName() + ", " + reporter.getEmail() + ", " + reporter.getPhone());
 
-    $(".assigned-mechanic").append('<option selected="selected" value="0"> Select a mechanic to assign the task to...</option>');
-    for (var i = 1; i < workers.length +1; i++) {
-
-        if (job.getWorker() && job.getWorker().getName() === workers[i].getName()) {
-            $(".assigned-mechanic").append($('<option selected="selected" value=' + i + '>' + workers[i].getName() + '</option>'));
-            $(".assigned-mechanic-img").attr('src', job.getAssignedToPic());
-        } else {
-            $(".assigned-mechanic").append($('<option value=' + i + '>' + workers[i].getName() + '</option>'));
-        }
-    };
+    if (!job.getWorker()) {
+        $(".assigned-mechanic").append('<option selected="selected" value=""> Select a mechanic. </option>');
+        for (var i = 0; i < workers.length; i++) {
+            if (job.getWorker() && job.getWorker().getName() === workers[i].getName()) {
+                $(".assigned-mechanic").append($('<option selected="selected" value=' + i + '>' + workers[i].getName() + '</option>'));
+                $(".assigned-mechanic-img").attr('src', job.getAssignedToPic());
+            } else {
+                $(".assigned-mechanic").append($('<option value=' + i + '>' + workers[i].getName() + '</option>'));
+            }
+        };
+    } else {
+        $(".assigned-mechanic-img").attr('src', job.getAssignedToPic());
+        $(".assigned-mechanic-name").text(job.getWorker().getName());
+        $(".assigned-mechanic").hide(); 
+        $("#assign-button").hide(); 
+        $("#reassign-button").show(); 
+        $("#reassign-button").click(function() {
+            alert("I WANT TO REASSIGN");
+        }); 
+    }
+    
 
     
     
@@ -926,4 +956,6 @@ function buttonListeners() {
         return false;
     });
 }
+
+// Get the corresponding worker 
 
