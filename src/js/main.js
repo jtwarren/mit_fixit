@@ -479,7 +479,8 @@ function replaceDetails(job, jobView) {
     var reporter = job.getReporter();
     $(".description-panel .description .job-reporter").html(reporter.getName() + ", " + reporter.getEmail() + ", " + reporter.getPhone());
 
-    for (var i = 0; i < workers.length; i++) {
+    $(".assigned-mechanic").append('<option selected="selected" value="0"> Select a mechanic to assign the task to...</option>');
+    for (var i = 1; i < workers.length +1; i++) {
 
         if (job.getWorker() && job.getWorker().getName() === workers[i].getName()) {
             $(".assigned-mechanic").append($('<option selected="selected" value=' + i + '>' + workers[i].getName() + '</option>'));
