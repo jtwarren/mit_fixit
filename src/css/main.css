@@ -124,7 +124,7 @@ body {
 
 .assigned-mechanic-name {
     margin-left: 2px;
-    margin-top: 0px;
+    padding-top: 50px;
     margin-bottom: 0px;
 }
 
@@ -529,4 +529,17 @@ body {
 #mechanic-selection-widget-container{
     width:500px;
     height: 300px;
+}
+
+.assignment-buttons {
+    float: right;
+    margin-top: 10px;
+}
+
+.unassign-button {
+    margin-left: 5px;
+}
+
+.reassign-button {
+    margin-left: 5px;
 }
