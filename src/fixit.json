@@ -143,5 +143,11 @@
         "email" : "michael@mit.edu"
       }
     }
+  }, 
+  "labels" : {
+    "electricity" : {
+      "name" : "electricity",
+      "color" : "red"
+    }
   }
 }

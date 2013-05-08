@@ -36,7 +36,7 @@ fixit.Person = function(name, email, phone, profPic, id) {
     
 }
 
-fixit.Job = function(title, text, location, time, reporter, status, assignedTo, starred) {
+fixit.Job = function(title, text, location, time, reporter, status, assignedTo, starred, label) {
     /* Constructor for fixit.Job object. Takes following parameters:
      - title, a string
      - text, a string
@@ -55,7 +55,7 @@ fixit.Job = function(title, text, location, time, reporter, status, assignedTo, 
     var starred = starred;
     var assignedTo = typeof assignedTo !== 'undefined' ? assignedTo : null;
     var updateList = new Array();
-    var label = null;
+    var label = typeof label !== 'undefined' ? label : null;
 
     var jobRef = null;
 
@@ -93,6 +93,7 @@ fixit.Job = function(title, text, location, time, reporter, status, assignedTo, 
 
     this.changeLabel = function(name){
         label = name;
+        jobRef.update({"label" : name});
     }
 
     // getter methods

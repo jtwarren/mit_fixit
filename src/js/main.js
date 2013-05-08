@@ -34,6 +34,17 @@ $('document').ready(function() {
         workers.push(new fixit.Person(mechanic.name, mechanic.email, mechanic.phone, mechanic.picture, mechanic.id))
     });
 
+    // Add workers to the database
+    var mechanicsRef = new Firebase("https://mit-fixit.firebaseio.com/labels");
+    mechanicsRef.on('child_added', function(snapshot) {
+        var label = snapshot.val();
+
+        labelTypes.push(label.name)
+        labelColorPairs[label.name] = label.color
+
+        addNewLabel(label.name);
+    });
+
 
     // var rebecca = new fixit.Person("Rebecca Krosnick", "krosnick@mit.edu", "240.505.2222");
     // var anurag = new fixit.Person("Anurag Kashyap", "anurag@mit.edu", "412.961.2424");
@@ -50,7 +61,7 @@ $('document').ready(function() {
             student = snapshot.val()
             reporter = new fixit.Person(student.name, student.email, student.phone)
         });
-        currentJob = new fixit.Job(job.title, job.text, job.location, job.time, reporter, job.status, job.assigned, job.starred);
+        currentJob = new fixit.Job(job.title, job.text, job.location, job.time, reporter, job.status, job.assigned, job.starred, job.label);
         currentJob.setJobRef(snapshot.ref());
 
         var updates = snapshot.child("/updates");
@@ -400,13 +411,15 @@ function addJob(currentJob) {
     jobContext += "<span class=list-of-labels>";
     jobContext += labelHTML;
 
-    var jobLabel = currentJob.getLabel();
-    var thelabelhtml = '<span class="' + jobLabel + '-label label-area">' + jobLabel + '</span>';
-        jobContext += thelabelhtml;
-    /*for(var i = 0; i < sortedJobs.length; i++){
-        var thelabelhtml = '<span class="' + sortedJobs[i] + '-label label-area">' + sortedJobs[i] + '</span>';
-        jobContext += thelabelhtml;
-    }*/
+    if (currentJob.getLabel()) {
+        var jobLabel = currentJob.getLabel();
+        var thelabelhtml = '<span class="' + jobLabel + '-label label-area">' + jobLabel + '</span>';
+            jobContext += thelabelhtml;
+        /*for(var i = 0; i < sortedJobs.length; i++){
+            var thelabelhtml = '<span class="' + sortedJobs[i] + '-label label-area">' + sortedJobs[i] + '</span>';
+            jobContext += thelabelhtml;
+        }*/
+    }
 
     jobContext += "</span>";
     // console.log(currentJob.getJobTime());
