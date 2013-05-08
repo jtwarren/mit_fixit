@@ -55,7 +55,7 @@ fixit.Job = function(title, text, location, time, reporter, status, assignedTo, 
     var starred = starred;
     var assignedTo = typeof assignedTo !== 'undefined' ? assignedTo : null;
     var updateList = new Array();
-    var labelList = new Array();
+    var label = null;
 
     var jobRef = null;
 
@@ -92,8 +92,8 @@ fixit.Job = function(title, text, location, time, reporter, status, assignedTo, 
         return updateRef;
 	}
 
-    this.addLabel = function(name){
-        labelList.push(name);
+    this.changeLabel = function(name){
+        label = name;
     }
 
     // getter methods
@@ -149,8 +149,8 @@ fixit.Job = function(title, text, location, time, reporter, status, assignedTo, 
         return reporter;
     }
 
-    this.getLabels = function (){
-        return labelList;
+    this.getLabel = function (){
+        return label;
     }
 
     this.toggleStarred = function() {

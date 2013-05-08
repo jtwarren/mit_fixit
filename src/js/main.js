@@ -12,6 +12,8 @@ var selectedJobView = null;
 var selectedTab = "alltab";
 var current_user = new fixit.Person("Michael McIntyre", "michael@mit.edu", "309-269-2032", "images/houseManager.jpg");
 var labelTypes = new Array();
+//var newLabel = false;
+var labelColorPairs = {};
 
 $('document').ready(function() {
 
@@ -116,6 +118,9 @@ $('document').ready(function() {
             });*/
         }
         updateLabelDropDown();
+        for(var i = 0; i < labelTypes.length; i++){
+            createLabelCSS(labelTypes[i]);
+        }
     });
 
     $('#create-job-form').on('submit', function(event) {
@@ -173,6 +178,8 @@ $('document').ready(function() {
  * Adds a new label on the left panel. 
  */
 function addNewLabel(labelName){
+    //newLabel = labelName;
+    labelColorPairs[labelName] = "purple";
     var leftPanelHTML = "";
     labelTypes.sort();
     for(var i = 0; i < labelTypes.length; i++){
@@ -180,6 +187,9 @@ function addNewLabel(labelName){
         leftPanelHTML += '<li class="tab-item" id="' + labelTypes[i] + 'tab"><a href="#' + name + '">' + name + '</a></li>';
     }
     $("#label-list").html(leftPanelHTML);
+    //$("."+name+"-label").css('background-color', 'purple');
+    //console.log("."+name+"-label");
+
     
 
     if(selectedJob === null){
@@ -214,6 +224,9 @@ function addNewLabel(labelName){
                 header: false
             });*/
             updateLabelDropDown();
+        }
+        for(var i = 0; i < labelTypes.length; i++){
+            createLabelCSS(labelTypes[i]);
         }
         //updateLabelDropDown();
     });
@@ -351,10 +364,10 @@ function addJob(currentJob) {
     jobContext += currentJob.getAssignedToPic(); 
     jobContext += '" style="width:50px;" /> </div> \
                 <div class="job-description-text"> \
-                <div class="job-display-text">'
+                <span> <div> <div class="job-display-text">'
                 
     jobContext += currentJob.getTitle().substring(0, 50);
-    jobContext += '</div> <span class="blurb-location">'
+    jobContext += '</div> <div class="blurb-location">'
     jobContext += currentJob.getLocation();
 
     // Label
@@ -362,12 +375,23 @@ function addJob(currentJob) {
     if(labeltext === "new"){
         labeltext = "unassigned";
     }
-    var labelHTML = '<div class="' + labeltext + '-label label-area">' + labeltext + '</div>';
+    var labelHTML = '<span class="' + labeltext + '-label label-area">' + labeltext + '</span>';
 
-    jobContext += '</span>';
+    jobContext += '</div> </div>';
+    jobContext += "<span class=list-of-labels>";
     jobContext += labelHTML;
+
+    var jobLabel = currentJob.getLabel();
+    var thelabelhtml = '<span class="' + jobLabel + '-label label-area">' + jobLabel + '</span>';
+        jobContext += thelabelhtml;
+    /*for(var i = 0; i < sortedJobs.length; i++){
+        var thelabelhtml = '<span class="' + sortedJobs[i] + '-label label-area">' + sortedJobs[i] + '</span>';
+        jobContext += thelabelhtml;
+    }*/
+
+    jobContext += "</span>";
     // console.log(currentJob.getJobTime());
-    jobContext += ' <div class="blurb-time"> ' + $.timeago(parseInt(currentJob.getJobTime())) + '</div>';
+    jobContext += ' <div class="blurb-time"> ' + $.timeago(parseInt(currentJob.getJobTime())) + '</div> </span>';
 
     // Depending on whether or not the date change is within the day. 
     // var currentTime = new Date();    
@@ -385,6 +409,10 @@ function addJob(currentJob) {
         job.addClass("focus");
         selectedJobView = job;
     }
+    /*if(newLabel != false){
+        createLabelCSS(newLabel);
+        newLabel = false;c
+    }*/
     $(job).click(function() {
         var jobAlreadySelected = false;
         //console.log(selectedJob);
@@ -453,13 +481,52 @@ function updateLabelDropDown(){
         $("#labeldropdown").multiselect({
             header: false,
             noneSelectedText: "Labels applied",
-            selectedText: "Labels applied"
+            selectedText: "Labels applied",
+            click: function(event, ui){
+                checkboxesChangedUpdateLabels(ui.value, ui.text);
+            }
         });
+
     }
 }
 
-function checkboxesChangedUpdateLabels(){
+function checkboxesChangedUpdateLabels(isChecked, name){
+    if(isChecked){
+        selectedJob.changeLabel(name);
+    }else{
+        selectedJob.changeLabel(null);
+    }
+    var labeltext = selectedJob.getStatus();
+    if(labeltext === "new"){
+        labeltext = "unassigned";
+    }
+    var labelHTML = '<span class="' + labeltext + '-label label-area">' + labeltext + '</span>';
 
+    var jobLabel = selectedJob.getLabel();
+    /*for(var i = 0; i < labelsOfJob.length; i++){
+        var thelabelhtml = '<span class="' + labelsOfJob[i] + '-label label-area">' + labelsOfJob[i] + '</span>';
+        labelHTML += thelabelhtml;
+    }*/
+    var thelabelhtml = '<span class="' + jobLabel + '-label label-area">' + jobLabel + '</span>';
+    labelHTML += thelabelhtml;
+    selectedJobView.find(".list-of-labels").html(labelHTML);
+    for(var i = 0; i < labelTypes.length; i++){
+        createLabelCSS(labelTypes[i]);
+    }
+    /*if(newLabel != false){
+        createLabelCSS(newLabel);
+        newLabel = false;
+    }*/
+    /*selectedJobView.find(".list-of-labels").addClass(name + "-label");
+    selectedJobView.find(".list-of-labels").html(name);*/
+
+}
+
+function createLabelCSS(labelName){
+    var c = labelColorPairs[labelName];
+    $("."+labelName+"-label").css("background-color", c);
+    console.log(c);
+    //console.log("."+labelName+"-label");
 }
 
 // Replace the details for a given job
