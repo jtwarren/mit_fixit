@@ -426,7 +426,7 @@ function addJob(currentJob) {
 
     if (currentJob.getLabel() != null) {
         var jobLabel = currentJob.getLabel();
-        var thelabelhtml = '<span class="' + jobLabel + '-label specific-label-area">' + jobLabel + '</span>';
+        var thelabelhtml = '<span class="' + jobLabel + '-label specific-label-area">' + jobLabel.toLowerCase() + '</span>';
         jobContext += thelabelhtml;
         /*for(var i = 0; i < sortedJobs.length; i++){
             var thelabelhtml = '<span class="' + sortedJobs[i] + '-label label-area">' + sortedJobs[i] + '</span>';
@@ -618,7 +618,7 @@ function dropDownChangedUpdateLabel(name){
 
     var jobLabel = selectedJob.getLabel();
     if(jobLabel != null){
-        var thelabelhtml = '<span class="' + jobLabel + '-label specific-label-area">' + jobLabel + '</span>';
+        var thelabelhtml = '<span class="' + jobLabel + '-label specific-label-area">' + jobLabel.toLowerCase() + '</span>';
         labelHTML += thelabelhtml;
     }
 
