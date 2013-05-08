@@ -605,3 +605,7 @@ body {
     font-style: italic;
     font-size:0.9em;
 }
+
+#inputtext {
+    position: fixed;
+}
