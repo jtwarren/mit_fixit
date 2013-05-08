@@ -15,7 +15,7 @@ var labelTypes = new Array();
 //var newLabel = false;
 var labelColorPairs = {};
 
-var noLabelSelected = "Select a label for a job";
+var noLabelSelected = "Select a label for a job.";
 
 $('document').ready(function() {
 
