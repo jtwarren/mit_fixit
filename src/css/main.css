@@ -397,7 +397,9 @@ body {
 }
 
 .tab-panel .selected {
+    color: #C41E3A;
     font-weight: bold;
+
 }
 
 #assign-button {
@@ -421,12 +423,12 @@ body {
 }
 
 #jobsearch{
-    width: 650px;
+    width: 655px;
     padding-top: 7px;
 }
 
 #fixit-logo{
-    padding-right: 60px; 
+    padding-right: 40px; 
 }
 
 #myLabelCreator{

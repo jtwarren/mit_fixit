@@ -151,6 +151,10 @@ $('document').ready(function() {
 
     });
 
+    $("#logout-button").click(function() {
+        window.location.href = "login.html";
+    });
+
     $(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
     $('#create-job-form').on('submit', function(event) {
 
@@ -808,7 +812,7 @@ function replaceMiddlePanel(tab) {
     }else{
         headingName = selectedTab.substring(0, selectedTab.length-3) + " Jobs";
     }
-    $("#jobsearch").attr("placeholder", "Search " + headingName + " (e.g., 'McCormick', 'dining')");
+    $("#jobsearch").attr("placeholder", "Search " + headingName + " (e.g., 'dining')");
 
 
     var allMiddlePanelHTML = "<div class='topbar'> \
