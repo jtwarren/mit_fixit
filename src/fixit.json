@@ -148,6 +148,10 @@
     "electricity" : {
       "name" : "electricity",
       "color" : "red"
+    },
+    "plumming" : {
+      "name" : "plumming",
+      "color" : "red"
     }
   }
 }

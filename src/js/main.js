@@ -42,9 +42,8 @@ $('document').ready(function() {
         var label = snapshot.val();
 
         labelTypes.push(label.name)
-        labelColorPairs[label.name] = label.color
 
-        addNewLabel(label.name);
+        addNewLabel(label.name, label.color);
     });
 
 
@@ -119,25 +118,6 @@ $('document').ready(function() {
         }
     });
 
-    // $('#create-job-form').on('submit', function(event) {
-
-    //     var jobsRef = new Firebase("https://mit-fixit.firebaseio.com/jobs");
-
-    //     var location = $("#inputLocation").val();
-    //     var title = $("#inputTitle").val();
-    //     var desc = $("#inputDescription").val();
-
-    //     var jobRef = jobsRef.push({"location" : location, "title" : title, "text" : desc, "time" : (new Date()).getTime(), "reporter" : "michael", "status" : "new"});
-
-    //     jobRef.setPriority(1/(new Date()).getTime());
-
-    //     $("#inputLocation").val("");
-    //     $("#inputTitle").val("");
-    //     $("#inputDescription").val("");
-
-    //     $('#createJobModal').modal('hide');
-    // });
-
 
     /***** 
      * Right Panel 
@@ -156,8 +136,14 @@ $('document').ready(function() {
         document.getElementById("create-label-text").value = "";
         $("#myLabelCreator").hide();
         $(".modal-backdrop").hide();
-        labelTypes.push(name);
-        addNewLabel(name);
+        // labelTypes.push(name);
+
+
+        // addNewLabel(name);
+
+        var labelsRef = new Firebase("https://mit-fixit.firebaseio.com/labels");
+        labelsRef.push({"name" : name, "color" : "red"});
+
     });
 
     $(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
@@ -194,9 +180,9 @@ $('document').ready(function() {
 /**
  * Adds a new label on the left panel. 
  */
-function addNewLabel(labelName){
+function addNewLabel(labelName, color){
     //newLabel = labelName;
-    labelColorPairs[labelName] = "purple";
+    labelColorPairs[labelName] = color;
     var leftPanelHTML = "";
     labelTypes.sort();
     for(var i = 0; i < labelTypes.length; i++){
@@ -600,7 +586,7 @@ function createLabelCSS(labelName){
 
 // Replace the details for a given job
 function replaceDetails(job, jobView) {
-
+    console.log("replaceDetails is bieng called...");
     var rightPanelHTML = '<div class="description shadow"> \
                        <span class="job-title"> \
                             <span></span> \
@@ -618,19 +604,20 @@ function replaceDetails(job, jobView) {
                     </div> \
                     <div class="assignment shadow"> \
                         <!--<h4>Assignment</h4>--> \
-                        <span> \
-                            <div class="currently-assigned-text"> Currently Assigned: </div> \
-                            <span>  \
+                         \
+                            <!--<span class="currently-assigned-text"><b>Assigned to:</b> </span>--> \
+                            <span class="mechanic-selection-widget-container">  \
                                 <img class="assigned-mechanic-img" style="width:50px" src="images/default.png"/> \
-                                <div class="assigned-mechanic-name"> No one.</div>\
-                            </span> \
-                            <select class="assigned-mechanic"> \
+                                <span class="assigned-mechanic-name"> No one.</span></span>\
+                                <span id="mechanic-selection-widget"> \
+                                <select class="assigned-mechanic"> \
                             </select> \
-                            <button id="assign-button" type="submit" class="btn btn-custom"><b>Assign</b></button> \
-                            <button id="reassign-button" type="submit" class="btn btn-custom" style="display: none"> \
+                            <button id="assign-button" type="submit" class="btn btn-custom"><b>Assign</b></button></span> \
+                            <!--<button id="reassign-button" type="submit" class="btn btn-custom" style="display: none"> \
                                 <b>Reassign</b> \
-                            </button> \
-                        </span> \
+                            </button>--> \
+                            </span> \
+                         \
                     </div> \
                     <div class="panel-updates shadow"> \
                         <div class="updates"> \
@@ -660,9 +647,12 @@ function replaceDetails(job, jobView) {
     if (!job.getWorker()) {
         //$(".assigned-mechanic").append('<option selected="selected" value=""> Select a mechanic. </option>');
         for (var i = 0; i < workers.length; i++) {
+            if (i === 0) {
+                $(".assigned-mechanic").append($('<option selected="selected" value="none">' + "Select a mechanic." + '</option>'));
+            }
             if (job.getWorker() && job.getWorker().getName() === workers[i].getName()) {
                 $(".assigned-mechanic").append($('<option selected="selected" value=' + i + '>' + workers[i].getName() + '</option>'));
-                $(".assigned-mechanic-img").attr('src', job.getAssignedToPic());
+                //$(".assigned-mechanic-img").attr('src', job.getAssignedToPic());
             } else {
                 $(".assigned-mechanic").append($('<option value=' + i + '>' + workers[i].getName() + '</option>'));
             }
@@ -670,6 +660,17 @@ function replaceDetails(job, jobView) {
     } else {
         $(".assigned-mechanic-img").attr('src', job.getAssignedToPic());
         $(".assigned-mechanic-name").text(job.getWorker().getName());
+        $(".mechanic-selection-widget-container").append($('<span class="assignment-buttons"><button class="btn btn-custom reassign-button">Re-Assign</button><button class="btn btn-custom unassign-button">Un-Assign</button></span>'));
+        $(".unassign-button").click(function(){
+            // console.log(job.getWorker().getName());
+            job.unassign();
+            replaceDetails(job, jobView);
+            // console.log(job.getWorker());
+        });
+
+        $(".reassign-button").click(function(){
+            
+        });
         $(".assigned-mechanic").hide(); 
         $("#assign-button").hide(); 
         $("#reassign-button").show(); 
@@ -1028,6 +1029,4 @@ function buttonListeners() {
         return false;
     });
 }
-
-// Get the corresponding worker 
 
