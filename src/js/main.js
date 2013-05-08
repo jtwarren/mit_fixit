@@ -563,7 +563,8 @@ function replaceDetails(job, jobView) {
         $update.append($img);
         $update.append($updateText);
         $(".updates").append($update);
-        $(".updates").scrollTop($('.updates').height());
+        $(".updates").scrollTop(999999999);
+        // $(".updates").scrollTop($('.updates').height());
     });
 
     if (job.isStarred()) {
@@ -910,7 +911,8 @@ function buttonListeners() {
         $update.append($img);
         $update.append($updateText);
         $(".updates").append($update);
-        $(".updates").scrollTop($('.updates').height());
+        $(".updates").scrollTop(999999999);
+        // $(".updates").scrollTop($('.updates').height());
         // $(".updates").scrollTop($(".updates")[0].scrollHeight);
 
         var up = new fixit.Update(current_user, content.val(), new Date(), "urgency");
