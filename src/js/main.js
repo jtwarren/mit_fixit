@@ -808,7 +808,10 @@ function replaceMiddlePanel(tab) {
             }else{
                 for (var i=0; i<jobList.length; i++) {
                     var currentJob = jobList[i];
-                    if(currentJob.getLabels().indexOf(selectedTab.substring(0, selectedTab.length-3)) != -1 && currentJob.contains(searchText)){
+                    /*if(currentJob.getLabels().indexOf(selectedTab.substring(0, selectedTab.length-3)) != -1 && currentJob.contains(searchText)){
+                        addJob(currentJob);
+                    }*/
+                    if(currentJob.getLabel() === selectedTab.substring(0, selectedTab.length-3)  && currentJob.contains(searchText)){
                         addJob(currentJob);
                     } 
                 }
