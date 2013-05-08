@@ -521,8 +521,14 @@ body {
 }
 
 .delete-update-button {
+    color: #e34b65;
     float: right;
     margin-right: 23px;
+}
+
+.delete-update-button:hover {
+    color: #98172d;
+    text-decoration: none;
 }
 
 #appendix{
