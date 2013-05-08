@@ -575,3 +575,11 @@ body {
 #inputDescription {
     resize:none; 
 }
+
+#inputtext { 
+    width: 475px; 
+}
+
+#myAddressModal {
+    width: auto; 
+}
