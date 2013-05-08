@@ -405,6 +405,7 @@ body {
 #assign-button {
     margin-top: 10px;
     margin-left: 0px;
+    width:98px; 
 }
 
 #reassign-button {
