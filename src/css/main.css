@@ -211,7 +211,7 @@ body {
 .job .job-description-text .blurb-location{
     font-size: 0.85em;
     float: left;
-    width: 300px;
+    width: 250px;
 }
 
 .job .job-description-text .blurb-time{
@@ -225,6 +225,7 @@ body {
     float: left;
     padding-left: 5px;
     padding-right: 5px;
+    margin-right: 3px;
     /*color: white;*/
     /*border-radius: 5px;*/
     /*float:right;
