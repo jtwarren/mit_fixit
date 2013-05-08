@@ -42,7 +42,9 @@ $('document').ready(function() {
         var label = snapshot.val();
 
         var nameOfLabel = label.name;
-        nameOfLabel = nameOfLabel.replace(" ", "");
+        while(nameOfLabel.indexOf(" ") != -1){
+            nameOfLabel = nameOfLabel.replace(" ", "");
+        }
 
         labelTypes.push(nameOfLabel)
 
@@ -312,7 +314,7 @@ var giveRightPanelAssignedClickHandler = function(jobView, jobModel, assignedBut
     assignedButton.click(function() {
         $(".job-buttons").find("#mark_completed_button").html("Mark complete");
         jobModel.setStatus("assigned");
-        console.log($(".assigned-mechanic").find(":selected").val());
+        //console.log($(".assigned-mechanic").find(":selected").val());
         if (parseInt($(".assigned-mechanic").find(":selected").val()) >= 0) {
             worker = workers[parseInt($(".assigned-mechanic").find(":selected").val())]
             selectedJob.setWorker(worker);
@@ -323,7 +325,7 @@ var giveRightPanelAssignedClickHandler = function(jobView, jobModel, assignedBut
             jobView.find(".label-area").removeClass("unassigned-label");
             jobView.find(".label-area").removeClass("completed-label");
             jobView.find(".label-area").html("assigned");
-            console.log("hiding"); 
+            //console.log("hiding"); 
             $(".assigned-mechanic-name").text(selectedJob.getWorker().getName());
             $(".assigned-mechanic").hide(); 
             $("#assign-button").hide(); 
@@ -422,7 +424,6 @@ function addJob(currentJob) {
         var jobLabel = currentJob.getLabel();
         var thelabelhtml = '<span class="' + jobLabel + '-label specific-label-area">' + jobLabel + '</span>';
         jobContext += thelabelhtml;
-        console.log(jobLabel + '-label');
         /*for(var i = 0; i < sortedJobs.length; i++){
             var thelabelhtml = '<span class="' + sortedJobs[i] + '-label label-area">' + sortedJobs[i] + '</span>';
             jobContext += thelabelhtml;
@@ -549,6 +550,12 @@ function updateLabelDropDown(){
             }
         });
 
+        $("#labeldropdown").multiselect("widget").find(selectedJob.getLabel()).each(function(){
+            this.click();
+        });
+
+        //console.log($("#labeldropdown").multiselect.("option").map(this.value));
+
     }
 }
 
@@ -605,7 +612,7 @@ function createLabelCSS(labelName){
 
 // Replace the details for a given job
 function replaceDetails(job, jobView) {
-    console.log("replaceDetails is bieng called...");
+    //console.log("replaceDetails is bieng called...");
     var rightPanelHTML = '<div class="description shadow"> \
                        <span class="job-title"> \
                             <span></span> \
@@ -766,7 +773,7 @@ function replaceDetails(job, jobView) {
 }
 
 function replaceMiddlePanel(tab) {
-    console.log("middle panel");
+    //console.log("middle panel");
     var headingName;
     if(selectedTab === "alltab"){
         headingName = "All Jobs";
