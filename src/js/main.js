@@ -219,6 +219,9 @@ function addNewLabel(labelName, color){
         replaceMiddlePanel(this.id);
         if(selectedJob === null){
             $(".add-label-to-job").html("");
+            if (selectedJob === null) {
+                $(".description-panel").html('<span class="no-job-panel"> No job selected! </span>'); 
+            }
         }else{
             $(".add-label-to-job").html("<form action='' class='labelform'> \
                                     <select id ='labeldropdown' name='labellist' multiple='multiple'> \
@@ -233,6 +236,7 @@ function addNewLabel(labelName, color){
         for(var i = 0; i < labelTypes.length; i++){
             createLabelCSS(labelTypes[i]);
         }
+
         //updateLabelDropDown();
     });
     /*var labelHTML = '<option value="selectlabels">Select labels</option>';
@@ -869,7 +873,11 @@ function replaceMiddlePanel(tab) {
                     }*/
                     if(currentJob.getLabel() === selectedTab.substring(0, selectedTab.length-3)  && currentJob.contains(searchText)){
                         addJob(currentJob);
-                    } 
+                    }
+                }
+                if(selectedJob != null && selectedJob.getLabel() != selectedTab.substring(0, selectedTab.length-3)){
+                    selectedJob = null;
+                    selectedJobView = null;
                 }
             }
         }
